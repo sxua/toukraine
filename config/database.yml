@@ -1,11 +1,14 @@
 development:
   adapter: postgresql
   database: toukraine_dev
+  username: postgres
 
 production:
   adapter: postgresql
   database: toukraine_prod
+  username: postgres
 
 test:
   adapter: postgresql
   database: toukraine_test
+  username: postgres
