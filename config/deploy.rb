@@ -50,7 +50,7 @@ namespace :unicorn do
   desc 'Start Unicorn'
   task :start, :except => { :no_release => true } do
     if remote_file_exists?(unicorn_pid)
-      if process_exists?(unicorn_pid)
+      if remote_process_exists?(unicorn_pid)
         logger.important("Unicorn is already running!", "Unicorn")
         next
       else
@@ -69,7 +69,7 @@ namespace :unicorn do
   desc 'Shutdown Unicorn'
   task :stop, :except => { :no_release => true } do
     if remote_file_exists?(unicorn_pid)
-      if process_exists?(unicorn_pid)
+      if remote_process_exists?(unicorn_pid)
         logger.important("Stopping...", "Unicorn")
         run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
       else
@@ -84,7 +84,7 @@ namespace :unicorn do
   desc 'Kill Unicorn'
   task :stop!, :except => { :no_release => true } do
     if remote_file_exists?(unicorn_pid)
-      if process_exists?(unicorn_pid)
+      if remote_process_exists?(unicorn_pid)
         logger.important("Stopping...", "Unicorn")
         run "#{try_sudo} kill -s TERM `cat #{unicorn_pid}`"
       else
