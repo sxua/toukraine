@@ -5,12 +5,12 @@ bundle_path = "#{app_path}/shared/bundle"
 worker_processes 2
 preload_app true
 
-listen "#{app_path}/shared/tmp/sockets/unicorn.socket", :backlog => 64
+listen "#{app_path}/shared/sockets/unicorn.socket", :backlog => 64
 
 working_directory "#{app_path}/current"
 stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
 stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
-pid "#{app_path}/shared/tmp/pids/unicorn.pid"
+pid "#{app_path}/shared/pids/unicorn.pid"
 
 Unicorn::HttpServer::START_CTX[0] = "#{bundle_path}/bin/unicorn"
 Unicorn::Configurator::DEFAULTS[:logger].formatter = Logger::Formatter.new
