@@ -33,7 +33,7 @@ namespace :unicorn do
   desc 'Reload Unicorn'
   task :reload, :except => { :no_release => true } do
     if remote_file_exists?(unicorn_pid)
-      if process_exists?(unicorn_pid)
+      if remote_process_exists?(unicorn_pid)
         logger.important("Reloading...", "Unicorn")
         run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
       else
