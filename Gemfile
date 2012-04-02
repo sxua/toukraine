@@ -1,12 +1,17 @@
 source :rubygems
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.3'
 gem 'pg', '~> 0.13'
+gem 'activerecord-postgres-hstore'
 
 gem 'jquery-rails'
 gem 'simple_form'
-gem 'bootstrap-sass', '~> 2.0.1'
 gem 'awesome_nested_set'
+gem 'globalize3'
+gem 'i18n-active_record', git: 'git://github.com/svenfuchs/i18n-active_record.git', require: 'i18n/active_record'
+gem 'activeadmin'
+gem 'meta_search', '~> 1.1.3'
+gem 'exceptio-ruby'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -29,4 +34,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'database_cleaner'
+  gem 'cucumber-rails', require: false
 end
