@@ -8,7 +8,9 @@ production:
   database: toukraine_prod
   username: postgres
 
-test:
+test: &test
   adapter: postgresql
   database: toukraine_test
   username: postgres
+cucumber:
+  <<: *test
