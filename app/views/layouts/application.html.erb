@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Toukraine</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Toukraine</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="background">
+      <div class="fixed-image" style="background-image: url(/assets/bg.jpg);"></div>
+    </div>
+    <div class="container">
+      <%= render partial: 'layouts/top_bar' %>
+      <%= render partial: 'layouts/header' %>
+      <div class="row">
+        <div class="span9">
+          <%= yield %>
+        </div>
+        <div class="span3">
+          <%= render partial: 'layouts/aside' %>
+        </div>
+      </div>
+      <%#= render partial: 'layouts/footer' %>
+    </div>
+  </body>
 </html>
