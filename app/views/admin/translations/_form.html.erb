@@ -1,0 +1,8 @@
+<%= semantic_form_for [:admin, @translation] do |f| %>
+  <%= f.inputs do %>
+  <%= f.input :locale, as: :select, collection: LOCALES.map(&:reverse), include_blank: false %>
+    <%= f.input :key %>
+    <%= f.input :value, as: (@lines > 1 ? :text : :string) %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

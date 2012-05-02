@@ -1,1 +1,0 @@
-ExceptIO::Client.configure "sxua-toukraine", "485c7f3da35844ce" if ["staging", "production"].include?(Rails.env)

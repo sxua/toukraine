@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Toukraine::Application.config.secret_token = '848a20c3cafbfd5fc75c72def51558a1603c7efa08f1dbcbcff2aef607c48ad1bf18056ff36b1949b8342533ae8c3bf9e80440970497ad473da423b5c99a4ce0'
+Toukraine::Application.config.secret_token = 'ae587d12c9f907badfb87ee30da72001ca2b634332f82b88c080c670b466f49246312b097a12b501b0c846b6d19b991f8f84b67a6a1b5512fd06e41825a0da22'

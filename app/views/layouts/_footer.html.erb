@@ -1,56 +1,62 @@
-<footer>
-  <div class="wrapper">
-  <div class="outer">
-  <div class="inner">
-    <div class="nav">
-      <ul>
-                <li><h3>Украина</h3>
-                  <ul>
-                    <li><a href="#">О стране</a></li>
-                    <li><a href="#">История</a></li>
-                    <li><a href="#">Культура</a></li>
-                    <li><a href="#">Традиции</a></li>
-                    <li><a href="#">Кухня</a></li>
-                    <li><a href="#">Места</a></li>
-                  </ul>
-                </li>
-                <li><h3>Туры</h3>
-                  <ul>
-                    <li><a href="#">Лечебные</a></li>
-                    <li><a href="#">Экскурсионные</a></li>
-                    <li><a href="#">Детские</a></li>
-                    <li><a href="#">Зимние</a></li>
-                    <li><a href="#">На море</a></li>
-                    <li><a href="#">Экстримальные</a></li>
-                  </ul>
-                </li>
-                <li><h3>Отели</h3>
-                  <ul>
-                    <li><a href="#">Турист</a></li>
-                    <li><a href="#">Братислава</a></li>
-                    <li><a href="#">Президент</a></li>
-                    <li><a href="#">Лыбидь</a></li>
-                    <li><a href="#">Харьков</a></li>
-                    <li><a href="#">Континенталь</a></li>
-                  </ul>
-                </li>
-                <li><h3>Услуги</h3>
-                  <ul>
-                    <li><a href="#">Авиабилеты</a></li>
-                    <li><a href="#">Трансфер</a></li>
-                    <li><a href="#">Экскурсии</a></li>
-                    <li><a href="#">Конференции</a></li>
-                    <li><a href="#">Страхование</a></li>
-                    <li><a href="#">Загранпаспорт</a></li>
-                  </ul>
-                </li>
-         <li class="last"><h3>Мы в социальных сетях</h3>
-        <a href="http://facebook.com/rozavitriv" target="_blank"><%= image_tag 'facebook.png' %></a><a href="https://twitter.com/#!/RozaVitriv" target="_blank"><%= image_tag 'twitter.png' %></a><a href="http://vkontakte.ru/rozavitriv" target="_blank"><%= image_tag 'vk.png' %></a>
-         </li>
-              </ul>
-    </div>
+<div class="row" id="footer">
+  <div class="span12">
+    <ul class="nav">
+      <li class="span2">
+        <h3><%= I18n.t('footer.ukraine') %></h3>
+        <ul class="nav">
+          <li><%= link_to I18n.t('topbar.about_country'), page_path('about-country') %></li>
+          <li><%= link_to I18n.t('topbar.history'), page_path('history') %></li>
+          <li><%= link_to I18n.t('topbar.culture'), page_path('culture') %></li>
+          <li><%= link_to I18n.t('topbar.traditions'), page_path('traditions') %></li>
+          <li><%= link_to I18n.t('footer.cuisine'), page_path('cuisine') %></li>
+          <li><%= link_to I18n.t('footer.places'), page_path('places') %></li>
+        </ul>
+      </li>
+      <% if @tours.present? %>
+        <li class="span2">
+          <h3><%= I18n.t('footer.tours') %></h3>
+          <ul class="nav">
+            <li><a href="#">Лечебные</a></li>
+            <li><a href="#">Экскурсионные</a></li>
+            <li><a href="#">Детские</a></li>
+            <li><a href="#">Зимние</a></li>
+            <li><a href="#">На море</a></li>
+            <li><a href="#">Экстримальные</a></li>
+          </ul>
+        </li>
+      <% end %>
+      <% if @hotels.present? %>
+        <li class="span2">
+          <h3><%= I18n.t('footer.hotels') %></h3>
+          <ul class="nav">
+            <li><a href="#">Турист</a></li>
+            <li><a href="#">Братислава</a></li>
+            <li><a href="#">Президент</a></li>
+            <li><a href="#">Лыбидь</a></li>
+            <li><a href="#">Харьков</a></li>
+            <li><a href="#">Континенталь</a></li>
+          </ul>
+        </li>
+      <% end %>
+      <li class="span2">
+        <h3><%= I18n.t('footer.services') %></h3>
+        <ul class="nav">
+          <li><%= link_to I18n.t('footer.airline_tickets'), page_path('airline-tickets') %></li>
+          <li><%= link_to I18n.t('footer.transfer'), page_path('transfer') %></li>
+          <li><%= link_to I18n.t('footer.excursions'), page_path('excursions') %></li>
+          <li><%= link_to I18n.t('footer.conferences'), page_path('conferences') %></li>
+          <li><%= link_to I18n.t('footer.insurance'), page_path('insurance') %></li>
+          <li><%= link_to I18n.t('footer.international_passport'), page_path('international-passport') %></li>
+        </ul>
+      </li>
+      <li class="last">
+        <h3><%= I18n.t('footer.social_networks') %></h3>
+        <a href="http://facebook.com/rozavitriv" target="_blank"><%= image_tag 'facebook.png' %></a>
+        <a href="https://twitter.com/#!/RozaVitriv" target="_blank"><%= image_tag 'twitter.png' %></a>
+        <a href="http://vkontakte.ru/rozavitriv" target="_blank"><%= image_tag 'vk.png' %></a>
+      </li>
+      <div class="clear"></div>
+    </ul>
     <div class="rights">&copy; 2012 Roza Vitriv Travel Company. All rights reserverd. Powered by <a href="http://rozavitriv.com" target="_blank">RozaVitriv.com</a></div>
   </div>
-  </div>
-  </div>
-</footer>
+</div>

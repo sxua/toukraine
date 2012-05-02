@@ -1,0 +1,45 @@
+@import "twitter/bootstrap/bootstrap";
+
+// navbarHeight hack (fixed in 2.0.3-wip)
+.navbar .nav { height: @navbarHeight; }
+.navbar .nav > li > a { padding: (@navbarHeight - 20)/2 10px ((@navbarHeight - 20)/2 + 1); }
+.navbar .brand { padding: (((@navbarHeight - 20) / 2) * 0.8) 20px (((@navbarHeight - 20) / 2) * 1.2); }
+
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+@gridColumnWidth: 70px;
+@linkColor: #555;
+@linkColorHover: #dd4b39;
+@navbarHeight: 30px;
+@navbarBackground: #2f4148;
+@navbarBackgroundHighlight: #2f4148;
+@navbarText: #ccc;
+@navbarLinkColor: #ccc;
+@navbarLinkColorHover: #fff;
+@baseFontSize: 12px;
+@baseFontFamily: Arial, sans-serif;
+
+.clear {
+  .clearfix();
+}
+
+.nav-tabs {
+  > li {
+    margin-bottom: 0 !important;
+    > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      color: #000;
+      &:hover {
+        border-color: #eee;
+      }
+    }
+    &.active {
+      > a {
+        background-color: #eee !important;
+        border: 1px solid #eee !important;
+        color: #000 !important;
+      }
+    }
+  }
+}

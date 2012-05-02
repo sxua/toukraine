@@ -1,0 +1,61 @@
+<% if @promotions.present? %>
+  <div class="row">
+    <div class="span9">
+      <% box do %>
+        <div class="fotorama" data-width="770" data-height="350" data-caption="overlay">
+          <% @promotions.each do |slide| %>
+            <%= link_to image_tag(slide.image_url(:thumb), alt: "<b>#{slide.title}</b><br />#{slide.caption}"), slide.image_url(:preview) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="span3">
+    <% box title: 'Крупнейшие города Украины' do %>
+			<ul>
+				<li><a href="#">Киев</a></li>
+				<li><a href="#">Харьков</a></li>
+				<li><a href="#">Львов</a></li>
+				<li><a href="#">Ужгород</a></li>
+				<li><a href="#">Одесса</a></li>
+				<li><a href="#">Донецк</a></li>
+				<li><a href="#">Севастополь</a></li>
+			</ul>
+			<div class="hr">
+        <a href="#" class="more">Все города</a>
+      </div>
+    <% end %>
+  </div>
+  <div class="span3">
+    <% box title: 'Популярные направления' do %>
+			<ul>
+				<li><a href="#">Крым</a></li>
+				<li><a href="#">Карпаты</a></li>
+				<li><a href="#">Львов</a></li>
+				<li><a href="#">Киев</a></li>
+				<li><a href="#">Одесса</a></li>
+			</ul>
+			<div class="hr">
+        <a href="#" class="more">Все направления</a>
+      </div>
+    <% end %>
+  </div>
+  <div class="span3">
+    <% box title: 'Непопулярные направления' do %>
+			<ul>
+			  <li><a href="#">Крым</a></li>
+				<li><a href="#">Карпаты</a></li>
+				<li><a href="#">Львов</a></li>
+				<li><a href="#">Киев</a></li>
+				<li><a href="#">Одесса</a></li>
+				<li><a href="#">Севастополь</a></li>
+			</ul>
+			<div class="hr">
+        <a href="#" class="more">Все направления</a>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render partial: 'modals' %>

@@ -15,3 +15,4 @@
 /tmp
 /.rbenv-*
 *.sass-cache
+*.DS_Store
