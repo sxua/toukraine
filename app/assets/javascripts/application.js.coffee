@@ -4,4 +4,15 @@
 #= require fotorama
 #= require_tree .
 
-window.fotoramaDefaults = { loop: true, cropToFit: true, thumbSize: 64, autoplay: true }
+window.fotoramaDefaults = {
+  loop: true,
+  cropToFit: true,
+  thumbSize: 64,
+  autoplay: true
+}
+
+$ ->
+  $('.fotorama__thumb').on 'mouseover', ->
+    fotorama = $('.fotorama').fotorama()
+    index = $(this).parent().children('.fotorama__thumb').index($(this))
+    fotorama.trigger 'showimg', index

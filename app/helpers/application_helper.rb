@@ -47,5 +47,19 @@ module ApplicationHelper
 
     concat content_tag(:div, content.html_safe, options)
   end
+  
+  def slide_url_for(slide)
+    slide_url = case slide.url_type
+    when 'text'
+      slide_url = slide.url
+    when 'tour'
+      slide_url = slide.tour ? url_for(slide.tour) : nil
+    when 'place'
+      slide_url = slide.place ? url_for(slide.place) : nil
+    else
+      nil
+    end
+    slide_url
+  end
 
 end

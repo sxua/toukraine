@@ -1,23 +1,24 @@
-<% box title: 'Популярные направления' do %>
-	<ul>
-		<li><a href="#">Крым</a></li>
-		<li><a href="#">Карпаты</a></li>
-		<li><a href="#">Львов</a></li>
-		<li><a href="#">Киев</a></li>
-		<li><a href="#">Одесса</a></li>
-	</ul>
-	<div class="hr">
-    <a href="#" class="more">Все направления</a>
-  </div>
+<% if Region.root.any? %>
+  <% box title: I18n.t('aside.root_regions') do %>
+  	<ul>
+  		<% Region.root.each do |region| %>
+      <li><%= link_to region.title, url_for(region) %></li>
+      <% end %>
+  	</ul>
+  	<div class="hr">
+      <%#= link_to I18n.t('aside.all_regions'), regions_path, class: 'more' %>
+    </div>
+  <% end %>
 <% end %>
-<% box title: 'Новости' do %>
-	<ul>
-		<li><a href="#">Масленица в Киеве 2012</a></li>
-		<li><a href="#">На Береговщине открыт музей вина</a></li>
-		<li><a href="#">В Україні пройде аніме фестиваль імені Хаяо Міядзакі</a></li>
-		<li><a href="#">Джаз подешевшає на 50% для студентів</a></li>
-	</ul>
-	<div class="hr">
-    <a href="#" class="more">Все новости</a>
-  </div>
+<% if Promotion.any? %>
+  <% box title: I18n.t('aside.news_and_promotions') do %>
+  	<ul>
+      <% Promotion.random(5).each do |promotion| %>
+      <li><%= link_to promotion.title, slide_url_for(promotion) %></li>
+      <% end %>
+  	</ul>
+  	<div class="hr">
+      <%#= link_to I18n.t('aside.all_news'), news_path, class: 'more' %>
+    </div>
+  <% end %>
 <% end %>

@@ -1,7 +1,68 @@
 <div class="row">
   <div class="span12" id="header">
     <% box class: 'box' do %>
-      <%= link_to image_tag('logorv.png'), root_path %>
+      <%= link_to image_tag('logorv.png'), root_path, id: 'header-logo' %>
+      <ul class="nav" id="header-menu">
+        <li>
+          <div class="border border-blue border-first"></div>
+          <%= link_to image_tag("home.png"), root_path, id: 'home' %>
+        </li>
+        <li class="dropdown">
+          <div class="border border-lightblue"></div>
+          <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
+            <%= I18n.t('menu.ukraine') %> <b class="caret"></b>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to I18n.t('menu.ukraine_menu.about_country'), page_path('about-country') %></li>
+            <li><%= link_to I18n.t('menu.ukraine_menu.history'), page_path('history') %></li>
+            <li><%= link_to I18n.t('menu.ukraine_menu.culture'), page_path('culture') %></li>
+            <li><%= link_to I18n.t('menu.ukraine_menu.traditions'), page_path('traditions') %></li>
+            <li><%= link_to I18n.t('menu.ukraine_menu.cuisine'), page_path('cuisine') %></li>
+            <li><%= link_to I18n.t('menu.ukraine_menu.places'), page_path('places') %></li>
+          </ul>
+        </li>
+        <% if @tours.present? %>
+          <li class="dropdown">
+            <div class="border border-green"></div>
+            <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle' do %>
+              <%= I18n.t('menu.tours') %> <b class="caret"></b>
+            <% end %>
+            <ul class="dropdown-menu">
+              <li><%= link_to I18n.t('menu.tours_menu.medical_tours'), '#' %></li>
+              <li><%= link_to I18n.t('menu.tours_menu.excursion_tours'), '#' %></li>
+              <li><%= link_to I18n.t('menu.tours_menu.child_tours'), '#' %></li>
+              <li><%= link_to I18n.t('menu.tours_menu.winter_tours'), '#' %></li>
+              <li><%= link_to I18n.t('menu.tours_menu.sea_tours'), '#' %></li>
+              <li><%= link_to I18n.t('menu.tours_menu.extreme_tours'), '#' %></li>
+              <li class="divider"></li>
+              <li><%= link_to I18n.t('menu.tours_menu.search'), '#' %></li>
+            </ul>
+          </li>
+        <% end %>
+        <% if @hotels.present? %>
+          <li class="dropdown">
+            <div class="border border-orange"></div>
+            <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
+              <%= I18n.t('menu.places') %> <b class="caret"></b>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="dropdown">
+          <div class="border border-yellow border-last"></div>
+          <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
+            <%= I18n.t('menu.services') %> <b class="caret"></b>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to I18n.t('menu.services_menu.airline_tickets'), page_path('airline-tickets') %></li>
+            <li><%= link_to I18n.t('menu.services_menu.transfer'), page_path('transfer') %></li>
+            <li><%= link_to I18n.t('menu.services_menu.excursions'), page_path('excursions') %></li>
+            <li><%= link_to I18n.t('menu.services_menu.conferences'), page_path('conferences') %></li>
+            <li><%= link_to I18n.t('menu.services_menu.insurance'), page_path('insurance') %></li>
+            <li><%= link_to I18n.t('menu.services_menu.international_passport'), page_path('international-passport') %></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="clear"></div>
     <% end %>
   </div>
 </div>
