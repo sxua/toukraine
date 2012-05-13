@@ -5,11 +5,14 @@ class CreatePages < ActiveRecord::Migration
       t.string :title_en
       t.string :body_ru
       t.string :body_en
-      t.integer :created_by
+      t.references :created_by
+      t.references :published_by
       t.datetime :published_at
       t.boolean :is_published
 
       t.timestamps
     end
+    add_index :pages, :created_by_id
+    add_index :pages, :published_by_id
   end
 end
