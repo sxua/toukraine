@@ -16,3 +16,4 @@
 /.rbenv-*
 *.sass-cache
 *.DS_Store
+/public/uploads/*
