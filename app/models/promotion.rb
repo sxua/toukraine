@@ -1,7 +1,8 @@
 class Promotion < ActiveRecord::Base
-  attr_accessible :caption_en, :caption_ru, :image, :title_en, :title_ru, :url, :tour_id
+  attr_accessible :caption, :image, :title, :url, :tour_id, :place_id, :url_type
   
   belongs_to :tour
+  belongs_to :place
   
   mount_uploader :image, PhotoUploader
   translates :caption, :title

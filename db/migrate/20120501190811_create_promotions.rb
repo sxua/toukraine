@@ -8,7 +8,11 @@ class CreatePromotions < ActiveRecord::Migration
       t.string :image
       t.string :url
       t.references :tour
+      t.references :place
+      t.string :url_type
       t.timestamps
     end
+    add_index :promotions, :tour_id
+    add_index :promotions, :place_id
   end
 end
