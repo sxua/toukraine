@@ -1,0 +1,78 @@
+ru:
+  topbar:
+    about_company: О компании
+    about_country: О стране
+    history: История
+    culture: Культура
+    traditions: Традиции
+    for_agencies: Агентствам
+    agreement: Соглашение
+    catalog: Каталог
+    discount: Скидки
+    qa: Вопросы и ответы
+    contacts: Контактная информация
+    map: Карта проезда
+  menu:
+    ukraine: Украина
+    tours: Туры
+    places: Размещение
+    services: Услуги
+    ukraine_menu:
+      about_country: О стране
+      history: История
+      culture: Культура
+      traditions: Традиции
+      cuisine: Кухня
+      places: Места
+    tours_menu:
+      medical_tours: Лечебные туры
+      excursion_tours: Экскурсионные туры
+      child_tours: Детские туры
+      winter_tours: Зимние туры
+      sea_tours: Морские туры
+      extreme_tours: Экстримальные туры
+      search: Поиск
+    services_menu:
+      airline_tickets: Авиабилеты
+      transfer: Трансфер
+      excursions: Экскурсии
+      conferences: Конференции
+      insurance: Страхование
+      international_passport: Загранпаспорт
+  modal:
+    contacts: Контактная информация
+    map: Карта проезда
+  contacts:
+    phones: Телефоны
+    tourism: Туризм
+    airline_tickets: Авиабилеты
+    mobile: Мобильный
+    email: Электронная почта
+    address: Адрес
+    office_address: "04071, Украина, Киев, ул. Воздвиженская, 40, офис 1"
+  footer:
+    ukraine: Украина
+    cuisine: Кухня
+    places: Размещение
+    tours: Туры
+    services: Услуги
+    airline_tickets: Авиабилеты
+    transfer: Трансфер
+    excursions: Экскурсии
+    conferences: Конференции
+    insurance: Страхование
+    international_passport: Загранпаспорт
+    social_networks: Мы в социальных сетях
+  places:
+    overview: Обзор
+    photos: Фото
+    description: Описание
+    location: Расположение
+    contacts: Контактная информация
+  slide:
+    url: Подробнее >>
+  aside:
+    news_and_promotions: Новости
+    root_regions: Регионы
+    all_news: Все новости
+    all_regions: Все регионы

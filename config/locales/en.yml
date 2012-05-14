@@ -1,6 +1,3 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   topbar:
     about_company: About company
@@ -15,6 +12,33 @@ en:
     qa: "Questions & Answers"
     contacts: Contacts
     map: Map
+  menu:
+    ukraine: Ukraine
+    tours: Tours
+    places: Places
+    services: Services
+    ukraine_menu:
+      about_country: About country
+      history: History
+      culture: Culture
+      traditions: Traditions
+      cuisine: Cuisine
+      places: Places
+    tours_menu:
+      medical_tours: Medical tours
+      excursion_tours: Excursion tours
+      child_tours: Child tours
+      winter_tours: Winter tours
+      sea_tours: Sea tours
+      extreme_tours: Extreme tours
+      search: Search
+    services_menu:
+      airline_tickets: Airline tickets
+      transfer: Transfer
+      excursions: Excursions
+      conferences: Conferences
+      insurance: Insurance
+      international_passport: International passport
   modal:
     contacts: Contacts
     map: Map
@@ -31,7 +55,6 @@ en:
     cuisine: Cuisine
     places: Places
     tours: Tours
-    hotels: Hotels
     services: Services
     airline_tickets: Airline tickets
     transfer: Transfer
@@ -40,3 +63,11 @@ en:
     insurance: Insurance
     international_passport: International passport
     social_networks: Social networks
+  places:
+    overview: Overview
+    photos: Photos
+    description: Description
+    location: Location
+    contacts: Contacts
+  slide:
+    url: Details >>
