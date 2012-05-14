@@ -8,5 +8,6 @@ Toukraine::Application.routes.draw do
     resources :promotions
     resources :pages
     resources :news
+    resources :regions
   end
 end
