@@ -58,21 +58,28 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
   add_index "attributes", ["relative_id"], :name => "index_attributes_on_relative_id"
 
   create_table "cities", :force => true do |t|
-    t.string "title_ru"
-    t.string "title_en"
+    t.string  "title_ru"
+    t.string  "title_en"
+    t.string  "slug_ru"
+    t.string  "slug_en"
+    t.integer "region_id"
+    t.boolean "delta",     :default => true, :null => false
   end
 
   create_table "news", :force => true do |t|
     t.string   "title_ru"
     t.string   "title_en"
-    t.string   "body_ru"
-    t.string   "body_en"
+    t.text     "body_ru"
+    t.text     "body_en"
+    t.string   "slug_ru"
+    t.string   "slug_en"
     t.integer  "created_by_id"
     t.integer  "published_by_id"
     t.datetime "published_at"
     t.boolean  "is_published"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "delta",           :default => true, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "news", ["created_by_id"], :name => "index_news_on_created_by_id"
@@ -81,14 +88,18 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
   create_table "pages", :force => true do |t|
     t.string   "title_ru"
     t.string   "title_en"
-    t.string   "body_ru"
-    t.string   "body_en"
+    t.text     "body_ru"
+    t.text     "body_en"
+    t.string   "slug_ru"
+    t.string   "slug_en"
+    t.string   "category",        :default => "other", :null => false
     t.integer  "created_by_id"
     t.integer  "published_by_id"
     t.datetime "published_at"
     t.boolean  "is_published"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "delta",           :default => true,    :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   add_index "pages", ["created_by_id"], :name => "index_pages_on_created_by_id"
@@ -121,9 +132,12 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
     t.text     "description_en"
     t.string   "address_ru"
     t.string   "address_en"
+    t.string   "slug_ru"
+    t.string   "slug_en"
     t.integer  "place_type_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.boolean  "delta",          :default => true, :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "places", ["city_id"], :name => "index_places_on_city_id"
@@ -152,6 +166,8 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
+    t.string   "slug_ru"
+    t.string   "slug_en"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -163,8 +179,11 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
     t.string   "title_en"
     t.text     "description_ru"
     t.text     "description_en"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "slug_ru"
+    t.string   "slug_en"
+    t.boolean  "delta",          :default => true, :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
 end
