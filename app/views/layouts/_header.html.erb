@@ -13,15 +13,12 @@
             <%= I18n.t('menu.ukraine') %> <b class="caret"></b>
           <% end %>
           <ul class="dropdown-menu">
-            <li><%= link_to I18n.t('menu.ukraine_menu.about_country'), page_path('about-country') %></li>
-            <li><%= link_to I18n.t('menu.ukraine_menu.history'), page_path('history') %></li>
-            <li><%= link_to I18n.t('menu.ukraine_menu.culture'), page_path('culture') %></li>
-            <li><%= link_to I18n.t('menu.ukraine_menu.traditions'), page_path('traditions') %></li>
-            <li><%= link_to I18n.t('menu.ukraine_menu.cuisine'), page_path('cuisine') %></li>
-            <li><%= link_to I18n.t('menu.ukraine_menu.places'), page_path('places') %></li>
+            <% Page.published.for(:about, :ukraine).each do |page| %>
+              <li><%= link_to page.title, url_for(page) %></li>
+            <% end %>
           </ul>
         </li>
-        <% if @tours.present? %>
+        <% if Tour.any? %>
           <li class="dropdown">
             <div class="border border-green"></div>
             <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle' do %>
@@ -39,12 +36,17 @@
             </ul>
           </li>
         <% end %>
-        <% if @hotels.present? %>
+        <% if Place.any? %>
           <li class="dropdown">
             <div class="border border-orange"></div>
             <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
               <%= I18n.t('menu.places') %> <b class="caret"></b>
             <% end %>
+            <ul class="dropdown-menu">
+              <% Place.top(5).each do |place| %>
+                <li><%= link_to place.title, url_for(place) %></li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
         <li class="dropdown">
@@ -53,12 +55,9 @@
             <%= I18n.t('menu.services') %> <b class="caret"></b>
           <% end %>
           <ul class="dropdown-menu">
-            <li><%= link_to I18n.t('menu.services_menu.airline_tickets'), page_path('airline-tickets') %></li>
-            <li><%= link_to I18n.t('menu.services_menu.transfer'), page_path('transfer') %></li>
-            <li><%= link_to I18n.t('menu.services_menu.excursions'), page_path('excursions') %></li>
-            <li><%= link_to I18n.t('menu.services_menu.conferences'), page_path('conferences') %></li>
-            <li><%= link_to I18n.t('menu.services_menu.insurance'), page_path('insurance') %></li>
-            <li><%= link_to I18n.t('menu.services_menu.international_passport'), page_path('international-passport') %></li>
+            <% Page.published.for(:services).each do |page| %>
+              <li><%= link_to page.title, url_for(page) %></li>
+            <% end %>
           </ul>
         </li>
       </ul>

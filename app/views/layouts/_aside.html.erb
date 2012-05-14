@@ -2,11 +2,11 @@
   <% box title: I18n.t('aside.root_regions') do %>
   	<ul>
   		<% Region.root.each do |region| %>
-      <li><%= link_to region.title, url_for(region) %></li>
+        <li><%= link_to region.title, url_for(region) %></li>
       <% end %>
   	</ul>
   	<div class="hr">
-      <%#= link_to I18n.t('aside.all_regions'), regions_path, class: 'more' %>
+      <%= link_to I18n.t('aside.all_regions'), regions_path, class: 'more' %>
     </div>
   <% end %>
 <% end %>
@@ -18,7 +18,7 @@
       <% end %>
   	</ul>
   	<div class="hr">
-      <%#= link_to I18n.t('aside.all_news'), news_path, class: 'more' %>
+      <%= link_to I18n.t('aside.all_news'), news_path, class: 'more' %>
     </div>
   <% end %>
 <% end %>
