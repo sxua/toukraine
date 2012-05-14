@@ -1,5 +1,5 @@
 class Promotion < ActiveRecord::Base
-  attr_accessible :caption, :image, :title, :url, :tour_id, :place_id, :url_type
+  attr_accessible :caption_ru, :caption_en, :image, :title_ru, :title_en, :url, :tour_id, :place_id, :url_type
   
   belongs_to :tour
   belongs_to :place
