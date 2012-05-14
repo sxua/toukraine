@@ -1,8 +1,12 @@
 Toukraine::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
-  root to: 'home#index'
-  resources :hotels
-  resources :promotions
-  resources :pages
+  
+  scope "(:locale)", locale: /en|ru/ do
+    root to: 'home#index'
+    resources :places
+    resources :promotions
+    resources :pages
+    resources :news
+  end
 end
