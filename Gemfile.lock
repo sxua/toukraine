@@ -292,7 +292,7 @@ DEPENDENCIES
   guard-bundler
   guard-cucumber
   guard-rspec
-  http_accept_language
+  http_accept_language (~> 1.0.2)
   jquery-rails
   mini_magick
   pg (~> 0.13)
