@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120501190811) do
+ActiveRecord::Schema.define(:version => 20120513213814) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -62,7 +62,58 @@ ActiveRecord::Schema.define(:version => 20120501190811) do
     t.string "title_en"
   end
 
-  create_table "hotels", :force => true do |t|
+  create_table "news", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.string   "body_ru"
+    t.string   "body_en"
+    t.integer  "created_by_id"
+    t.integer  "published_by_id"
+    t.datetime "published_at"
+    t.boolean  "is_published"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "news", ["created_by_id"], :name => "index_news_on_created_by_id"
+  add_index "news", ["published_by_id"], :name => "index_news_on_published_by_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.string   "body_ru"
+    t.string   "body_en"
+    t.integer  "created_by_id"
+    t.integer  "published_by_id"
+    t.datetime "published_at"
+    t.boolean  "is_published"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "pages", ["created_by_id"], :name => "index_pages_on_created_by_id"
+  add_index "pages", ["published_by_id"], :name => "index_pages_on_published_by_id"
+
+  create_table "photos", :force => true do |t|
+    t.integer  "relative_id"
+    t.string   "relative_type"
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.string   "image"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "photos", ["relative_id"], :name => "index_photos_on_relative_id"
+
+  create_table "place_types", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "places", :force => true do |t|
     t.integer  "city_id"
     t.string   "title_ru"
     t.string   "title_en"
@@ -70,23 +121,13 @@ ActiveRecord::Schema.define(:version => 20120501190811) do
     t.text     "description_en"
     t.string   "address_ru"
     t.string   "address_en"
+    t.integer  "place_type_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
-  add_index "hotels", ["city_id"], :name => "index_hotels_on_city_id"
-
-  create_table "pages", :force => true do |t|
-    t.string   "title_ru"
-    t.string   "title_en"
-    t.string   "body_ru"
-    t.string   "body_en"
-    t.integer  "created_by"
-    t.datetime "published_at"
-    t.boolean  "is_published"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
+  add_index "places", ["city_id"], :name => "index_places_on_city_id"
+  add_index "places", ["place_type_id"], :name => "index_places_on_place_type_id"
 
   create_table "promotions", :force => true do |t|
     t.string   "title_ru"
@@ -96,9 +137,26 @@ ActiveRecord::Schema.define(:version => 20120501190811) do
     t.string   "image"
     t.string   "url"
     t.integer  "tour_id"
+    t.integer  "place_id"
+    t.string   "url_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "promotions", ["place_id"], :name => "index_promotions_on_place_id"
+  add_index "promotions", ["tour_id"], :name => "index_promotions_on_tour_id"
+
+  create_table "regions", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "regions", ["parent_id"], :name => "index_regions_on_parent_id"
 
   create_table "tours", :force => true do |t|
     t.string   "title_ru"
