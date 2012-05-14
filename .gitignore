@@ -12,8 +12,11 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.pid
 /tmp
 /.rbenv-*
 *.sass-cache
 *.DS_Store
-/public/uploads/*
+/public/uploads
+/db/sphinx
+/config/development.*
