@@ -7,6 +7,8 @@ gem 'rails', '3.2.3'
 gem 'pg', '~> 0.13'
 gem 'activerecord-postgres-hstore'
 gem 'awesome_nested_set'
+gem 'thinking-sphinx', '~> 2.0.12'
+gem 'seed-fu'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -15,6 +17,7 @@ group :assets do
 end
 
 gem 'bourbon'
+gem 'russian'
 
 gem 'jquery-rails'
 gem 'simple_form'
