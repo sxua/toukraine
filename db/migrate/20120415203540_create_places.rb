@@ -8,7 +8,10 @@ class CreatePlaces < ActiveRecord::Migration
       t.text :description_en
       t.string :address_ru
       t.string :address_en
+      t.string :slug_ru
+      t.string :slug_en
       t.references :place_type
+      t.boolean :delta, default: true, null: false
       t.timestamps
     end
     add_index :places, :city_id

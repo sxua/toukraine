@@ -3,12 +3,16 @@ class CreatePages < ActiveRecord::Migration
     create_table :pages do |t|
       t.string :title_ru
       t.string :title_en
-      t.string :body_ru
-      t.string :body_en
+      t.text :body_ru
+      t.text :body_en
+      t.string :slug_ru
+      t.string :slug_en
+      t.string :category, default: 'other', null: false
       t.references :created_by
       t.references :published_by
       t.datetime :published_at
       t.boolean :is_published
+      t.boolean :delta, default: true, null: false
 
       t.timestamps
     end

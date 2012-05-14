@@ -6,6 +6,8 @@ class CreateRegions < ActiveRecord::Migration
       t.references :parent
       t.integer :lft
       t.integer :rgt
+      t.string :slug_ru
+      t.string :slug_en
       t.timestamps
     end
     add_index :regions, :parent_id
