@@ -1,4 +1,5 @@
 class Page < ActiveRecord::Base
+  include Extensions::Translate
   attr_accessible :body_ru, :body_en, :created_by_id, :is_published, :published_at, :published_by_id, :title_ru, :title_en, :slug_ru, :slug_en
 
   translates :title, :body, :slug

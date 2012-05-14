@@ -71,3 +71,8 @@ en:
     contacts: Contacts
   slide:
     url: Details >>
+  aside:
+    news_and_promotions: News
+    root_regions: Regions
+    all_news: All news
+    all_regions: All regions

@@ -1,4 +1,5 @@
 class City < ActiveRecord::Base
+  include Extensions::Translate
   attr_accessible :title_ru, :title_en
   translates :title
   has_many :places

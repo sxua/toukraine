@@ -1,4 +1,5 @@
 class News < ActiveRecord::Base
+  include Extensions::Translate
   belongs_to :created_by
   belongs_to :published_by
   attr_accessible :body_ru, :body_en, :is_published, :published_at, :title_ru, :title_en

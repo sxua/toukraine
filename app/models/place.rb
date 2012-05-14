@@ -1,4 +1,5 @@
 class Place < ActiveRecord::Base
+  include Extensions::Translate
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :address_ru, :address_en
   belongs_to :city
   belongs_to :place_type
