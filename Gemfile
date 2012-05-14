@@ -18,6 +18,7 @@ end
 
 gem 'bourbon'
 gem 'russian'
+gem 'http_accept_language', '~> 1.0.2'
 
 gem 'jquery-rails'
 gem 'simple_form'
