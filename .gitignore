@@ -17,6 +17,6 @@
 /.rbenv-*
 *.sass-cache
 *.DS_Store
-/public/uploads
+/public/uploads/*
 /db/sphinx
 /config/development.*
