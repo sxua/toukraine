@@ -135,7 +135,7 @@ namespace :uploads do
     and registers them in Capistrano environment.
   EOD
   task :register_dirs do
-    set :uploads_dirs, %w(uploads uploads/promotions)
+    set :uploads_dirs, %w(uploads)
     set :shared_children, fetch(:shared_children) + fetch(:uploads_dirs)
   end
 
