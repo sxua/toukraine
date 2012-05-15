@@ -1,4 +1,17 @@
 ActiveAdmin.register Page do
+  index do
+    column :id
+    column 'Title', :title_ru
+    column 'Slug', :slug_ru
+    column :category
+    column 'Published at', sortable: :publised_at do |page|
+      page.published_at.to_formatted_s(:long) if page.is_published?
+    end
+    column 'Created at', :created_at
+    column 'Updated at', :updated_at
+    default_actions
+  end
+
   form do |f|
     f.inputs "Page" do
       f.input :title_ru
@@ -24,6 +37,11 @@ ActiveAdmin.register Page do
     end
     
     def update
+      @page = Page.fetch(params[:id])
+      super
+    end
+    
+    def destroy
       @page = Page.fetch(params[:id])
       super
     end
