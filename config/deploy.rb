@@ -13,6 +13,9 @@ set :deploy_via, :remote_cache
 set :deploy_env, "production"
 set :ssh_options, { forward_agent: true }
 
+set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
+set :default_environment, { 'PATH' => "/opt/rbenv/shims:/opt/rbenv/bin:$PATH" }
+
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
