@@ -10,8 +10,7 @@
         <div class="tab-pane" id="lang-<%= code %>">
           <%= f.inputs 'Page' do %>
             <%= f.input :"title_#{code}" %>
-            <%= f.input :"body_#{code}", input_html: { class: 'tinymce' } %>
-            <%= tinymce %>
+            <%= f.input :"body_#{code}", input_html: { class: 'ckeditor' } %>
             <%= f.input :"visible_#{code}" %>
           <% end %>
         </div>

@@ -10,7 +10,7 @@ gem 'awesome_nested_set'
 gem 'thinking-sphinx', '~> 2.0.12'
 gem 'seed-fu'
 gem 'friendly_id', '~> 4.0.1'
-gem 'tinymce-rails'
+gem 'ckeditor', '~> 3.7.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
