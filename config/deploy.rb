@@ -40,7 +40,7 @@ namespace :unicorn do
     if remote_file_exists?(unicorn_pid)
       if remote_process_exists?(unicorn_pid)
         logger.important("Reloading...", "Unicorn")
-        run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
+        run "#{try_sudo} kill -USR2 `cat #{unicorn_pid}`"
       else
         logger.important("No PIDs found. Starting Unicorn server...", "Unicorn")
         if remote_file_exists?(unicorn_config)
