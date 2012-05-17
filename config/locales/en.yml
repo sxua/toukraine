@@ -15,7 +15,7 @@ en:
   menu:
     ukraine: Ukraine
     tours: Tours
-    places: Places
+    hotels: Hotels
     services: Services
     ukraine_menu:
       about_country: About country
@@ -42,6 +42,7 @@ en:
   modal:
     contacts: Contacts
     map: Map
+    about_company: About company
   contacts:
     phones: Phones
     tourism: Tourism
@@ -53,7 +54,7 @@ en:
   footer:
     ukraine: Ukraine
     cuisine: Cuisine
-    places: Places
+    hotels: Hotels
     tours: Tours
     services: Services
     airline_tickets: Airline tickets
@@ -69,8 +70,6 @@ en:
     description: Description
     location: Location
     contacts: Contacts
-  slide:
-    url: Details >>
   aside:
     news_and_promotions: News
     root_regions: Regions

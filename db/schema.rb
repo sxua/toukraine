@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513213814) do
+ActiveRecord::Schema.define(:version => 20120516214017) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,19 +60,45 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
   create_table "cities", :force => true do |t|
     t.string  "title_ru"
     t.string  "title_en"
-    t.string  "slug_ru"
-    t.string  "slug_en"
+    t.string  "slug"
     t.integer "region_id"
     t.boolean "delta",     :default => true, :null => false
   end
+
+  add_index "cities", ["slug"], :name => "index_cities_on_slug", :unique => true
+
+  create_table "hotel_types", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hotels", :force => true do |t|
+    t.integer  "city_id"
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.text     "description_ru"
+    t.text     "description_en"
+    t.string   "address_ru"
+    t.string   "address_en"
+    t.string   "slug"
+    t.integer  "hotel_type_id"
+    t.boolean  "delta",          :default => true, :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "hotels", ["city_id"], :name => "index_hotels_on_city_id"
+  add_index "hotels", ["hotel_type_id"], :name => "index_hotels_on_hotel_type_id"
+  add_index "hotels", ["slug"], :name => "index_hotels_on_slug", :unique => true
 
   create_table "news", :force => true do |t|
     t.string   "title_ru"
     t.string   "title_en"
     t.text     "body_ru"
     t.text     "body_en"
-    t.string   "slug_ru"
-    t.string   "slug_en"
+    t.string   "slug"
     t.integer  "created_by_id"
     t.integer  "published_by_id"
     t.datetime "published_at"
@@ -84,14 +110,14 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
 
   add_index "news", ["created_by_id"], :name => "index_news_on_created_by_id"
   add_index "news", ["published_by_id"], :name => "index_news_on_published_by_id"
+  add_index "news", ["slug"], :name => "index_news_on_slug", :unique => true
 
   create_table "pages", :force => true do |t|
     t.string   "title_ru"
     t.string   "title_en"
     t.text     "body_ru"
     t.text     "body_en"
-    t.string   "slug_ru"
-    t.string   "slug_en"
+    t.string   "slug"
     t.string   "category",        :default => "other", :null => false
     t.integer  "created_by_id"
     t.integer  "published_by_id"
@@ -100,10 +126,13 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
     t.boolean  "delta",           :default => true,    :null => false
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.boolean  "visible_ru",      :default => false,   :null => false
+    t.boolean  "visible_en",      :default => false,   :null => false
   end
 
   add_index "pages", ["created_by_id"], :name => "index_pages_on_created_by_id"
   add_index "pages", ["published_by_id"], :name => "index_pages_on_published_by_id"
+  add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
 
   create_table "photos", :force => true do |t|
     t.integer  "relative_id"
@@ -117,32 +146,6 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
 
   add_index "photos", ["relative_id"], :name => "index_photos_on_relative_id"
 
-  create_table "place_types", :force => true do |t|
-    t.string   "title_ru"
-    t.string   "title_en"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "places", :force => true do |t|
-    t.integer  "city_id"
-    t.string   "title_ru"
-    t.string   "title_en"
-    t.text     "description_ru"
-    t.text     "description_en"
-    t.string   "address_ru"
-    t.string   "address_en"
-    t.string   "slug_ru"
-    t.string   "slug_en"
-    t.integer  "place_type_id"
-    t.boolean  "delta",          :default => true, :null => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-  end
-
-  add_index "places", ["city_id"], :name => "index_places_on_city_id"
-  add_index "places", ["place_type_id"], :name => "index_places_on_place_type_id"
-
   create_table "promotions", :force => true do |t|
     t.string   "title_ru"
     t.string   "title_en"
@@ -151,13 +154,13 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
     t.string   "image"
     t.string   "url"
     t.integer  "tour_id"
-    t.integer  "place_id"
+    t.integer  "hotel_id"
     t.string   "url_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "promotions", ["place_id"], :name => "index_promotions_on_place_id"
+  add_index "promotions", ["hotel_id"], :name => "index_promotions_on_hotel_id"
   add_index "promotions", ["tour_id"], :name => "index_promotions_on_tour_id"
 
   create_table "regions", :force => true do |t|
@@ -166,24 +169,25 @@ ActiveRecord::Schema.define(:version => 20120513213814) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
-    t.string   "slug_ru"
-    t.string   "slug_en"
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "regions", ["parent_id"], :name => "index_regions_on_parent_id"
+  add_index "regions", ["slug"], :name => "index_regions_on_slug", :unique => true
 
   create_table "tours", :force => true do |t|
     t.string   "title_ru"
     t.string   "title_en"
     t.text     "description_ru"
     t.text     "description_en"
-    t.string   "slug_ru"
-    t.string   "slug_en"
+    t.string   "slug"
     t.boolean  "delta",          :default => true, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
+
+  add_index "tours", ["slug"], :name => "index_tours_on_slug", :unique => true
 
 end

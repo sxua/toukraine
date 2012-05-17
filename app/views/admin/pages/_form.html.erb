@@ -1,0 +1,27 @@
+<%= semantic_form_for [:admin, @page] do |f| %>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <% LOCALES.each do |code, language| %>
+        <li><%= link_to language, "#lang-#{code}", 'data-toggle' => 'tab' %></li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% LOCALES.each do |code, _| %>
+        <div class="tab-pane" id="lang-<%= code %>">
+          <%= f.inputs 'Page' do %>
+            <%= f.input :"title_#{code}" %>
+            <%= f.input :"body_#{code}", input_html: { class: 'tinymce' } %>
+            <%= tinymce %>
+            <%= f.input :"visible_#{code}" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= f.inputs "Settings" do %>
+    <%= f.input :slug %>
+    <%= f.input :is_published %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>
+<%#= render partial: 'admin/shared/wysiwyg' %>

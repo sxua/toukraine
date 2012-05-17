@@ -36,15 +36,15 @@
             </ul>
           </li>
         <% end %>
-        <% if Place.any? %>
+        <% if Hotel.any? %>
           <li class="dropdown">
             <div class="border border-orange"></div>
             <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
-              <%= I18n.t('menu.places') %> <b class="caret"></b>
+            <%= I18n.t('menu.hotels') %> <b class="caret"></b>
             <% end %>
             <ul class="dropdown-menu">
-              <% Place.top(5).each do |place| %>
-                <li><%= link_to place.title, url_for(place) %></li>
+              <% Hotel.top(5).each do |hotel| %>
+                <li><%= link_to hotel.title, url_for(hotel) %></li>
               <% end %>
             </ul>
           </li>

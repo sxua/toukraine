@@ -54,8 +54,8 @@ module ApplicationHelper
       slide_url = slide.url
     when 'tour'
       slide_url = slide.tour ? url_for(slide.tour) : nil
-    when 'place'
-      slide_url = slide.place ? url_for(slide.place) : nil
+    when 'hotel'
+      slide_url = slide.hotel ? url_for(slide.hotel) : nil
     else
       nil
     end

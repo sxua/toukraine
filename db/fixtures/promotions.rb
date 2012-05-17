@@ -9,7 +9,7 @@ files = []
     title_en: "Test slider ##{i}",
     caption_ru: "Тестовая подпись под заголовком №#{i}",
     caption_en: "Test label under the title ##{i}",
-    place_id: i
+    hotel_id: i
   }
 end
 

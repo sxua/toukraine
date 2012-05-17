@@ -12,10 +12,11 @@ Pellentesque tincidunt lobortis volutpat. Donec id elit libero, eget hendrerit n
 Etiam a nisi est, eget elementum nulla. In condimentum vestibulum cursus. Curabitur a semper odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus fringilla, sem sed posuere lacinia, urna velit placerat ante, eget porta neque orci eget massa. Donec lectus risus, varius id elementum sit amet, gravida eget turpis. Praesent euismod magna faucibus nulla accumsan molestie. Sed consequat leo ut dolor posuere at pharetra augue vulputate. Integer felis sapien, congue id rutrum vitae, eleifend non sapien. Vivamus nisi felis, aliquam sit amet tincidunt vitae, fermentum id nulla. Nunc ligula ligula, iaculis non varius ac, placerat sed arcu. Nulla facilisi. Quisque consequat, elit ac sagittis condimentum, tellus libero blandit ligula, vel egestas dolor dolor sed nisl. Aliquam et quam risus, id pharetra lectus."
 
 CSV.foreach("#{Rails.root}/db/fixtures/csv/pages.csv", headers: [:title_ru, :title_en, :category]) do |row|
-  row[:slug_ru] = row[:slug_en] = row[:title_en].parameterize
+  row[:slug] = row[:title_en].parameterize
   row[:published_by_id] = 1
   row[:published_at] = Time.now
   row[:is_published] = true
+  row[:visible_ru] = row[:visible_en] = true
   row[:body_ru] = row[:body_en] = lorem_ipsum
   pages << row.to_hash
 end

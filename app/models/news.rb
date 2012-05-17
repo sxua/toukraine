@@ -1,10 +1,13 @@
 class News < ActiveRecord::Base
+  extend FriendlyId
   include Extensions::Translate
   belongs_to :created_by
   belongs_to :published_by
   attr_accessible :body_ru, :body_en, :is_published, :published_at, :title_ru, :title_en
   
   translates :body, :title
+  
+  friendly_id :title_en, use: :slugged
   
   before_create :set_creator
   before_save :set_publisher

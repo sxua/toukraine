@@ -1,9 +1,12 @@
 class City < ActiveRecord::Base
+  extend FriendlyId
   include Extensions::Translate
   attr_accessible :title_ru, :title_en
   translates :title
-  has_many :places
+  has_many :hotels
   belongs_to :region
+  
+  friendly_id :title_en, use: :slugged
   
   define_index do
     set_property delta: true

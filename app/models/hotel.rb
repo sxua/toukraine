@@ -1,11 +1,14 @@
-class Place < ActiveRecord::Base
+class Hotel < ActiveRecord::Base
+  extend FriendlyId
   include Extensions::Translate
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :address_ru, :address_en
   belongs_to :city
-  belongs_to :place_type
-  has_one :attribute, as: :relative, conditions: proc { "relative_type = 'place'" }
-  has_many :photos, as: :relative, conditions: proc { "relative_type = 'place'" }
+  belongs_to :hotel_type
+  has_one :attribute, as: :relative, conditions: proc { "relative_type = 'hotel'" }
+  has_many :photos, as: :relative, conditions: proc { "relative_type = 'hotel'" }
   has_many :tours
+  
+  friendly_id :title_en, use: :slugged
 
   attr_accessor :data
 

@@ -15,7 +15,7 @@ ru:
   menu:
     ukraine: Украина
     tours: Туры
-    places: Размещение
+    hotels: Отели
     services: Услуги
     ukraine_menu:
       about_country: О стране
@@ -42,6 +42,7 @@ ru:
   modal:
     contacts: Контактная информация
     map: Карта проезда
+    about_company: About company
   contacts:
     phones: Телефоны
     tourism: Туризм
@@ -53,7 +54,7 @@ ru:
   footer:
     ukraine: Украина
     cuisine: Кухня
-    places: Размещение
+    hotels: Отели
     tours: Туры
     services: Услуги
     airline_tickets: Авиабилеты
@@ -69,8 +70,6 @@ ru:
     description: Описание
     location: Расположение
     contacts: Контактная информация
-  slide:
-    url: Подробнее >>
   aside:
     news_and_promotions: Новости
     root_regions: Регионы

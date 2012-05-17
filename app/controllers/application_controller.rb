@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   
   def set_locale
-    I18n.locale = I18n.locale = params[:locale] || cookies[:locale] || get_user_preferred_locale || I18n.default_locale
+    I18n.locale = params[:locale] || cookies[:locale] || get_user_preferred_locale || I18n.default_locale
+    cookies[:locale] = I18n.locale
   end
 
   def get_user_preferred_locale

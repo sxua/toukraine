@@ -1,6 +1,6 @@
-class CreatePlaces < ActiveRecord::Migration
+class CreateHotels < ActiveRecord::Migration
   def change
-    create_table :places do |t|
+    create_table :hotels do |t|
       t.references :city
       t.string :title_ru
       t.string :title_en
@@ -10,11 +10,11 @@ class CreatePlaces < ActiveRecord::Migration
       t.string :address_en
       t.string :slug_ru
       t.string :slug_en
-      t.references :place_type
+      t.references :hotel_type
       t.boolean :delta, default: true, null: false
       t.timestamps
     end
-    add_index :places, :city_id
-    add_index :places, :place_type_id
+    add_index :hotels, :city_id
+    add_index :hotels, :hotel_type_id
   end
 end

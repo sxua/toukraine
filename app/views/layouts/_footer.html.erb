@@ -22,12 +22,12 @@
           </ul>
         </li>
       <% end %>
-      <% if Place.any? %>
+      <% if Hotel.any? %>
         <li class="span2">
-          <h3><%= I18n.t('footer.places') %></h3>
+          <h3><%= I18n.t('footer.hotels') %></h3>
           <ul class="nav">
-            <% Place.top(5).each do |place| %>
-              <li><%= link_to place.title, url_for(place) %></li>
+            <% Hotel.top(5).each do |hotel| %>
+              <li><%= link_to hotel.title, url_for(hotel) %></li>
             <% end %>
           </ul>
         </li>

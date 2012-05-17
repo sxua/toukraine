@@ -4,7 +4,7 @@ Toukraine::Application.routes.draw do
   
   scope "(:locale)", locale: /en|ru/ do
     root to: 'home#index'
-    resources :places
+    resources :hotels
     resources :promotions
     resources :pages
     resources :news

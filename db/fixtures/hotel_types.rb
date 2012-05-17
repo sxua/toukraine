@@ -1,4 +1,4 @@
-PlaceType.seed_once(:title_ru,
+HotelType.seed_once(:title_ru,
   {id: 1, title_ru: 'гостиница', title_en: 'hotel'},
   {id: 2, title_ru: 'отель', title_en: 'hotel'},
   {id: 3, title_ru: 'санаторий', title_en: 'sanatorium'},
