@@ -16,15 +16,12 @@ set :ssh_options, { forward_agent: true }
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :default_environment, { 'PATH' => "/opt/rbenv/shims:/opt/rbenv/bin:$PATH" }
 
-# set :shared_children, shared_children + %w(public/uploads)
-
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 server "dev.toukraine.org", :app, :web, :db, primary: true
 
 after 'deploy:update_code', 'deploy:migrate'
-# after 'deploy:update_code', 'deploy:symlink_uploads'
 after 'deploy:restart', 'unicorn:reload'
 
 def remote_file_exists?(full_path)
@@ -34,13 +31,6 @@ end
 def remote_process_exists?(pid_file)
   capture("ps -p $(cat #{pid_file}) ; true").strip.split("\n").size == 2
 end
-
-# namespace :deploy do
-#   desc 'Carrierwave files with Capistrano'
-#   task :symlink_uploads do
-#     run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
-#   end
-# end
 
 namespace :unicorn do
   desc 'Reload Unicorn'
