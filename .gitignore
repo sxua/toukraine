@@ -18,5 +18,6 @@
 *.sass-cache
 *.DS_Store
 /public/uploads/*
+/public/system/*
 /db/sphinx
 /config/development.*
