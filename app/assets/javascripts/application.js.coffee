@@ -5,10 +5,18 @@
 #= require_tree .
 
 window.fotoramaDefaults = {
+  vertical: true,
+  navPosition: 'right',
   loop: true,
   cropToFit: true,
-  thumbSize: 64,
-  autoplay: true
+  thumbSize: 154,
+  thumbMargin: 0,
+  thumbBorderWidth: 2,
+  thumbBorderColor: '#5F98B2',
+  autoplay: true,
+  touchStyle: false,
+  arrows: false,
+  onClick: (data)-> window.open(data.captionUrl, '_blank') if data.captionUrl
 }
 
 $ ->

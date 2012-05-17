@@ -451,6 +451,9 @@
         if (o().caption) {
           this.caption = thisImg.attr('alt') || thisImg.children().attr('alt');
         }
+        if (typeof o().onClick == 'function') {
+          this.captionUrl = thisImg.attr('data-url') || thisImg.children().attr('data-url');
+        }
       } else {
         src[i] = {imgHref:this.img ? this.img : this.href ? this.href : this.length ? String(this) : null, thumbSrc:this.thumb, imgRel:this.full};
       }
@@ -540,6 +543,10 @@
 
     var wrap = $('<div class="' + F + '__wrap"></div>').appendTo(fotorama);
     var shaft = $('<div class="' + F + '__shaft"></div>').appendTo(wrap);
+    
+    if (typeof o().onClick == 'function') {
+      wrap.css({cursor:'pointer'});
+    }
 
     // Запрещаем выделять фотораму
     if (!o().touchStyle) {
@@ -666,7 +673,7 @@
       });
     }
 
-    var activeImg, activeIndex, activeCaption;
+    var activeImg, activeIndex, activeCaption, activeCaptionUrl;
 
     var imgFrame = $();
     img.each(function (i) {
@@ -786,7 +793,7 @@
     }
 
     if (o().caption) {
-      var caption = $('<p class="' + F + '__caption"></p>');
+      var caption = $('<p class="' + F + '__caption"><span class="' + F + '__caption_inner"></span></p>');
       if (o().caption == 'overlay') {
         caption.appendTo(wrap).addClass(F + '__caption_overlay');
       } else {
@@ -1104,7 +1111,7 @@
     }
 
     function dataOut() {
-      return {index:activeIndex, src:src[activeIndex], img:activeImg[0], thumb:o().thumbs ? activeThumb[0] : null, caption:activeCaption};
+      return {index:activeIndex, src:src[activeIndex], img:activeImg[0], thumb:o().thumbs ? activeThumb[0] : null, caption:activeCaption, captionUrl:activeCaptionUrl};
     }
 
     function clearBackAnimate(block) {
@@ -1693,10 +1700,11 @@
       function setCaption() {
         if (o().caption) {
           activeCaption = img[newIndex].caption ? img[newIndex].caption : img[newIndex].title;
+          activeCaptionUrl = img[newIndex].captionUrl;
           if (activeCaption) {
-            caption.html(activeCaption).show();
+            caption.children().html(activeCaption).show();
           } else {
-            caption.html('').hide();
+            caption.children().html('').hide();
           }
         }
       }
