@@ -32,6 +32,23 @@ def remote_process_exists?(pid_file)
   capture("ps -p $(cat #{pid_file}) ; true").strip.split("\n").size == 2
 end
 
+namespace :db do
+  desc "Backup the database"
+  task :backup, roles: :db do
+    run "mkdir -p #{current_path}/backups"
+    run "cd #{current_path}; pg_dump -U postgres #{application}_production -f backups/#{Time.now.utc.strftime('%Y%m%d%H%M%S')}.sql"
+  end
+
+  desc "Backup the database and download the script"
+  task :download, roles: :app do
+    db
+    timestamp = Time.now.utc.strftime('%Y%m%d%H%M%S') 
+    run "mkdir -p backups"
+    run "cd #{current_path}; tar -cvzpf #{timestamp}_backup.tar.gz backups"
+    get "#{current_path}/#{timestamp}_backup.tar.gz", "#{timestamp}_backup.tar.gz"
+  end
+end
+
 namespace :unicorn do
   desc 'Reload Unicorn'
   task :reload, except: { no_release: true } do
