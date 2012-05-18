@@ -1,0 +1,50 @@
+<%= semantic_form_for [:admin, @promotion] do |f| %>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <% LOCALES.each do |code, language| %>
+        <li><%= link_to language, "#lang-#{code}", 'data-toggle' => 'tab' %></li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% LOCALES.each do |code, _| %>
+        <div class="tab-pane" id="lang-<%= code %>">
+          <%= f.inputs 'Promotion' do %>
+            <%= f.input :"title_#{code}" %>
+            <%= f.input :"caption_#{code}" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= f.inputs "Settings" do %>
+    <%= f.input :image %>
+    <%= f.input :url_type, as: :select, collection: [ %w(Plain text), %w(Hotel hotel), %w(Tour tour) ], include_blank: false %>
+    <%= f.input :url, wrapper_html: { style: "#{'display:none;' if @promotion.url_type != 'text' }" } %>
+    <%= f.input :tour, wrapper_html: { style: "#{'display:none;' if @promotion.url_type != 'tour' }" } %>
+    <%= f.input :hotel, wrapper_html: { style: "#{'display:none;' if @promotion.url_type != 'hotel' }" } %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>
+<script type="text/javascript">
+  $(function() {
+    $('#promotion_url_type').on('change', function(e) {
+      switch($(this).val()) {
+        case 'hotel':
+          $('#promotion_hotel_input').show();
+          $('#promotion_tour_input').hide();
+          $('#promotion_url_input').hide();
+        break;
+        case 'tour':
+          $('#promotion_hotel_input').hide();
+          $('#promotion_tour_input').show();
+          $('#promotion_url_input').hide();
+        break;
+        default:
+          $('#promotion_hotel_input').hide();
+          $('#promotion_tour_input').hide();
+          $('#promotion_url_input').show();
+        break;
+      }
+    });
+  });
+</script>
