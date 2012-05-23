@@ -1,8 +1,20 @@
 //= require bootstrap-tabs
+//= require chosen
 @import "active_admin/mixins";
 @import "active_admin/base";
 
 form {
+  select {
+    width: 300px;
+  }
+  li.map {
+    width: 76%;
+    margin-left: 20%;
+    #map {
+      width: 100%;
+      height: 300px;
+    }
+  }
   li.text {
     span.cke_skin_kama {
       width: 76%;

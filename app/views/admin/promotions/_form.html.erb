@@ -23,7 +23,7 @@
     <%= f.input :tour, wrapper_html: { style: "#{'display:none;' unless @promotion.url_type == 'tour' }" } %>
     <%= f.input :hotel, wrapper_html: { style: "#{'display:none;' unless @promotion.url_type == 'hotel' }" } %>
   <% end %>
-  <%= f.buttons %>
+  <%= f.actions %>
 <% end %>
 <script type="text/javascript">
   $(function() {
