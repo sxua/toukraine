@@ -82,4 +82,22 @@ module ApplicationHelper
       content_tag(:li, content.html_safe, class: 'dropdown')
     end
   end
+  
+  def new_child_fields_template(form_builder, association, options={})
+    object_name = "#{form_builder.object.class.name}_#{association}_attributes_"
+    options[:object] ||= form_builder.object.class.reflect_on_association(association).klass.new
+    options[:partial] ||= "#{association}_form"
+    
+    content_for :handlebars do
+      render partial: options[:partial], locals: { fb: form_builder, association: association, options: options }
+    end
+  end
+
+  def add_child_link(name, association)
+    link_to name, '#', class: 'js-form-add button', 'data-association' => association
+  end
+
+  def remove_child_link(name, f)
+    f.hidden_field(:_destroy) + tag(:br) + content_tag(:span, 'Remove ') + check_box_tag("remove_#{name}", 1, false, id: nil)
+  end
 end

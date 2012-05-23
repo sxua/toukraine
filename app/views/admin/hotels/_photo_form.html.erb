@@ -1,0 +1,1 @@
+<%= f.input :image, as: :file, label: 'Image #{{number}}', hint: f.template.image_tag(f.object.image.url(:thumb)) + remove_child_link(association, f) %>

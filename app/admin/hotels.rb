@@ -10,4 +10,16 @@ ActiveAdmin.register Hotel do
   end
 
   form partial: 'form'
+  
+  controller do
+    def new
+      @hotel = Hotel.new
+      @hotel.photos.build
+    end
+
+    def edit
+      @hotel = Hotel.find(params[:id])
+      @hotel.photos.build if @hotel.photos.empty?
+    end
+  end
 end

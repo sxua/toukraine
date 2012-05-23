@@ -1,5 +1,5 @@
 <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBp9Po862jjrqJI3bqghEmeiCoRVH0gulY&sensor=false&language=#{I18n.locale}" %>
-<%= semantic_form_for [:admin, @hotel] do |f| %>
+<%= semantic_form_for [:admin, @hotel], html: { multipart: true } do |f| %>
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <% LOCALES.each do |code, language| %>
@@ -33,6 +33,15 @@
     </li>
     <%= f.input :geom, as: :string, input_html: { readonly: true } %>
     <%= f.input :slug %>
+  <% end %>
+  <%= f.inputs "Photos", class: 'inputs js-form-init' do %>
+    <%= f.semantic_fields_for :photos do |p| %>
+      <%= render partial: 'photo_form', locals: { f: p, association: :photo } %>
+    <% end %>
+    <li>
+      <%= add_child_link "Add Photo", :photos %>
+    </li>
+    <%= new_child_fields_template f, :photos %>
   <% end %>
   <%= f.actions %>
 <% end %>
@@ -93,3 +102,6 @@
     
   });
 </script>
+<div id="handlebars">
+  <%= yield :handlebars %>
+</div>
