@@ -10,6 +10,8 @@ Toukraine::Application.routes.draw do
     resources :promotions
     resources :pages
     resources :news
-    resources :regions
+    resources :regions do
+      get :hotels, on: :member
+    end
   end
 end
