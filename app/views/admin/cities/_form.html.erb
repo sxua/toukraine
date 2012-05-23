@@ -1,0 +1,23 @@
+<%= semantic_form_for [:admin, @city] do |f| %>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <% LOCALES.each do |code, language| %>
+        <li><%= link_to language, "#lang-#{code}", 'data-toggle' => 'tab' %></li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% LOCALES.each do |code, _| %>
+        <div class="tab-pane" id="lang-<%= code %>">
+          <%= f.inputs 'City' do %>
+            <%= f.input :"title_#{code}" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= f.inputs "Settings" do %>
+    <%= f.input :region %>
+    <%= f.input :slug %>
+  <% end %>
+  <%= f.actions %>
+<% end %>
