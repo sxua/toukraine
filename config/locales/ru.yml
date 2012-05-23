@@ -6,6 +6,7 @@ ru:
     culture: Культура
     traditions: Традиции
     for_agencies: Агентствам
+    for_clients: Клиентам
     agreement: Соглашение
     catalog: Каталог
     discount: Скидки
@@ -70,6 +71,7 @@ ru:
     description: Описание
     location: Расположение
     contacts: Контактная информация
+    prices: Цены
   aside:
     news_and_promotions: Новости
     root_regions: Регионы

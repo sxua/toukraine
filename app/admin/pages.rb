@@ -4,6 +4,7 @@ ActiveAdmin.register Page do
     column 'Title', :title_ru
     column 'Slug', :slug
     column :category
+    column :weight
     column 'Published at', sortable: :published_at do |page|
       page.published_at.to_formatted_s(:long) if page.is_published?
     end
@@ -11,6 +12,11 @@ ActiveAdmin.register Page do
     column 'Updated at', :updated_at
     default_actions
   end
+  
+  filter :title_ru
+  filter :title_en
+  filter :weight
+  filter :category, as: :check_boxes, collection: proc { Page.categories }
 
   form partial: 'form'
   
