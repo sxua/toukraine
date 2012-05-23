@@ -67,7 +67,7 @@ en:
     social_networks: Social networks
   hotels:
     overview: Overview
-    photos: Photos
+    photos: Photos (%{count})
     description: Description
     location: Location
     contacts: Contacts

@@ -26,3 +26,13 @@ $ ->
     fotorama.trigger 'showimg', index
   $('a[href="#location"]').on 'shown', (e)->
     showMap()
+  $('a[href="#photos"]').on 'shown', (e)->
+    $('.fotorama-init').fotorama {
+      vertical: false,
+      thumbSize: 64,
+      touchStyle: true,
+      arrows: true,
+      onClick: null,
+      thumbMargin: 3,
+      thumbBorderWidth: 3
+    }

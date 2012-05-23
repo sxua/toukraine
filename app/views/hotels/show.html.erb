@@ -3,15 +3,12 @@
   <div class="span9">
     <% box do %>
       <h3>
-        <%= @hotel.title %>
-        <% if @hotel.city %>
-        <span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" if @hotel.stars %></span>
-        <% end %>
+        <%= @hotel.title %><% if @hotel.city %><span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" unless @hotel.stars.blank? %></span><% end %>
       </h3>
       <ul class="nav nav-tabs">
         <li><%= link_to I18n.t('hotels.overview'), '#overview', 'data-toggle' => 'tab' %></li>
         <% if @hotel.photos.any? %>
-          <li><%= link_to I18n.t('hotels.photos'), '#photos', 'data-toggle' => 'tab' %></li>
+          <li><%= link_to I18n.t('hotels.photos', count: @hotel.photos.count), '#photos', 'data-toggle' => 'tab' %></li>
         <% end %>
         <% if @hotel.description.present? %>
           <li><%= link_to I18n.t('hotels.description'), '#description', 'data-toggle' => 'tab' %></li>
@@ -23,13 +20,14 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane" id="overview">
+          <%= image_tag(@hotel.photos.first.image_url(:preview)) if @hotel.photos.any? %>
           <p><%= @hotel.short_description.try(:html_safe) %></p>
         </div>
         <% if @hotel.photos.any? %>
           <div class="tab-pane" id="photos">
-            <div class="fotorama" data-width="770" data-height="350">
+            <div class="fotorama-init" data-width="770" data-height="350">
               <% @hotel.photos.each do |photo| %>
-                <%= link_to photo.url(:preview), photo.url(:thumb) %>
+                <%= link_to image_tag(photo.image_url(:thumb), alt: photo.title), photo.image_url(:preview) %>
               <% end %>
             </div>
           </div>
@@ -41,8 +39,12 @@
           <% if @hotel.geom %>
             <div id="map"></div>
           <% end %>
-          <h4><%= I18n.t('hotels.contacts') %></h4>
-          <p><%= [@hotel.address, @hotel.phone, @hotel.url, @hotel.email].compact.join('<br />').html_safe %></p>
+          <% contacts = [@hotel.address, @hotel.phone, @hotel.url, @hotel.email].map { |c| nil if c.blank? }.compact %>
+          <% unless contacts.empty? %>
+            <br />
+            <h4><%= I18n.t('hotels.contacts') %></h4>
+            <p><%= contacts.join('<br />').html_safe %></p>
+          <% end %>
         </div>
         <% if @hotel.prices.present? %>
           <div class="tab-pane" id="prices">

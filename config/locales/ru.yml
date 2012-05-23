@@ -67,7 +67,7 @@ ru:
     social_networks: Мы в социальных сетях
   hotels:
     overview: Обзор
-    photos: Фото
+    photos: Фото (%{count})
     description: Описание
     location: Расположение
     contacts: Контактная информация
