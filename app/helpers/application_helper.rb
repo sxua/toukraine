@@ -62,4 +62,24 @@ module ApplicationHelper
     slide_url
   end
 
+  def menu_for(section)
+    content = ''
+    pages = Page.published.for(section)
+
+    if pages.any?
+      content << capture do
+        link_to('#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do
+          "#{I18n.t("topbar.for_#{section}")} #{content_tag(:b, nil, class: 'caret')}".html_safe
+        end
+      end
+
+      content << capture do
+        content_tag(:ul, id: "#{section}_menu", class: 'dropdown-menu') do
+          pages.map { |page| content_tag(:li, link_to(page.title, url_for(page))) }.join.html_safe
+        end
+      end
+      
+      content_tag(:li, content.html_safe, class: 'dropdown')
+    end
+  end
 end

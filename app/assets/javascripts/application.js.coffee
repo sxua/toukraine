@@ -24,3 +24,5 @@ $ ->
     fotorama = $('.fotorama').fotorama()
     index = $(this).parent().children('.fotorama__thumb').index($(this))
     fotorama.trigger 'showimg', index
+  $('a[href="#location"]').on 'shown', (e)->
+    showMap()

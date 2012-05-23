@@ -40,11 +40,11 @@
           <li class="dropdown">
             <div class="border border-orange"></div>
             <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
-            <%= I18n.t('menu.hotels') %> <b class="caret"></b>
+              <%= I18n.t('menu.hotels') %> <b class="caret"></b>
             <% end %>
             <ul class="dropdown-menu">
-              <% Hotel.top(5).each do |hotel| %>
-                <li><%= link_to hotel.title, url_for(hotel) %></li>
+              <% Region.for_menu(5).each do |region| %>
+                <li><%= link_to region.title, hotels_region_path(region) %></li>
               <% end %>
             </ul>
           </li>

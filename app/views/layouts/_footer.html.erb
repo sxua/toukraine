@@ -26,8 +26,8 @@
         <li class="span2">
           <h3><%= I18n.t('footer.hotels') %></h3>
           <ul class="nav">
-            <% Hotel.top(5).each do |hotel| %>
-              <li><%= link_to hotel.title, url_for(hotel) %></li>
+            <% Region.for_menu(5).each do |region| %>
+              <li><%= link_to region.title, hotels_region_path(region) %></li>
             <% end %>
           </ul>
         </li>
