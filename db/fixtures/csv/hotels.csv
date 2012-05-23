@@ -1,24 +1,24 @@
-1,Ялта-Интурист,Yalta-Inturist,1,1
-2,Бристоль,Bristol,1,1
-3,Ореанда,Oreanda,1,1
-4,Ripario Hotel Group,Ripario Hotel Group,2,1
-5,Respect Hall Resort Hotel,Respect Hall Resort Hotel,2,3
-6,Южнобережный,Yuzhnoberezhny,3,4
-7,Жемчужина,Zhemchuzhina,3,5
-8,Алуштинский,Alushtinskiy,3,2
-9,Восход,Voshod,4,2
-10,Крымские Зори,Krymskie Zori,5,2
-11,Утес,Utes,3,7
-12,Славутич,Slavutich,3,2
-13,Киев,Kiev,3,2
-14,Маджестик,Majestic,1,8
-15,Новый Свет,Novy Svet,4,9
-16,Судак,Sudak,4,10
-17,Звездный,Zvezdny,4,10
-18,Бастион,Bastion,2,10
-19,Крымское Приморье,Krymskoe Primorye,4,11
-20,Приморье,Primorye,4,12
-21,Голубой залив,Goluboy Zaliv,5,12
-22,Золотой берег,Zolotoy Bereg,5,14
-23,Золотой пляж,Zolotoy Plyaj,4,13
-24,Атлантик,Atlantic,2,13
+1,"Ялта-Интурист","Yalta-Inturist",1
+2,"Бристоль","Bristol",1
+3,"Ореанда","Oreanda",1
+4,"Ripario Hotel Group","Ripario Hotel Group",1
+5,"Respect Hall Resort Hotel","Respect Hall Resort Hotel",3
+6,"Южнобережный","Yuzhnoberezhny",4
+7,"Жемчужина","Zhemchuzhina",5
+8,"Алуштинский","Alushtinskiy",2
+9,"Восход","Voshod",2
+10,"Крымские Зори","Krymskie Zori",2
+11,"Утес","Utes",7
+12,"Славутич","Slavutich",2
+13,"Киев","Kiev",2
+14,"Маджестик","Majestic",8
+15,"Новый Свет","Novy Svet",9
+16,"Судак","Sudak",10
+17,"Звездный","Zvezdny",10
+18,"Бастион","Bastion",10
+19,"Крымское Приморье","Krymskoe Primorye",11
+20,"Приморье","Primorye",12
+21,"Голубой залив","Goluboy Zaliv",12
+22,"Золотой берег","Zolotoy Bereg",14
+23,"Золотой пляж","Zolotoy Plyaj",13
+24,"Атлантик","Atlantic",13

@@ -8,7 +8,7 @@ Nunc rhoncus commodo nunc a lobortis. Vestibulum ultricies metus non dui iaculis
 Etiam odio arcu, fringilla a mollis non, molestie eget odio. Integer quis magna urna. Aenean sit amet nibh arcu. Pellentesque at lacinia risus. Aliquam sagittis, ipsum hendrerit tempus lobortis, tellus elit laoreet eros, vel pharetra arcu velit et ipsum. Cras dignissim lacus quis enim dignissim eu commodo tellus dictum. Vivamus aliquam nisi ut nisl sollicitudin vel tristique quam facilisis. Ut lorem velit, semper at bibendum in, sagittis eget ante. Nulla sem est, suscipit vitae condimentum et, tristique et mauris. Vestibulum ligula est, ultrices sed tristique quis, placerat ultrices risus. Morbi nec nisl nunc. Duis lobortis, libero at tempus auctor, velit turpis sodales sem, vel consequat sapien justo sit amet turpis. Nullam placerat, magna porta euismod molestie, diam massa ullamcorper diam, id congue justo tortor et nulla."
 
 
-CSV.foreach("#{Rails.root}/db/fixtures/csv/hotels.csv", headers: [:id, :title_ru, :title_en, :hotel_type_id, :city_id]) do |row|
+CSV.foreach("#{Rails.root}/db/fixtures/csv/hotels.csv", headers: [:id, :title_ru, :title_en, :city_id]) do |row|
   row[:slug] = row[:title_en].parameterize
   row[:description_ru] = row[:description_en] = lorem_ipsum
   hotels << row.to_hash
