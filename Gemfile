@@ -6,6 +6,8 @@ source :rubygems
 gem 'rails', '3.2.3'
 gem 'pg', '~> 0.13'
 gem 'activerecord-postgres-hstore'
+gem 'activerecord-postgis-adapter'
+
 gem 'awesome_nested_set'
 gem 'thinking-sphinx', '~> 2.0.12'
 gem 'seed-fu'
@@ -31,11 +33,11 @@ gem 'capistrano'
 
 gem "activeadmin"
 gem "formtastic", "~> 2.1.1"
-gem "capybara", :group => [:development, :test]
+gem "capybara", group: [:development, :test]
 gem "therubyracer"
 
 group :test do
-  gem "cucumber-rails", :require => false
+  gem "cucumber-rails", require: false
   gem "capybara"
   gem "database_cleaner"
   gem "growl"
@@ -51,9 +53,11 @@ group :development do
   gem "guard-rspec"
   gem "quiet_assets"
   gem "thin"
+  gem "puma"
 end
 
-gem "rspec-rails", :group => [:development, :test]
+gem "rspec-rails", group: [:development, :test]
+
 group :assets do
   gem "twitter-bootstrap-rails"
 end
