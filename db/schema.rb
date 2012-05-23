@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517155737) do
+ActiveRecord::Schema.define(:version => 20120523025907) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,17 +45,6 @@ ActiveRecord::Schema.define(:version => 20120517155737) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
-
-  create_table "attributes", :force => true do |t|
-    t.integer "relative_id"
-    t.string  "relative_type"
-    t.hstore  "data_ru"
-    t.hstore  "data_en"
-  end
-
-  add_index "attributes", ["data_en"], :name => "attributes_gist_data_en"
-  add_index "attributes", ["data_ru"], :name => "attributes_gist_data_ru"
-  add_index "attributes", ["relative_id"], :name => "index_attributes_on_relative_id"
 
   create_table "cities", :force => true do |t|
     t.string  "title_ru"
@@ -99,14 +88,20 @@ ActiveRecord::Schema.define(:version => 20120517155737) do
     t.string   "address_ru"
     t.string   "address_en"
     t.string   "slug"
-    t.integer  "hotel_type_id"
-    t.boolean  "delta",          :default => true, :null => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.boolean  "delta",                                                                            :default => true, :null => false
+    t.datetime "created_at",                                                                                         :null => false
+    t.datetime "updated_at",                                                                                         :null => false
+    t.hstore   "data"
+    t.text     "prices_ru"
+    t.text     "prices_en"
+    t.spatial  "latlon",               :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.text     "short_description_ru"
+    t.text     "short_description_en"
   end
 
   add_index "hotels", ["city_id"], :name => "index_hotels_on_city_id"
-  add_index "hotels", ["hotel_type_id"], :name => "index_hotels_on_hotel_type_id"
+  add_index "hotels", ["data"], :name => "hotels_gist_data"
+  add_index "hotels", ["latlon"], :name => "index_hotels_on_latlon", :spatial => true
   add_index "hotels", ["slug"], :name => "index_hotels_on_slug", :unique => true
 
   create_table "news", :force => true do |t|
@@ -144,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20120517155737) do
     t.datetime "updated_at",                           :null => false
     t.boolean  "visible_ru",      :default => false,   :null => false
     t.boolean  "visible_en",      :default => false,   :null => false
+    t.integer  "weight",          :default => 10,      :null => false
   end
 
   add_index "pages", ["created_by_id"], :name => "index_pages_on_created_by_id"
@@ -188,10 +184,18 @@ ActiveRecord::Schema.define(:version => 20120517155737) do
     t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "menu"
   end
 
   add_index "regions", ["parent_id"], :name => "index_regions_on_parent_id"
   add_index "regions", ["slug"], :name => "index_regions_on_slug", :unique => true
+
+  create_table "tour_types", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "tours", :force => true do |t|
     t.string   "title_ru"
@@ -202,8 +206,12 @@ ActiveRecord::Schema.define(:version => 20120517155737) do
     t.boolean  "delta",          :default => true, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.boolean  "tour_type_id"
+    t.hstore   "data"
   end
 
+  add_index "tours", ["data"], :name => "tours_gist_data"
   add_index "tours", ["slug"], :name => "index_tours_on_slug", :unique => true
+  add_index "tours", ["tour_type_id"], :name => "index_tours_on_tour_type_id"
 
 end
