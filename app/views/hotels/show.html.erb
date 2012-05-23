@@ -1,31 +1,29 @@
+<%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBp9Po862jjrqJI3bqghEmeiCoRVH0gulY&sensor=false&language=#{I18n.locale}" if @hotel.geom %>
 <div class="row" id="hotel">
   <div class="span9">
     <% box do %>
       <h3>
         <%= @hotel.title %>
         <% if @hotel.city %>
-        <span>, <%= @hotel.city.title %><%= " #{@hotel.data['stars']}*" if @hotel.data['stars'] %></span>
+        <span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" if @hotel.stars %></span>
         <% end %>
       </h3>
       <ul class="nav nav-tabs">
-        <li>
-          <%= link_to I18n.t('hotels.overview'), '#overview', 'data-toggle' => 'tab' %>
-        </li>
+        <li><%= link_to I18n.t('hotels.overview'), '#overview', 'data-toggle' => 'tab' %></li>
         <% if @hotel.photos.any? %>
-          <li>
-            <%= link_to I18n.t('hotels.photos'), '#photos', 'data-toggle' => 'tab' %>
-          </li>
+          <li><%= link_to I18n.t('hotels.photos'), '#photos', 'data-toggle' => 'tab' %></li>
         <% end %>
-        <li>
-          <%= link_to I18n.t('hotels.description'), '#description', 'data-toggle' => 'tab' %>
-        </li>
-        <li>
-          <%= link_to I18n.t('hotels.location'), '#location', 'data-toggle' => 'tab' %>
-        </li>
+        <% if @hotel.description.present? %>
+          <li><%= link_to I18n.t('hotels.description'), '#description', 'data-toggle' => 'tab' %></li>
+        <% end %>
+        <li><%= link_to I18n.t('hotels.location'), '#location', 'data-toggle' => 'tab' %></li>
+        <% if @hotel.prices.present? %>
+          <li><%= link_to I18n.t('hotels.prices'), '#prices', 'data-toggle' => 'tab' %></li>
+        <% end %>
       </ul>
       <div class="tab-content">
         <div class="tab-pane" id="overview">
-          <p><%= @hotel.description %></p>
+          <p><%= @hotel.short_description.try(:html_safe) %></p>
         </div>
         <% if @hotel.photos.any? %>
           <div class="tab-pane" id="photos">
@@ -37,13 +35,35 @@
           </div>
         <% end %>
         <div class="tab-pane" id="description">
-          <%= render partial: 'hotels/description', locals: { data: @hotel.data } %>
+          <p><%= @hotel.description.try(:html_safe) %></p>
         </div>
         <div class="tab-pane" id="location">
+          <% if @hotel.geom %>
+            <div id="map"></div>
+          <% end %>
           <h4><%= I18n.t('hotels.contacts') %></h4>
-          <p><%= @hotel.address %></p>
+          <p><%= [@hotel.address, @hotel.phone, @hotel.url, @hotel.email].compact.join('<br />').html_safe %></p>
         </div>
+        <% if @hotel.prices.present? %>
+          <div class="tab-pane" id="prices">
+            <h4><%= I18n.t('hotels.prices') %></h4>
+            <p><%= @hotel.prices.try(:html_safe) %></p>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
 </div>
+<% if @hotel.geom %>
+  <script type="text/javascript">
+    var showMap = function() {
+      if (!$('#map').hasClass('opened')) {
+        var point = new google.maps.LatLng(<%= @hotel.geom %>);
+        var options = { center: point, zoom: 14, mapTypeId: google.maps.MapTypeId.ROADMAP };
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        var marker = new google.maps.Marker({ position: point, map: map });
+        $('#map').addClass('opened');
+      }
+    };
+  </script>
+<% end %>

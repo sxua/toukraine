@@ -4,6 +4,5 @@ class HotelsController < ApplicationController
   
   def show
     @hotel = Hotel.find(params[:id])
-    @hotel.data = @hotel.attribute.try(:data) || {}
   end
 end

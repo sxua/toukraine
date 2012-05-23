@@ -1,3 +1,4 @@
+<%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBp9Po862jjrqJI3bqghEmeiCoRVH0gulY&sensor=false&language=#{I18n.locale}" %>
 <%= semantic_form_for [:admin, @hotel] do |f| %>
   <div class="tabbable">
     <ul class="nav nav-tabs">
@@ -9,17 +10,86 @@
       <% LOCALES.each do |code, _| %>
         <div class="tab-pane" id="lang-<%= code %>">
           <%= f.inputs 'Hotel' do %>
-            <%= f.input :"title_#{code}" %>
-            <%= f.input :"description_#{code}", input_html: { class: 'ckeditor' } %>
-            <%= f.input :"address_#{code}" %>
+            <%= f.input :"title_#{code}", label: 'Title' %>
+            <%= f.input :"short_description_#{code}", label: 'Short Description', input_html: { class: 'ckeditor' } %>
+            <%= f.input :"description_#{code}", label: 'Description', input_html: { class: 'ckeditor' } %>
+            <%= f.input :"prices_#{code}", label: 'Prices', input_html: { class: 'ckeditor' } %>
+            <%= f.input :"address_#{code}", label: 'Address' %>
           <% end %>
         </div>
       <% end %>
     </div>
   </div>
   <%= f.inputs "Settings" do %>
+    <%= f.fields_for :data, (@hotel.data || {}).to_ostruct do |d| %>
+      <%= d.input :stars, as: :select, collection: (1..5), required: false %>
+      <%= d.input :phone, required: false %>
+      <%= d.input :email, required: false %>
+      <%= d.input :url, required: false %>
+    <% end %>
     <%= f.input :city %>
+    <li class="map">
+      <div id="map"></div>
+    </li>
+    <%= f.input :geom, as: :string, input_html: { readonly: true } %>
     <%= f.input :slug %>
   <% end %>
-  <%= f.buttons %>
+  <%= f.actions %>
 <% end %>
+<script type="text/javascript">
+  $(function() {
+    var getValue = function() {
+      var value = $('#hotel_geom').val().split(',');
+      if (value.length > 1) {
+        return new google.maps.LatLng(parseFloat(value[0]), parseFloat(value[1]));
+      } else {
+        return new google.maps.LatLng(50.45, 30.5);
+      }
+    };
+
+    var setValue = function(coords) {
+      $('#hotel_geom').val(coords.toUrlValue());
+    };
+
+    var center = getValue(),
+    options = { center: center, zoom: 7, mapTypeId: google.maps.MapTypeId.ROADMAP },
+    map = new google.maps.Map(document.getElementById('map'), options),
+    geocoder = new google.maps.Geocoder(),
+    marker;
+
+    var setMarker = function(coords) {
+      if (typeof marker != 'undefined') {
+        marker.setPosition(coords);
+      } else {
+        marker = new google.maps.Marker({ position: coords, map: map, draggable: true });
+      }
+      map.panTo(coords);
+      setValue(coords);
+      google.maps.event.addListener(marker, 'drag', function() {
+        setValue(marker.getPosition());
+      });
+      google.maps.event.addListener(marker, 'dragend', function() {
+        map.panTo(marker.getPosition());
+        setValue(marker.getPosition());
+      });
+    };
+    
+    var setCity = function(selector) {
+      var city = 'Украина, ' + selector.find('option:selected').text();
+      geocoder.geocode({ address: city }, function(result) {
+        setMarker(result[0].geometry.location);
+      });
+    };
+    
+    if ($('#hotel_geom').val() == '' && $('#hotel_city_id option:selected').text() != '') {
+      setCity($('#hotel_city_id'));
+    } else {
+      setMarker(center);
+    }
+    
+    $('#hotel_city_id').on('change', function(e) {
+      setCity($(this));
+    });
+    
+  });
+</script>
