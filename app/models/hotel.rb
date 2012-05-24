@@ -1,3 +1,5 @@
+require 'babosa'
+
 class Hotel < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
@@ -10,10 +12,10 @@ class Hotel < ActiveRecord::Base
   accepts_nested_attributes_for :photos, allow_destroy: true
   has_many :tours
   
-  friendly_id :title_en, use: :slugged
+  friendly_id :title_ru, use: :slugged
 
   translates :title, :description, :address, :prices, :short_description
-  validates_presence_of :title_ru, :description_ru, :title_en, :description_en, :geom
+  validates_presence_of :title_ru, :description_ru, :geom
   
   scope :random, lambda { |limit| order('random()').limit(limit) }
   scope :top, lambda { |limit| order(:created_at).limit(limit) }
@@ -28,6 +30,10 @@ class Hotel < ActiveRecord::Base
     indexes :prices_en
     indexes :address_ru
     indexes :address_en
+  end
+  
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
   end
   
   def geom
