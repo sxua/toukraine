@@ -39,7 +39,7 @@
           <% if @hotel.geom %>
             <div id="map"></div>
           <% end %>
-          <% contacts = [@hotel.address, @hotel.phone, @hotel.url, @hotel.email].map { |c| nil if c.blank? }.compact %>
+          <% contacts = [@hotel.address, @hotel.phone, @hotel.url, @hotel.email].map { |c| c.blank? ? nil : c }.compact %>
           <% unless contacts.empty? %>
             <br />
             <h4><%= I18n.t('hotels.contacts') %></h4>
