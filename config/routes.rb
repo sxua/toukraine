@@ -13,5 +13,6 @@ Toukraine::Application.routes.draw do
     resources :regions do
       get :hotels, on: :member
     end
+    resources :tour_types
   end
 end

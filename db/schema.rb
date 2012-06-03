@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523025907) do
+ActiveRecord::Schema.define(:version => 20120603220834) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20120523025907) do
     t.string   "title_en"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
 
   create_table "tours", :force => true do |t|
@@ -206,12 +207,17 @@ ActiveRecord::Schema.define(:version => 20120523025907) do
     t.boolean  "delta",          :default => true, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
-    t.boolean  "tour_type_id"
     t.hstore   "data"
+    t.integer  "city_id"
+    t.integer  "price"
+    t.integer  "currency"
+    t.integer  "tour_type_id"
+    t.boolean  "visible_ru"
+    t.boolean  "visible_en"
   end
 
+  add_index "tours", ["city_id"], :name => "index_tours_on_city_id"
   add_index "tours", ["data"], :name => "tours_gist_data"
   add_index "tours", ["slug"], :name => "index_tours_on_slug", :unique => true
-  add_index "tours", ["tour_type_id"], :name => "index_tours_on_tour_type_id"
 
 end
