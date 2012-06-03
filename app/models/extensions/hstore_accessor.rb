@@ -5,6 +5,8 @@ module Extensions
     module ClassMethods
       def hstore_accessor(store, *attributes)
         attributes.each do |attribute|
+          attr_accessible :"#{attribute}"
+
           define_method(attribute) do
             self.send(store).send(:[], "#{attribute}")
           end

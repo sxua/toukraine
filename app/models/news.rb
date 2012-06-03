@@ -1,3 +1,5 @@
+require 'babosa'
+
 class News < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
@@ -7,7 +9,7 @@ class News < ActiveRecord::Base
   
   translates :body, :title
   
-  friendly_id :title_en, use: :slugged
+  friendly_id :title_ru, use: :slugged
   
   before_create :set_creator
   before_save :set_publisher
@@ -31,4 +33,9 @@ class News < ActiveRecord::Base
   def set_publisher
     self.update_attributes(published_by: current_user, published_at: Time.now) if self.is_published?
   end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+
 end

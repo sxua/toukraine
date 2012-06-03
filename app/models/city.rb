@@ -1,3 +1,5 @@
+require 'babosa'
+
 class City < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
@@ -6,7 +8,7 @@ class City < ActiveRecord::Base
   has_many :hotels
   belongs_to :region
   
-  friendly_id :title_en, use: :slugged
+  friendly_id :title_ru, use: :slugged
   
   define_index do
     set_property delta: true
@@ -15,4 +17,9 @@ class City < ActiveRecord::Base
     has region(:title_ru), as: :region_title_ru
     has region(:title_en), as: :region_title_en
   end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+
 end

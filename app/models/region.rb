@@ -8,7 +8,7 @@ class Region < ActiveRecord::Base
   has_many :cities
 
   translates :title
-  
+
   friendly_id :title_ru, use: :slugged
 
   scope :root, where(parent_id: nil)
