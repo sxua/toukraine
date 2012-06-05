@@ -1,33 +1,26 @@
 require 'capistrano_colors'
 require 'bundler/capistrano'
+require 'capistrano/ext/multistage'
 
 set :application, "toukraine"
 set :user, "toukraine"
 set :group, "toukraine"
 set :use_sudo, false
-
-task :production do
-  server "beta.toukraine.org", :app, :web, :db, primary: true
-  set :deploy_to, "/var/www/#{application}/production"
-  set :deploy_env, 'production'
-end
-
-task :staging do
-  server "dev.toukraine.org", :app, :web, :db, primary: true
-  set :deploy_to, "/var/www/#{application}/staging"
-  set :deploy_env, 'staging'
-end
+set :stages, %w(staging production)
+set :default_stage, 'staging'
 
 set :scm, :git
 set :repository,  "git@github.com:sxua/#{application}.git"
-set :deploy_via, :remote_cache
 set :ssh_options, { forward_agent: true }
+set :deploy_via, :remote_cache
 
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :default_environment, { 'PATH' => "/opt/rbenv/shims:/opt/rbenv/bin:$PATH" }
 
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
+
+server "beta.toukraine.org", :app, :web, :db, primary: true
 
 after 'deploy:update_code', 'deploy:migrate'
 after 'deploy:restart', 'unicorn:reload'

@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'unicorn', '~> 4.1'
 gem 'capistrano'
+gem 'capistrano-ext'
 
 gem "activeadmin"
 gem "formtastic", "~> 2.1.1"
