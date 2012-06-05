@@ -21,11 +21,10 @@
     </div>
   </div>
   <%= f.inputs "Settings" do %>
+    <%= f.input :price %>
+    <%= f.input :currency, as: :select, collection: CURRENCIES %>
     <%= f.fields_for :data, (@hotel.data || {}).to_ostruct do |d| %>
       <%= d.input :stars, as: :select, collection: (1..5), required: false %>
-      <%= d.input :phone, required: false %>
-      <%= d.input :email, required: false %>
-      <%= d.input :url, required: false %>
     <% end %>
     <%= f.input :city %>
     <li class="map">

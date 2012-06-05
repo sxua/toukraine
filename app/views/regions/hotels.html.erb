@@ -1,3 +1,18 @@
-<% box do %>
-  <%= debug @region.hotels %>
+<% box title: @region.title do %>
+  <ul id="hotels">
+    <% @region.hotels.each do |hotel| %>
+      <li class="<%= cycle('odd', 'even') %>">
+        <div class="title">
+          <%= link_to hotel.title, hotel_city_path(id: hotel.try(:slug), city_id: hotel.city.try(:slug)) %>
+        </div>
+        <div class="city">
+          <%= hotel.city.try(:title) %>
+        </div>
+        <div class="price">
+          <%= I18n.t('list.price', price: price_with_currency(hotel.price, hotel.currency)).html_safe if hotel.price %>
+        </div>
+        <div class="clear"></div>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

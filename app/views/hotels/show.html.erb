@@ -6,16 +6,16 @@
         <%= @hotel.title %><% if @hotel.city %><span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" unless @hotel.stars.blank? %></span><% end %>
       </h3>
       <ul class="nav nav-tabs">
-        <li><%= link_to I18n.t('hotels.overview'), '#overview', 'data-toggle' => 'tab' %></li>
+        <li><%= link_to I18n.t('tabs.overview'), '#overview', 'data-toggle' => 'tab' %></li>
         <% if @hotel.photos.any? %>
-          <li><%= link_to I18n.t('hotels.photos', count: @hotel.photos.count), '#photos', 'data-toggle' => 'tab' %></li>
+          <li><%= link_to I18n.t('tabs.photos', count: @hotel.photos.count), '#photos', 'data-toggle' => 'tab' %></li>
         <% end %>
         <% if @hotel.description.present? %>
-          <li><%= link_to I18n.t('hotels.description'), '#description', 'data-toggle' => 'tab' %></li>
+          <li><%= link_to I18n.t('tabs.description'), '#description', 'data-toggle' => 'tab' %></li>
         <% end %>
-        <li><%= link_to I18n.t('hotels.location'), '#location', 'data-toggle' => 'tab' %></li>
+        <li><%= link_to I18n.t('tabs.location'), '#location', 'data-toggle' => 'tab' %></li>
         <% if @hotel.prices.present? %>
-          <li><%= link_to I18n.t('hotels.prices'), '#prices', 'data-toggle' => 'tab' %></li>
+          <li><%= link_to I18n.t('tabs.prices'), '#prices', 'data-toggle' => 'tab' %></li>
         <% end %>
       </ul>
       <div class="tab-content">
@@ -39,16 +39,15 @@
           <% if @hotel.geom %>
             <div id="map"></div>
           <% end %>
-          <% contacts = [@hotel.address, @hotel.phone, @hotel.url, @hotel.email].map { |c| c.blank? ? nil : c }.compact %>
-          <% unless contacts.empty? %>
+          <% unless @hotel.address.blank? %>
             <br />
-            <h4><%= I18n.t('hotels.contacts') %></h4>
-            <p><%= contacts.join('<br />').html_safe %></p>
+            <h4><%= I18n.t('tabs.contacts') %></h4>
+            <p><%= @hotel.address.try(:html_safe) %></p>
           <% end %>
         </div>
         <% if @hotel.prices.present? %>
           <div class="tab-pane" id="prices">
-            <h4><%= I18n.t('hotels.prices') %></h4>
+            <h4><%= I18n.t('tabs.prices') %></h4>
             <p><%= @hotel.prices.try(:html_safe) %></p>
           </div>
         <% end %>
