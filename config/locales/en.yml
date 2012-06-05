@@ -65,14 +65,22 @@ en:
     insurance: Insurance
     international_passport: International passport
     social_networks: Social networks
-  hotels:
-    overview: Overview
-    photos: Photos (%{count})
-    description: Description
-    location: Location
-    contacts: Contacts
   aside:
     news_and_promotions: News
     root_regions: Regions
     all_news: All news
     all_regions: All regions
+  header:
+    tour_type: "%{type} tours"
+  list:
+    price: "<span>from</span> %{price}"
+    currencies:
+      uah: UAH
+      usd: $  
+  tabs:
+    overview: Overview
+    photos: Photos (%{count})
+    description: Description
+    location: Location
+    prices: Prices
+    contacts: Contacts
