@@ -3,7 +3,7 @@ HOST_OS = RbConfig::CONFIG['host_os']
 
 source :rubygems
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.5'
 gem 'pg', '~> 0.13'
 gem 'activerecord-postgres-hstore'
 gem 'activerecord-postgis-adapter'
