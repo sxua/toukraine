@@ -24,5 +24,13 @@ production:
   pool: 5
   username: postgres
 
+staging:
+  adapter: postgis
+  encoding: unicode
+  database: toukraine_staging
+  template: template_toukraine
+  pool: 5
+  username: postgres
+
 cucumber:
   <<: *test

@@ -9,18 +9,18 @@ set :use_sudo, false
 task :production do
   server "beta.toukraine.org", :app, :web, :db, primary: true
   set :deploy_to, "/var/www/#{application}/production"
+  set :deploy_env, 'production'
 end
 
 task :staging do
   server "dev.toukraine.org", :app, :web, :db, primary: true
   set :deploy_to, "/var/www/#{application}/staging"
+  set :deploy_env, 'staging'
 end
 
 set :scm, :git
 set :repository,  "git@github.com:sxua/#{application}.git"
-# set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :remote_cache
-set :deploy_env, "production"
 set :ssh_options, { forward_agent: true }
 
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
