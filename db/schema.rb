@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603220834) do
+ActiveRecord::Schema.define(:version => 20120605144705) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20120603220834) do
     t.spatial  "latlon",               :limit => {:srid=>4326, :type=>"point", :geographic=>true}
     t.text     "short_description_ru"
     t.text     "short_description_en"
+    t.integer  "price"
+    t.integer  "currency"
   end
 
   add_index "hotels", ["city_id"], :name => "index_hotels_on_city_id"
@@ -214,6 +216,10 @@ ActiveRecord::Schema.define(:version => 20120603220834) do
     t.integer  "tour_type_id"
     t.boolean  "visible_ru"
     t.boolean  "visible_en"
+    t.text     "prices_ru"
+    t.text     "prices_en"
+    t.string   "subtitle_ru"
+    t.string   "subtitle_en"
   end
 
   add_index "tours", ["city_id"], :name => "index_tours_on_city_id"
