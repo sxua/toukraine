@@ -100,4 +100,16 @@ module ApplicationHelper
   def remove_child_link(name, f)
     f.hidden_field(:_destroy) + tag(:br) + content_tag(:span, 'Remove ') + check_box_tag("remove_#{name}", 1, false, id: nil)
   end
+
+  def currency_code_for(currency)
+    CURRENCIES.find { |k, v| v == currency }.try(:first) || :uah
+  end
+
+  def price_with_currency(price, currency)
+    currency_code = currency_code_for(currency)
+    unit = I18n.t("list.currencies.#{currency_code}")
+    format = currency_code == :uah ? '%n %u' : '%u%n'
+    number_to_currency price, unit: unit, format: format, separator: nil, delimiter: nil, precision: 0
+  end
+  
 end

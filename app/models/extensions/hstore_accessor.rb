@@ -8,7 +8,7 @@ module Extensions
           attr_accessible :"#{attribute}"
 
           define_method(attribute) do
-            self.send(store).send(:[], "#{attribute}")
+            self.send(store).send(:[], "#{attribute}") rescue nil
           end
           define_method(:"#{attribute}=") do |value|
             data = self.send(:"#{store}_#{I18n.locale}")
