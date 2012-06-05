@@ -10,7 +10,9 @@
         <div class="tab-pane" id="lang-<%= code %>">
           <%= f.inputs 'Tour' do %>
             <%= f.input :"title_#{code}" %>
+            <%= f.input :"subtitle_#{code}" %>
             <%= f.input :"description_#{code}", input_html: { class: 'ckeditor' } %>
+            <%= f.input :"prices_#{code}", input_html: { class: 'ckeditor' } %>
             <%= f.input :"visible_#{code}" %>
           <% end %>
         </div>
@@ -19,7 +21,7 @@
   </div>
   <%= f.inputs "Settings" do %>
     <%= f.input :price %>
-    <%= f.input :currency, as: :select, collection: Tour.currencies %>
+    <%= f.input :currency, as: :select, collection: CURRENCIES %>
     <%= f.input :tour_type %>
     <%= f.input :city %>
     <%= f.input :slug %>

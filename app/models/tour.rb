@@ -3,8 +3,8 @@ require 'babosa'
 class Tour < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :title_ru, :title_en, :description_ru, :description_en, :price, :currency, :tour_type_id, :city_id, :slug, :visible_ru, :visible_en
-  translates :title, :description
+  attr_accessible :title_ru, :title_en, :description_ru, :description_en, :price, :currency, :tour_type_id, :city_id, :slug, :visible_ru, :visible_en, :prices_ru, :prices_en, :subtitle_ru, :subtitle_en
+  translates :title, :description, :subtitle, :prices
   has_many :photos, as: :relative
   belongs_to :tour_type
   belongs_to :city
@@ -20,10 +20,6 @@ class Tour < ActiveRecord::Base
     indexes :title_en
     indexes :description_ru
     indexes :description_en
-  end
-
-  def self.currencies
-    { usd: 1, uah: 2 }
   end
 
   def normalize_friendly_id(input)

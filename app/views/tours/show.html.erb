@@ -1,0 +1,23 @@
+<div class="row" id="tour">
+  <div class="span9">
+    <% box title: @tour.title do %>
+      <ul class="nav nav-tabs">
+        <li><%= link_to I18n.t('tabs.overview'), '#overview', 'data-toggle' => 'tab' %></li>
+        <% if @tour.prices.present? %>
+        <li><%= link_to I18n.t('tabs.prices'), '#prices', 'data-toggle' => 'tab' %></li>
+        <% end %>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane" id="overview">
+          <p><%= @tour.description.try(:html_safe) %></p>
+        </div>
+        <% if @tour.prices.present? %>
+          <div class="tab-pane" id="prices">
+            <h4><%= I18n.t('tabs.prices') %></h4>
+            <p><%= @tour.prices.try(:html_safe) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
