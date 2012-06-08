@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605144705) do
+ActiveRecord::Schema.define(:version => 20120608112321) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -191,6 +191,20 @@ ActiveRecord::Schema.define(:version => 20120605144705) do
 
   add_index "regions", ["parent_id"], :name => "index_regions_on_parent_id"
   add_index "regions", ["slug"], :name => "index_regions_on_slug", :unique => true
+
+  create_table "sights", :force => true do |t|
+    t.string   "title_ru"
+    t.string   "title_en"
+    t.text     "description_ru"
+    t.text     "description_en"
+    t.integer  "city_id"
+    t.string   "slug"
+    t.boolean  "delta"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "sights", ["city_id"], :name => "index_sights_on_city_id"
 
   create_table "tour_types", :force => true do |t|
     t.string   "title_ru"
