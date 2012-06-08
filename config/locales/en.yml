@@ -84,3 +84,7 @@ en:
     location: Location
     prices: Prices
     contacts: Contacts
+  sortings:
+    title: Title
+    city: City
+    price: Price

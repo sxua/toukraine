@@ -84,3 +84,7 @@ ru:
     location: Расположение
     prices: Цены
     contacts: Контактная информация
+  sortings:
+    title: Название
+    city: Город
+    price: Цена
