@@ -2,9 +2,12 @@ ActiveAdmin.register Page do
   index do
     column :id
     column 'Title', :title_ru
-    column 'Slug', :slug
+    column :slug
     column :category
     column :weight
+    column 'Visible' do |page|
+      lang_images(page, :visible, %w(ru en))
+    end
     column 'Published at', sortable: :published_at do |page|
       page.published_at.to_formatted_s(:long) if page.is_published?
     end

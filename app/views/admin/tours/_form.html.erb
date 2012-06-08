@@ -26,5 +26,17 @@
     <%= f.input :city %>
     <%= f.input :slug %>
   <% end %>
+  <%= f.inputs "Photos", class: 'inputs js-form-init' do %>
+    <%= f.semantic_fields_for :photos do |p| %>
+      <%= render partial: 'admin/shared/photo_form', locals: { f: p, association: :photo } %>
+    <% end %>
+    <li>
+      <%= add_child_link "Add Photo", :photos %>
+    </li>
+    <%= new_child_fields_template f, :photos %>
+  <% end %>
   <%= f.actions %>
 <% end %>
+<div id="handlebars">
+  <%= yield :handlebars %>
+</div>

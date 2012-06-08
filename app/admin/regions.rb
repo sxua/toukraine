@@ -1,7 +1,7 @@
 ActiveAdmin.register Region do
   index do
     column :id
-    column :title_ru
+    column 'Title', :title_ru
     column :slug
     column :root do |region|
       region.parent_id.nil?

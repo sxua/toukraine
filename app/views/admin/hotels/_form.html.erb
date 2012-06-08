@@ -35,7 +35,7 @@
   <% end %>
   <%= f.inputs "Photos", class: 'inputs js-form-init' do %>
     <%= f.semantic_fields_for :photos do |p| %>
-      <%= render partial: 'photo_form', locals: { f: p, association: :photo } %>
+      <%= render partial: 'admin/shared/photo_form', locals: { f: p, association: :photo } %>
     <% end %>
     <li>
       <%= add_child_link "Add Photo", :photos %>

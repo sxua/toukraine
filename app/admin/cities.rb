@@ -2,8 +2,8 @@ ActiveAdmin.register City do
   index do
     column :id
     column 'Title', :title_ru
-    column :region
     column :slug
+    column :region, sortable: false
     default_actions
   end
   
