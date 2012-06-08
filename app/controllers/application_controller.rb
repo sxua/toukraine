@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   protect_from_forgery
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ArgumentError, with: :not_found
   
   def set_locale
     I18n.locale = params[:locale] || cookies[:locale] || get_user_preferred_locale || I18n.default_locale
@@ -18,5 +19,13 @@ class ApplicationController < ActionController::Base
   
   def not_found
     render file: "#{Rails.root}/public/404.html", status: 404, layout: false
+  end
+
+  def sort_columns_for(model)
+    { title: "#{model.table_name}.title_#{I18n.locale}", city: "cities.title_#{I18n.locale}", price: "#{model.table_name}.price" }
+  end
+
+  def sanitize_dir(dir)
+    dir.downcase == 'desc' ? 'DESC' : 'ASC'
   end
 end

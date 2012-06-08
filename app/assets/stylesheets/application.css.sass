@@ -211,7 +211,7 @@
   list-style: none
   font-size: 12px
   li
-    &.odd
+    &.even
       background: #efefef
     .title, .city, .price
       float: left
@@ -229,3 +229,26 @@
           color: #dd4b39
     .city
       width: 120px
+    .price
+      width: 115px
+
+.sortings
+  border-bottom: 1px solid #ddd
+  .title, .city, .price
+    padding: 10px 14px !important
+    &.selected
+      background: #f0f0f0
+      @include border-radius(4px 4px 0 0)
+    &.desc, &.asc
+      a
+        padding: 0 12px 0 0
+    &.desc
+      a
+        background: image-url('icon_desc.gif') 100% 50% no-repeat
+    &.asc
+      a
+        background: image-url('icon_asc.gif') 100% 50% no-repeat
+    a
+      color: #000 !important
+      font-weight: bold
+      text-decoration: underline

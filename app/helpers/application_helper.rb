@@ -50,7 +50,7 @@ module ApplicationHelper
   
   def slide_url_for(slide)
     slide_url = case slide.url_type
-    when 'text'
+    when 'plain'
       slide_url = slide.url
     when 'tour'
       slide_url = slide.tour ? url_for(slide.tour) : nil
@@ -86,7 +86,7 @@ module ApplicationHelper
   def new_child_fields_template(form_builder, association, options={})
     object_name = "#{form_builder.object.class.name}_#{association}_attributes_"
     options[:object] ||= form_builder.object.class.reflect_on_association(association).klass.new
-    options[:partial] ||= "#{association}_form"
+    options[:partial] ||= "admin/shared/#{association}_form"
     
     content_for :handlebars do
       render partial: options[:partial], locals: { fb: form_builder, association: association, options: options }
@@ -111,5 +111,28 @@ module ApplicationHelper
     format = currency_code == :uah ? '%n %u' : '%u%n'
     number_to_currency price, unit: unit, format: format, separator: nil, delimiter: nil, precision: 0
   end
+
+  def lang_images(object, method, langs)
+    langs.map { |lang| image_tag("flags/#{lang}.png") if object.send(:"#{method}_#{lang}") }.compact.join(' ').html_safe
+  end
+
+  def inverted_dir
+    params[:dir] ? params[:dir] == 'desc' ? 'asc' : 'desc' : 'desc'
+  end
+
+  def sort_params(column)
+    { column: column, dir: column.to_s == params[:column] ? inverted_dir : params[:dir], page: nil }
+  end
   
+  def sortings_for(controller, action, *columns)
+    result = columns.map do |column|
+      classes = [column]
+      classes += ['selected', inverted_dir] if params[:column] == column.to_s
+      content_tag(:div, class: classes.join(' ')) do
+        link_to(I18n.t("sortings.#{column}"), url_for(sort_params(column).merge({ controller: controller, action: action })))
+      end
+    end
+    result << content_tag(:div, nil, class: :clear)
+    result.join.html_safe
+  end
 end
