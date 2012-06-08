@@ -120,8 +120,12 @@ module ApplicationHelper
     params[:dir] ? params[:dir] == 'desc' ? 'asc' : 'desc' : 'desc'
   end
 
+  def dir_for(column)
+    column.to_s == params[:column] ? inverted_dir : params[:dir]
+  end
+
   def sort_params(column)
-    { column: column, dir: column.to_s == params[:column] ? inverted_dir : params[:dir], page: nil }
+    { column: column, dir: params[:dir] ? dir_for(column) : 'asc', page: nil }
   end
   
   def sortings_for(controller, action, *columns)
