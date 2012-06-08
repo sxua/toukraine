@@ -24,7 +24,7 @@ class Page < ActiveRecord::Base
     visible = I18n.locale =~ /\A(en|ru)\Z/ ? "visible_#{I18n.locale}" : "visible_#{I18n.default_locale}"
     where("is_published = ? AND #{visible} = ?", true, true)
   }
-  scope :for, lambda { |*categories| where('category IN(?)', categories).order('weight DESC') }
+  scope :for, lambda { |*categories| find_all_by_category(categories, order: 'weight DESC') }
 
   def self.categories
     %w(agencies clients about ukraine services topbar)

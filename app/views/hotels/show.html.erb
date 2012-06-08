@@ -7,7 +7,7 @@
       </h3>
       <ul class="nav nav-tabs">
         <li><%= link_to I18n.t('tabs.overview'), '#overview', 'data-toggle' => 'tab' %></li>
-        <% if @hotel.photos.any? %>
+        <% if @hotel.photos.any? && @hotel.photos.count > 1 %>
           <li><%= link_to I18n.t('tabs.photos', count: @hotel.photos.count), '#photos', 'data-toggle' => 'tab' %></li>
         <% end %>
         <% if @hotel.description.present? %>
@@ -23,7 +23,7 @@
           <%= image_tag(@hotel.photos.first.image_url(:preview)) if @hotel.photos.any? %>
           <p><%= @hotel.short_description.try(:html_safe) %></p>
         </div>
-        <% if @hotel.photos.any? %>
+        <% if @hotel.photos.any? && @hotel.photos.count > 1 %>
           <div class="tab-pane" id="photos">
             <div class="fotorama-init" data-width="770" data-height="350">
               <% @hotel.photos.each do |photo| %>

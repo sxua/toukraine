@@ -19,6 +19,6 @@ class Region < ActiveRecord::Base
   end
 
   def hotels
-    Hotel.where("city_id IN(?)", self.city_ids)
+    Hotel.where("city_id IN(?)", self.city_ids).includes(:city)
   end
 end
