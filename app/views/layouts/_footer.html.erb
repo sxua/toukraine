@@ -4,21 +4,21 @@
       <li class="span2">
         <h3><%= I18n.t('footer.ukraine') %></h3>
         <ul class="nav">
+          <% if I18n.locale == :en && Sight.any? %>
+            <li><%= link_to I18n.t('menu.sights'), sights_path %></li>
+          <% end %>
           <% Page.published.for(:about, :ukraine).each do |page| %>
             <li><%= link_to page.title, url_for(page) %></li>
           <% end %>
         </ul>
       </li>
-      <% if @tours.present? %>
+      <% if Tour.types.any? %>
         <li class="span2">
           <h3><%= I18n.t('footer.tours') %></h3>
           <ul class="nav">
-            <li><a href="#">Лечебные</a></li>
-            <li><a href="#">Экскурсионные</a></li>
-            <li><a href="#">Детские</a></li>
-            <li><a href="#">Зимние</a></li>
-            <li><a href="#">На море</a></li>
-            <li><a href="#">Экстримальные</a></li>
+            <% Tour.types.each do |tour_type| %>
+              <li><%= link_to tour_type.title, url_for(tour_type) %></li>
+            <% end %>
           </ul>
         </li>
       <% end %>

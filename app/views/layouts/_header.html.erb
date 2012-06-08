@@ -13,6 +13,9 @@
             <%= I18n.t('menu.ukraine') %> <b class="caret"></b>
           <% end %>
           <ul class="dropdown-menu">
+            <% if I18n.locale == :en && Sight.any? %>
+              <li><%= link_to I18n.t('menu.sights'), sights_path %></li>
+            <% end %>
             <% Page.published.for(:about, :ukraine).each do |page| %>
               <li><%= link_to page.title, url_for(page) %></li>
             <% end %>

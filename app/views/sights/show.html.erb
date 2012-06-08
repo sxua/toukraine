@@ -1,0 +1,5 @@
+<% box title: @sight.title, id: 'sight' do %>
+  <%= image_tag(@sight.photo.image.url(:preview)) %>
+  <p class="location"><%= @sight.city.try(:title) %></p>
+  <%= @sight.description.html_safe %>
+<% end %>
