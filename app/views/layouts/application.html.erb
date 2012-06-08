@@ -5,6 +5,7 @@
     <%= stylesheet_link_tag "application", media: "all" %>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <%= csrf_meta_tags %>
+    <%= analytics_init if Rails.env.production? %>
   </head>
   <body>
     <div id="background">
