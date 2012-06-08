@@ -1,0 +1,3 @@
+
+class SightsController < ApplicationController
+end
