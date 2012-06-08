@@ -1,6 +1,9 @@
 <% box title: I18n.t('header.tour_type', type: @tour_type.title) do %>
   <ul id="tours">
-    <% @tour_type.tours.each do |tour| %>
+    <li class="sortings">
+      <%= sortings_for(:tour_types, :show, :title, :city, :price) %>
+    </li>
+    <% @tours.each do |tour| %>
       <li class="<%= cycle('odd', 'even') %>">
         <div class="title">
           <%= link_to tour.title, tour_path(id: tour.try(:slug), tour_type_id: tour.tour_type.try(:slug)) %><% if tour.subtitle %><span>, <%= tour.subtitle %></span><% end %>
@@ -15,4 +18,5 @@
       </li>
     <% end %>
   </ul>
+  <%= paginate @tours %>
 <% end %>

@@ -1,6 +1,9 @@
 <% box title: @region.title do %>
   <ul id="hotels">
-    <% @region.hotels.each do |hotel| %>
+    <li class="sortings">
+      <%= sortings_for(:regions, :hotels, :title, :city, :price) %>
+    </li>
+    <% @hotels.each do |hotel| %>
       <li class="<%= cycle('odd', 'even') %>">
         <div class="title">
           <%= link_to hotel.title, hotel_city_path(id: hotel.try(:slug), city_id: hotel.city.try(:slug)) %>
@@ -15,4 +18,5 @@
       </li>
     <% end %>
   </ul>
+  <%= paginate @hotels %>
 <% end %>
