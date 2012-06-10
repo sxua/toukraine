@@ -6,5 +6,6 @@ class RegionsController < ApplicationController
       @hotels = @hotels.order("#{sort_columns_for(Hotel)[:"#{params[:column]}"]} #{sanitize_dir(params[:dir])} NULLS LAST")
     end
     @hotels = @hotels.page(params[:page])
+    @title = @region.title
   end
 end

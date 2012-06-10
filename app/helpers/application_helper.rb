@@ -139,4 +139,21 @@ module ApplicationHelper
     result << content_tag(:div, nil, class: :clear)
     result.join.html_safe
   end
+
+  def page_title
+    if defined? @title
+      if @title.is_a?(Array)
+        (@title << Option.site_title).join(Option.title_divider)
+      else
+        [@title, Option.site_title].join(Option.title_divider)
+      end
+    else
+      Option.site_title
+    end
+  end
+
+  def meta_description_tag
+    content = (defined? @description) ? @description : Option.meta_description
+    tag(:meta, name: 'description', content: truncate(content, length: 155, separator: ' ')).html_safe
+  end
 end

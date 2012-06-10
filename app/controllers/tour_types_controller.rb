@@ -6,5 +6,6 @@ class TourTypesController < ApplicationController
       @tours = @tours.order("#{sort_columns_for(Tour)[:"#{params[:column]}"]} #{sanitize_dir(params[:dir])} NULLS LAST")
     end
     @tours = @tours.page(params[:page])
+    @title = I18n.t('header.tour_type', type: @tour_type.title)
   end
 end
