@@ -5,7 +5,7 @@
       <div class="thumbnail">
         <%= link_to image_tag(sight.photo.image.url(:tile)), url_for(sight) %>
         <div class="caption">
-          <h5>Test</h5>
+          <h5><%= sight.title %></h5>
           <p><%= sight.city.try(:title) %></p>
         </div>
       </div>
