@@ -1,3 +1,4 @@
+class Option; end
 # class Option < ActiveRecord::Base
 #   attr_accessible :key, :title, :value
 # 
