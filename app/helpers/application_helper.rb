@@ -143,17 +143,17 @@ module ApplicationHelper
   def page_title
     if defined? @title
       if @title.is_a?(Array)
-        (@title << Option.site_title).join(Option.title_divider)
+        (@title << Option.get('site_title')).join(Option.get('title_divider'))
       else
-        [@title, Option.site_title].join(Option.title_divider)
+        [@title, Option.get('site_title')].join(Option.get('title_divider'))
       end
     else
-      Option.site_title
+      Option.get('site_title')
     end
   end
 
   def meta_description_tag
-    content = (defined? @description) ? @description : Option.meta_description
+    content = (defined? @description) ? @description : Option.get('meta_description')
     tag(:meta, name: 'description', content: truncate(content, length: 155, separator: ' ')).html_safe
   end
 end

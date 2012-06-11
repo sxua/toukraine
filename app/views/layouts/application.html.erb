@@ -10,7 +10,7 @@
   </head>
   <body>
     <div id="background">
-      <div class="fixed-image" style="background-image: url('/assets/bg.jpg'); background-color: <%= Option.background_color rescue '#fff' %>;"></div>
+      <div class="fixed-image" style="background-image: url('/assets/bg.jpg'); background-color: <%= Option.get('background_color') rescue '#fff' %>;"></div>
     </div>
     <div class="container">
       <%= render partial: 'layouts/top_bar' %>

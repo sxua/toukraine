@@ -3,9 +3,7 @@ class Option < ActiveRecord::Base
 
   validates_presence_of :key, :value
 
-  self.all.each do |option|
-    define_singleton_method(option.key) do
-      option.value
-    end
+  def self.get(key)
+    self.find_by_key(key).value
   end
 end
