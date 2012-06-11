@@ -12,9 +12,9 @@
           <% end %>
         </ul>
         <ul class="nav pull-right">
-          <li><%= link_to I18n.t('topbar.about_company'), '#about_company', 'data-toggle' => 'modal', class: 'internal' %></li>
-          <li><%= link_to I18n.t('topbar.contacts'), '#contacts', 'data-toggle' => 'modal', class: 'internal' %></li>
-          <li><%= link_to I18n.t('topbar.map'), '#map', 'data-toggle' => 'modal', class: 'internal' %></li>
+          <% Page.published.for(:modals).each do |page| %>
+            <li><%= link_to page.title, "##{page.slug}", 'data-toggle' => 'modal', class: 'internal' %></li>
+          <% end %>
         </ul>
       </div>
     </div>

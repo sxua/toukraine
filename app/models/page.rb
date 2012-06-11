@@ -28,7 +28,7 @@ class Page < ActiveRecord::Base
   scope :for, lambda { |*categories| find_all_by_category(categories, order: 'weight DESC') }
 
   def self.categories
-    %w(agencies clients about ukraine services topbar)
+    %w(agencies clients about ukraine services topbar modals)
   end
 
   def set_creator(creator)
