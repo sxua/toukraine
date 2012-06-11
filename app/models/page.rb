@@ -10,6 +10,7 @@ class Page < ActiveRecord::Base
   translates :title, :body, :visible
 
   validates_uniqueness_of :slug
+  validates_presence_of :title_ru
 
   define_index do
     where "is_published = 'true'"

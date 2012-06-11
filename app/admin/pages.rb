@@ -8,9 +8,7 @@ ActiveAdmin.register Page do
     column 'Visible' do |page|
       lang_images(page, :visible, %w(ru en))
     end
-    column 'Published at', sortable: :published_at do |page|
-      page.published_at.to_formatted_s(:long) if page.is_published?
-    end
+    column 'Published at', :published_at
     column 'Created at', :created_at
     column 'Updated at', :updated_at
     default_actions
