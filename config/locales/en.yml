@@ -73,6 +73,7 @@ en:
     all_regions: All regions
   header:
     tour_type: "%{type} tours"
+    phone: Phone
   list:
     price: "<span>from</span> %{price}"
     currencies:

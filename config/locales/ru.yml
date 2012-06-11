@@ -73,6 +73,7 @@ ru:
     all_regions: Все регионы
   header:
     tour_type: "%{type} туры"
+    phone: Горящий телефон
   list:
     price: "<span>от</span> %{price}"
     currencies:
