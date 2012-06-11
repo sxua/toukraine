@@ -34,7 +34,7 @@
             </ul>
           </li>
         <% end %>
-        <% if Hotel.any? %>
+        <% if Region.for_locale(I18n.locale).for_menu(5).any? && Hotel.any? %>
           <li class="dropdown">
             <div class="border border-orange"></div>
             <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>

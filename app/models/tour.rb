@@ -15,6 +15,8 @@ class Tour < ActiveRecord::Base
 
   validates_presence_of :title_ru, :description_ru
   validates_uniqueness_of :slug
+  
+  scope :for_locale, lambda { |locale| where("visible_#{locale} = true AND title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
 
   define_index do
     set_property delta: true
@@ -29,7 +31,7 @@ class Tour < ActiveRecord::Base
   end
 
   def self.types
-    TourType.find_all_by_id self.select('DISTINCT(tour_type_id)').where("visible_#{I18n.locale} = true").map(&:tour_type_id).compact
+    TourType.find_all_by_id self.select('DISTINCT(tour_type_id)').for_locale(I18n.locale).map(&:tour_type_id).compact
   end
 
 end

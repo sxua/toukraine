@@ -13,6 +13,7 @@ class Region < ActiveRecord::Base
 
   scope :root, where(parent_id: nil)
   scope :for_menu, lambda { |limit| where(menu: true).limit(limit) }
+  scope :for_locale, lambda { |locale| where("title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
 
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize(transliterations: :russian).to_s
