@@ -19,6 +19,7 @@
   </div>
   <%= f.inputs "Settings" do %>
     <%= f.input :category, as: :select, collection: Page.categories, include_blank: false %>
+    <%= f.input :weight %>
     <%= f.input :slug %>
     <%= f.input :is_published %>
   <% end %>
