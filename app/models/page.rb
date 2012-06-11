@@ -3,7 +3,7 @@ require 'babosa'
 class Page < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :body_ru, :body_en, :created_by_id, :is_published, :published_at, :published_by_id, :title_ru, :title_en, :slug, :visible_ru, :visible_en, :category
+  attr_accessible :body_ru, :body_en, :created_by_id, :is_published, :published_at, :published_by_id, :title_ru, :title_en, :slug, :visible_ru, :visible_en, :category, :weight
 
   friendly_id :title_ru, use: :slugged
 
