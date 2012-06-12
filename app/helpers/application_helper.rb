@@ -53,7 +53,7 @@ module ApplicationHelper
     when 'plain'
       slide_url = slide.url
     when 'tour'
-      slide_url = slide.tour ? tour_path(tour_type_id: slide.tour.tour_type_id, id: slide.tour_id) : nil
+      slide_url = slide.tour ? tour_path(tour_type_id: slide.tour.tour_type.try(:slug), id: slide.tour.try(:slug)) : nil
     when 'hotel'
       slide_url = slide.hotel ? url_for(slide.hotel) : nil
     else
