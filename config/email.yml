@@ -1,0 +1,14 @@
+production: &yandex
+  :address: smtp.yandex.ru
+  :port: 465
+  :domain: rozavitriv.com
+  :autenthication: login
+  :user_name: ukraine@rozavitriv.com
+  :password: dErhfbye!
+  :tls: true
+
+development:
+  <<: *yandex
+
+staging:
+  <<: *yandex

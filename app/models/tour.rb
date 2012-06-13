@@ -7,6 +7,7 @@ class Tour < ActiveRecord::Base
   translates :title, :description, :subtitle, :prices
   belongs_to :tour_type
   belongs_to :city
+  has_many :orders, as: :relative
   has_many :photos, as: :relative, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true, reject_if: proc { |p| not p[:image] }
 

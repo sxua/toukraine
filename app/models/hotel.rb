@@ -8,6 +8,7 @@ class Hotel < ActiveRecord::Base
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :address_ru, :address_en, :city_id, :data, :slug, :prices_ru, :prices_en, :geom, :short_description_ru, :short_description_en, :photos_attributes, :price, :currency
   hstore_accessor :data, :stars, :phone, :email, :url
   belongs_to :city
+  has_many :orders, as: :relative
   has_many :photos, as: :relative, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true, reject_if: proc { |p| not p[:image] }
   has_many :tours
