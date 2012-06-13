@@ -5,7 +5,6 @@ class Tour < ActiveRecord::Base
   include Extensions::Translate
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :price, :currency, :tour_type_id, :city_id, :slug, :visible_ru, :visible_en, :prices_ru, :prices_en, :subtitle_ru, :subtitle_en, :photos_attributes
   translates :title, :description, :subtitle, :prices
-  has_many :photos, as: :relative
   belongs_to :tour_type
   belongs_to :city
   has_many :photos, as: :relative, dependent: :destroy
