@@ -61,7 +61,10 @@ group :development do
   gem "puma"
 end
 
-gem "rspec-rails", group: [:development, :test]
+group :development, :test do
+  gem "rspec-rails"
+  gem "debugger"
+end
 
 group :assets do
   gem "twitter-bootstrap-rails"
