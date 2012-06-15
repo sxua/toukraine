@@ -17,7 +17,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   version :full do
     process resize_to_fill: [1000, 600]
-    process quality: 90
     process convert: 'jpg'
   end
   
