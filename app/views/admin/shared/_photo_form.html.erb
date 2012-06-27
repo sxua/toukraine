@@ -1,1 +1,4 @@
-<%= f.input :image, as: :file, label: 'Image #{{number}}', hint: f.template.image_tag(f.object.image.url(:thumb)) + remove_child_link(association, f) %>
+<% many ||= false %>
+<% label = many ? association.to_s.humanize + ' #{{number}}' : association.to_s.humanize %>
+<%= f.input :image, as: :file, label: label, hint: f.template.image_tag(f.object.image.url(:thumb)) + remove_child(association, f) %>
+<%= f.input :image_cache, as: :hidden %>

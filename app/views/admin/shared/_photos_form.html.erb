@@ -1,5 +1,5 @@
 <script id="<%= "#{association}_form_template" %>" type="text/x-handlebars-template">
   <%= fb.semantic_fields_for(association, options[:object], child_index: "new_#{association}") do |f| %>
-    <%= render partial: "admin/shared/#{association.to_s.singularize}_form", locals: { f: f, association: association } %>
+    <%= render partial: "admin/shared/#{association.to_s.singularize}_form", locals: { f: f, association: association, many: options[:many] } %>
   <% end %>
 </script>

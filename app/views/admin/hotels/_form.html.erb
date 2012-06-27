@@ -34,13 +34,16 @@
     <%= f.input :slug %>
   <% end %>
   <%= f.inputs "Photos", class: 'inputs js-form-init' do %>
+    <%= f.semantic_fields_for :primary_photo do |p| %>
+      <%= render partial: 'admin/shared/photo_form', locals: { f: p, association: :primary_photo } %>
+    <% end %>
     <%= f.semantic_fields_for :photos do |p| %>
-      <%= render partial: 'admin/shared/photo_form', locals: { f: p, association: :photo } %>
+      <%= render partial: 'admin/shared/photo_form', locals: { f: p, association: :photo, many: true } %>
     <% end %>
     <li>
-      <%= add_child_link "Add Photo", :photos %>
+      <%= add_child_link :photo %>
     </li>
-    <%= new_child_fields_template f, :photos %>
+    <%= new_child_fields_template f, :photo, many: true %>
   <% end %>
   <%= f.actions %>
 <% end %>

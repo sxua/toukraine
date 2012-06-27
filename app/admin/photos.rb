@@ -5,6 +5,7 @@ ActiveAdmin.register Photo do
     column :image do |photo|
       image_tag photo.image.url(:thumb)
     end
+    column :is_primary
     column :created_at
     column :updated_at
     default_actions

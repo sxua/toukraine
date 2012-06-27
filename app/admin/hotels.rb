@@ -14,12 +14,27 @@ ActiveAdmin.register Hotel do
   controller do
     def new
       @hotel = Hotel.new
-      @hotel.photos.build
+      @hotel.build_primary_photo
     end
 
     def edit
       @hotel = Hotel.find(params[:id])
-      @hotel.photos.build if @hotel.photos.empty?
+      @hotel.build_primary_photo unless @hotel.primary_photo.present?
+    end
+
+    def create
+      @hotel = Hotel.new(params[:hotel])
+
+      respond_to do |format|
+        format.html do
+          if @hotel.save
+            render 'show'
+          else
+            @hotel.build_primary_photo unless @hotel.primary_photo
+            render 'new'
+          end
+        end
+      end
     end
   end
 end

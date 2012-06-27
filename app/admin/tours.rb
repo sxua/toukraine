@@ -17,12 +17,27 @@ ActiveAdmin.register Tour do
   controller do
     def new
       @tour = Tour.new
-      @tour.photos.build
+      @tour.build_primary_photo
     end
 
     def edit
       @tour = Tour.find(params[:id])
-      @tour.photos.build if @tour.photos.empty?
+      @tour.build_primary_photo unless @tour.primary_photo.present?
+    end
+
+    def create
+      @tour = Tour.new(params[:tour])
+
+      respond_to do |format|
+        format.html do
+          if @tour.save
+            render 'show'
+          else
+            @tour.build_primary_photo unless @tour.primary_photo
+            render 'new'
+          end
+        end
+      end
     end
   end
 

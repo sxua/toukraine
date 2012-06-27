@@ -15,16 +15,16 @@ $ ->
     idRegExp = new RegExp("new_#{association}", 'g')
     id = new Date().getTime()
     container = $(this).parent()
-    number = container.siblings('li').size() + 1
+    number = container.siblings('li.input.file').size() + 1
 
     container.before template({ number: number }).replace(idRegExp, id)
 
-  $('input[name="remove_photo"]').on 'click', (e)->
+  $('input[name="remove_photo"], input[name="remove_primary_photo"]').on 'click', (e)->
     $(this).siblings('input').val $(this).is(':checked')
 
 window.jsFormInit = (el)->
   el ||= $('.js-form-init')
-  inputs = el.find('li.input')
+  inputs = el.find('li.input.file')
 
   inputs.each (i, t)->
     template = Handlebars.compile $(t).html()

@@ -3,7 +3,7 @@
     <% box title: @tour.title do %>
       <ul class="nav nav-tabs">
         <li><%= link_to I18n.t('tabs.overview'), '#overview', 'data-toggle' => 'tab' %></li>
-        <% if @tour.photos.any? && @tour.photos.count > 1 %>
+        <% if @tour.photos.any? %>
           <li><%= link_to I18n.t('tabs.photos', count: @tour.photos.count), '#photos', 'data-toggle' => 'tab' %></li>
         <% end %>
         <% if @tour.prices.present? %>
@@ -12,10 +12,10 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane" id="overview">
-          <%= image_tag(@tour.photos.first.image_url(:preview)) if @tour.photos.any? %>
+          <%= image_tag(@tour.primary_photo.image_url(:preview)) if @tour.primary_photo %>
           <p><%= @tour.description.try(:html_safe) %></p>
         </div>
-        <% if @tour.photos.any? && @tour.photos.count > 1 %>
+        <% if @tour.photos.any? %>
           <div class="tab-pane" id="photos">
             <div class="fotorama-init" data-width="770" data-height="350">
               <% @tour.photos.each do |photo| %>

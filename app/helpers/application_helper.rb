@@ -84,6 +84,7 @@ module ApplicationHelper
   end
   
   def new_child_fields_template(form_builder, association, options={})
+    association = :"#{association.to_s.pluralize}"
     object_name = "#{form_builder.object.class.name}_#{association}_attributes_"
     options[:object] ||= form_builder.object.class.reflect_on_association(association).klass.new
     options[:partial] ||= "admin/shared/#{association}_form"
@@ -93,13 +94,13 @@ module ApplicationHelper
     end
   end
 
-  def add_child_link(name, association)
-    link_to name, '#', class: 'js-form-add button', 'data-association' => association
+  def add_child_link(association)
+    link_to 'Add ' + association.to_s.humanize, '#', class: 'js-form-add button', 'data-association' => association.to_s.pluralize
   end
 
-  def remove_child_link(name, f)
+  def remove_child(name, f)
     f.hidden_field(:_destroy) + tag(:br) + content_tag(:span, 'Remove ') + check_box_tag("remove_#{name}", 1, false, id: nil)
-  end
+    end
 
   def currency_code_for(currency)
     CURRENCIES.find { |k, v| v == currency }.try(:first) || :uah
