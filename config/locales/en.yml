@@ -78,7 +78,8 @@ en:
     price: "<span>from</span> %{price}"
     currencies:
       uah: UAH
-      usd: $  
+      usd: $
+      eur: €  
   tabs:
     overview: Overview
     photos: Photos (%{count})

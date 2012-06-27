@@ -79,6 +79,7 @@ ru:
     currencies:
       uah: грн
       usd: $
+      eur: €
   tabs:
     overview: Обзор
     photos: "Фото (%{count})"
