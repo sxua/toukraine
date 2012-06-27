@@ -34,14 +34,14 @@
             </ul>
           </li>
         <% end %>
-        <% if Region.for_locale(I18n.locale).for_menu(5).any? && Hotel.any? %>
+        <% if Region.for_locale(I18n.locale).for_menu(nil).any? && Hotel.any? %>
           <li class="dropdown">
             <div class="border border-orange"></div>
             <%= link_to '#', 'data-toggle' => 'dropdown', class: 'dropdown-toggle'  do %>
               <%= I18n.t('menu.hotels') %> <b class="caret"></b>
             <% end %>
             <ul class="dropdown-menu">
-              <% Region.for_menu(5).each do |region| %>
+              <% Region.for_menu(nil).each do |region| %>
                 <li><%= link_to region.title, hotels_region_path(region) %></li>
               <% end %>
             </ul>
