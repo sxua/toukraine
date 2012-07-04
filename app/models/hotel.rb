@@ -6,7 +6,7 @@ class Hotel < ActiveRecord::Base
   include Extensions::HstoreAccessor
   set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(srid: 4326))
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :address_ru, :address_en, :city_id, :data, :slug, :prices_ru, :prices_en, :geom, :short_description_ru, :short_description_en, :photos_attributes, :price, :currency, :primary_photo_attributes
-  hstore_accessor :data
+  hstore_accessor :data, :stars
   belongs_to :city
   has_many :tours
   # has_many :orders, as: :relative
