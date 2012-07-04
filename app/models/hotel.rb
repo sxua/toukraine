@@ -6,7 +6,7 @@ class Hotel < ActiveRecord::Base
   include Extensions::HstoreAccessor
   set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(srid: 4326))
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :address_ru, :address_en, :city_id, :data, :slug, :prices_ru, :prices_en, :geom, :short_description_ru, :short_description_en, :photos_attributes, :price, :currency, :primary_photo_attributes
-  hstore_accessor :data, :stars, :phone, :email, :url
+  hstore_accessor :data
   belongs_to :city
   has_many :tours
   # has_many :orders, as: :relative
@@ -46,6 +46,11 @@ class Hotel < ActiveRecord::Base
   
   def geom=(value)
     self.latlon = "POINT(#{value.to_s.gsub(',', ' ')})"
+  end
+  
+  def self.fetch_list(city_id)
+    city_id ||= City.first
+    self.select("id, title_#{I18n.locale}").where(city_id: city_id)
   end
 
 end
