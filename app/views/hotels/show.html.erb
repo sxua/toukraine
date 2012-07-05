@@ -3,7 +3,7 @@
   <div class="span9">
     <% box do %>
       <h3>
-        <%= @hotel.title %><% if @hotel.city %><span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" unless @hotel.stars.blank? %></span><% end %>
+        <%= @hotel.title %><% if @hotel.city %><span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" if @hotel.stars %></span><% end %>
       </h3>
       <ul class="nav nav-tabs">
         <li><%= link_to I18n.t('tabs.overview'), '#overview', 'data-toggle' => 'tab' %></li>

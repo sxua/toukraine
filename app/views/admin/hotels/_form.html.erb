@@ -23,9 +23,7 @@
   <%= f.inputs "Settings" do %>
     <%= f.input :price %>
     <%= f.input :currency, as: :select, collection: CURRENCIES %>
-    <%= f.fields_for :data, (@hotel.data || {}).to_ostruct do |d| %>
-      <%= d.input :stars, as: :select, collection: (1..5), required: false %>
-    <% end %>
+    <%= f.input :stars, as: :select, collection: (1..5), required: false %>
     <%= f.input :city %>
     <li class="map">
       <div id="map"></div>

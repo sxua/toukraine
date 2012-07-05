@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626215323) do
+ActiveRecord::Schema.define(:version => 20120704120631) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120626215323) do
     t.text     "short_description_en"
     t.integer  "price"
     t.integer  "currency"
+    t.integer  "stars"
   end
 
   add_index "hotels", ["city_id"], :name => "index_hotels_on_city_id"
