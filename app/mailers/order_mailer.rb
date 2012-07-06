@@ -5,7 +5,7 @@ class OrderMailer < ActionMailer::Base
 
   def order_info(order)
     @order = order
-    type = { hotel: 'отель', tour: 'тур' }
-    mail to: "ukraine.sax@gmail.com", subject: "Новая заявка на #{type[:"#{@order.relative_type.downcase}"]}"
+    @type = { hotel: 'отель', tour: 'тур' }
+    mail to: "ukraine@rozavitriv.com", subject: "Новая заявка на #{@type[:"#{@order.relative_type.downcase}"]}"
   end
 end
