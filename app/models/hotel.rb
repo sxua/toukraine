@@ -48,7 +48,7 @@ class Hotel < ActiveRecord::Base
   
   def self.fetch_list(city_id)
     city_id ||= City.first
-    self.select("id, title_#{I18n.locale}").where(city_id: city_id)
+    self.select("id, title_#{I18n.locale} AS text").where(city_id: city_id)
   end
 
 end

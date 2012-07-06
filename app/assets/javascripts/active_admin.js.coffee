@@ -2,10 +2,10 @@
 #= require handlebars
 #= require bootstrap-tabs
 #= require ckeditor/init
-#= require chosen.jquery
+#= require select2
 
 $ ->
-  $('select').chosen()
+  $('select').select2()
   $('.tabbable a:first').tab('show')
   jsFormInit $('.js-form-init')
   $('.js-form-add').on 'click', (e)->

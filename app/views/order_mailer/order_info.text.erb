@@ -1,3 +1,10 @@
-OrderMailer#order_info
-
-<%= @order.name %>, find me in app/views/app/views/order_mailer/order_info.text.erb
+Город: <%= @order.relative.city.try(:title) %>
+<%= @type[:"#{@order.relative_type.downcase}"].mb_chars.capitalize %>: <%= @order.relative.title %>
+ФИО: <%= @order.name %>
+Электронная почта: <%= @order.email %>
+Телефон: <%= @order.phone %>
+Дата заезда: <%= @order.come_in_date %>
+Дата выезда: <%= @order.come_out_date %>
+Количество человек: <%= @order.people_amount %>
+Дополнительная информация:
+<%= @order.description %>

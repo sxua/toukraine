@@ -2,6 +2,7 @@
   <div class="row" id="promotions">
     <div class="span9">
       <% box do %>
+        <%= image_tag 'placeholder.gif', width: 770, height: 350, style: 'display:none;', id: 'placeholder' %>
         <div class="fotorama" data-width="615" data-height="350" data-caption="overlay">
           <% @promotions.each do |slide| %>
             <%= link_to image_tag(slide.image_url(:thumb), alt: "<b>#{slide.title}</b><br />#{slide.caption}", 'data-url' => slide_url_for(slide)), slide.image_url(:preview) %>

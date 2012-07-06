@@ -7,6 +7,9 @@
     <%= meta_description_tag %>
     <%= csrf_meta_tags %>
     <%= analytics_init if Rails.env.production? %>
+    <script type="text/javascript">
+      var locale = "<%= I18n.locale %>";
+    </script>
   </head>
   <body>
     <div id="background">

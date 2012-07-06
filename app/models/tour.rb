@@ -37,4 +37,9 @@ class Tour < ActiveRecord::Base
     TourType.find_all_by_id self.select('DISTINCT(tour_type_id)').for_locale(I18n.locale).map(&:tour_type_id).compact
   end
 
+  def self.fetch_list(city_id)
+    city_id ||= City.first
+    self.select("id, title_#{I18n.locale} AS text").where(city_id: city_id)
+  end
+
 end
