@@ -21,3 +21,4 @@
 /public/system/*
 /db/sphinx
 /config/development.*
+/tm*
