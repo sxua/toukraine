@@ -91,3 +91,18 @@ en:
     title: Title
     city: City
     price: Price
+  order:
+    link: Order tour or hotel
+    form_name: Order form
+    hotel: Hotel
+    tour: Tour
+    city: City
+    name: Your name
+    email: Email
+    phone: Phone
+    come_in_date: Arrival date
+    come_out_date: Departure date
+    people_amount: People amount
+    description: Additional information
+    submit: Submit
+    success: Thank you! Your order has been submited successfully. Our manager will contact you soon.
