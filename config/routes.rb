@@ -15,7 +15,7 @@ Toukraine::Application.routes.draw do
     resources :hotels, only: [:show]
     resources :pages, only: [:show]
     resources :news, only: [:show]
-    resources :regions, only: [:show, :hotels]
+    resources :regions, only: [:index, :show, :hotels]
     resources :sights, only: [:index, :show]
     resources :orders, only: [:new, :create]
   end
