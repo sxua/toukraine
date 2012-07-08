@@ -14,7 +14,7 @@ Toukraine::Application.routes.draw do
     post '/orders/cities/:relative_type', to: 'orders#cities', as: :orders_cities
     resources :hotels, only: [:show]
     resources :pages, only: [:show]
-    resources :news, only: [:show]
+    resources :news, only: [:index, :show]
     resources :regions, only: [:index, :show, :hotels]
     resources :sights, only: [:index, :show]
     resources :orders, only: [:new, :create]
