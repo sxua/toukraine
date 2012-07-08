@@ -3,6 +3,7 @@
 #= require twitter/bootstrap
 #= require fotorama
 #= require select2
+#= require spin
 #= require_tree .
 
 window.fotoramaDefaults = {
@@ -20,25 +21,68 @@ window.fotoramaDefaults = {
   onClick: (data)-> window.open(data.captionUrl, '_blank') if data.captionUrl
 }
 
+window.get = (url, callback)->
+  window.request('GET', url, callback)
+
+window.post = (url, callback)->
+  window.request('POST', url, callback)
+
+window.request = (method, url, callback)->
+  method ||= 'GET'
+  startSpinner()
+  $.ajax({
+    url: url,
+    type: method,
+    dataType: 'html'
+  }).done (html)->
+    callback.call(undefined, html)
+    $('select').select2()
+    stopSpinner()
+
+window.startSpinner = ->
+  body = $('#order_form .modal-body')
+  spinner.spin(body[0])
+  body.css('opacity', 0.5)
+
+window.stopSpinner = ->
+  body = $('#order_form .modal-body')
+  spinner.stop()
+  body.css('opacity', 1.0)
+
+window.setCities = (callback)->
+  relative_type = $('input[name="order[relative_type]"]:checked').val().toLowerCase()
+  post "/#{locale}/orders/cities/#{relative_type}", (html)->
+    $('#city').html(html)
+    callback.call()
+
 window.updateOrderFields = ->
   relative_type = $('input[name="order[relative_type]"]:checked').val().toLowerCase()
   city_id = $('#city').val()
-  $.ajax({
-    url: "/#{locale}/orders/relatives/#{relative_type}/#{city_id}",
-    type: 'POST',
-    dataType: 'html'
-  }).done (data)->
+  post "/#{locale}/orders/relatives/#{relative_type}/#{city_id}", (html)->
     list = $('#order_relative_id')
-    list.html(data)
-    if data.trim().length > 0
+    list.html(html)
+    if html.trim().length > 0
       list.removeAttr('disabled')
     else
       list.attr('disabled', 'disabled')
-    list.select2()
 
 window.setRelativeLabel = ->
   relative_label = $('input[name="order[relative_type]"]:checked').parent().text()
   $('label[for="order_relative_id"]').html("<abbr title='required'>*</abbr> #{relative_label}")
+
+window.setOrderForm = (html)->
+  $('#order_form .modal-body').html(html)
+  $('select').select2()
+
+window.spinner = new Spinner {
+  lines: 11,
+  length: 7,
+  width: 2,
+  radius: 5,
+  top: 0,
+  left: 0,
+  color: '#444'
+}
 
 $ ->
   $('.fotorama__thumb').on 'mouseover', ->
@@ -63,20 +107,17 @@ $ ->
   $('#order_form').on 'show', ->
     $('.fotorama').hide()
     $('#placeholder').show()
-    $.ajax({
-      url: "/#{locale}/orders/new"
-    }).done (data)->
-      $('#order_form .modal-body').html(data)
-      $('select').select2()
+    get "/#{locale}/orders/new", (html)-> setOrderForm(html)
 
   $('#order_form').on 'hide', ->
     $('.fotorama').show()
     $('#placeholder').hide()
-    $('#order_form .modal-body').html('')
+    $(this).find('.modal-body').html('')
 
   $('input[name="order[relative_type]"]').live 'change', ->
     setRelativeLabel()
-    updateOrderFields()
+    setCities ->
+      updateOrderFields()
 
   $('#city').live 'change', ->
     updateOrderFields()
@@ -85,6 +126,11 @@ $ ->
     e.preventDefault()
     $('#new_order').submit()
 
-  $('#new_order').live 'ajax:success', (e, xhr, status)->
-    $('#order_form .modal-body').html(xhr)
-    $('select').select2()
+
+  $('#new_order')
+    .live('ajax:success', (e, html)->
+      setOrderForm(html)
+      stopSpinner()
+    ).live('ajax:beforeSend', ()->
+      startSpinner()
+    )
