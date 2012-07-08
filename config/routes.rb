@@ -11,12 +11,12 @@ Toukraine::Application.routes.draw do
     match '/tours/:tour_type_id/:id', to: 'tours#show', as: :tour
     match '/tours/:id(/sort/:column::dir)(/page/:page)', to: 'tour_types#show', as: :tour_type
     post '/orders/relatives/:relative_type/:city_id', to: 'orders#relatives', as: :orders_relatives
-    resources :hotels
-    resources :promotions
-    resources :pages
-    resources :news
-    resources :regions
-    resources :sights
-    resources :orders
+    post '/orders/cities/:relative_type', to: 'orders#cities', as: :orders_cities
+    resources :hotels, only: [:show]
+    resources :pages, only: [:show]
+    resources :news, only: [:show]
+    resources :regions, only: [:show, :hotels]
+    resources :sights, only: [:index, :show]
+    resources :orders, only: [:new, :create]
   end
 end

@@ -24,4 +24,12 @@ class OrdersController < ApplicationController
       render inline: nil, layout: false
     end
   end
+
+  def cities
+    if params[:relative_type].in?(%w(hotel tour))
+      render partial: 'result', collection: Object.const_get(params[:relative_type].capitalize).fetch_cities, layout: false
+    else
+      render inline: nil, layout: false
+    end
+  end
 end

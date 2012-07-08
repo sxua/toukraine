@@ -2,12 +2,12 @@ require 'babosa'
 
 class Hotel < ActiveRecord::Base
   extend FriendlyId
+  extend Extensions::Fetch
   include Extensions::Translate
   set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(srid: 4326))
   attr_accessible :title_ru, :title_en, :description_ru, :description_en, :address_ru, :address_en, :city_id, :slug, :prices_ru, :prices_en, :geom, :short_description_ru, :short_description_en, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars
   belongs_to :city
   has_many :tours
-  # has_many :orders, as: :relative
   has_one :primary_photo, as: :relative, dependent: :destroy, class_name: 'Photo', conditions: { is_primary: true }
   accepts_nested_attributes_for :primary_photo, allow_destroy: true, reject_if: proc { |p| not p[:image] }
   has_many :photos, as: :relative, dependent: :destroy, conditions: { is_primary: false }
@@ -45,10 +45,4 @@ class Hotel < ActiveRecord::Base
   def geom=(value)
     self.latlon = "POINT(#{value.to_s.gsub(',', ' ')})"
   end
-  
-  def self.fetch_list(city_id)
-    city_id ||= City.first
-    self.select("id, title_#{I18n.locale} AS text").where(city_id: city_id)
-  end
-
 end

@@ -1,14 +1,16 @@
 <% relative_type = params[:order].try(:[], :relative_type).in?(%w(Hotel Tour)) ? params[:order][:relative_type] : nil %>
 <% type = relative_type || @order.relative_type || 'Hotel' %>
-<% city = params[:city] || @order.relative.try(:city_id) || City.first  %>
 <% object = Object.const_get(type) %>
+<% cities = object.fetch_cities %>
+<% city = params[:city] || @order.relative.try(:city_id) || cities.first  %>
+
 <%= simple_form_for @order, remote: true, html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :relative_type, as: :radio_buttons, collection: [[I18n.t('order.hotel'), 'Hotel'], [I18n.t('order.tour'), 'Tour']], label: false %>
   <%= f.input :city, label: I18n.t('order.city') do %>
-    <%= select_tag :city, options_from_collection_for_select(City.all, :id, :title, city) %>
+  <%= select_tag :city, options_from_collection_for_select(cities, :id, :title, city) %>
   <% end %>
   <% list = object.fetch_list(city) %>
-  <%= f.association :relative, label: I18n.t("order.#{type.downcase}"), as: :select, label_method: :text, collection: list, include_blank: false, input_html: { disabled: list.empty? } %>
+  <%= f.association :relative, label: I18n.t("order.#{type.downcase}"), as: :select, label_method: :title, collection: list, include_blank: false, input_html: { disabled: list.empty? } %>
   <%= f.input :name, label: I18n.t('order.name') %>
   <%= f.input :email, label: I18n.t('order.email') %>
   <%= f.input :phone, label: I18n.t('order.phone') %>
