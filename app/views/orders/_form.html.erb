@@ -16,6 +16,6 @@
   <%= f.input :phone, label: I18n.t('order.phone') %>
   <%= f.input :come_in_date, as: :date, label: I18n.t('order.come_in_date') %>
   <%= f.input :come_out_date, as: :date, label: I18n.t('order.come_out_date') %>
-  <%= f.input :people_amount, as: :integer, label: I18n.t('order.people_amount') %>
+  <%= f.input :people_amount, as: :integer, required: true, label: I18n.t('order.people_amount') %>
   <%= f.input :description, label: I18n.t('order.description') %>
 <% end %>
