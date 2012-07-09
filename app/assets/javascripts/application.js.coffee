@@ -106,7 +106,7 @@ $ ->
 
   $('#order_form').on 'show', ->
     $('.fotorama').hide()
-    $('#placeholder').show()
+    $('#placeholder, #order_form .modal-footer').show()
     get "/#{locale}/orders/new", (html)-> setOrderForm(html)
 
   $('#order_form').on 'hide', ->
