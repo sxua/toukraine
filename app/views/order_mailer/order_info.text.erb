@@ -3,8 +3,11 @@
 ФИО: <%= @order.name %>
 Электронная почта: <%= @order.email %>
 Телефон: <%= @order.phone %>
-Дата заезда: <%= @order.come_in_date %>
-Дата выезда: <%= @order.come_out_date %>
+Дата заезда: <%= @order.come_in_date.strftime('%d.%m.%Y') %>
+Дата выезда: <%= @order.come_out_date.strftime('%d.%m.%Y') %>
 Количество человек: <%= @order.people_amount %>
-Дополнительная информация:
-<%= @order.description %>
+<% unless @order.description.blank? %>
+
+  Дополнительная информация:
+  <%= @order.description %>
+<% end %>

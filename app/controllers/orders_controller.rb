@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     if @order.save
       render :success, layout: false, status: :ok
-      OrderMailer.order_info(@order).deliver
+      OrderNotifier.perform_async(@order.id)
     else
       render :new, layout: false, status: :unprocessable_entity
     end

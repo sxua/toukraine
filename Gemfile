@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 gem 'pg', '~> 0.13'
 gem 'activerecord-postgres-hstore'
 gem 'activerecord-postgis-adapter'
+gem 'sidekiq'
 
 gem 'awesome_nested_set'
 gem 'thinking-sphinx', '~> 2.0.12'

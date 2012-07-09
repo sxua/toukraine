@@ -1,5 +1,6 @@
 require 'capistrano_colors'
 require 'bundler/capistrano'
+require 'sidekiq/capistrano'
 
 set :default_stage, 'production'
 set :stages, %w(staging production)
@@ -14,6 +15,8 @@ set :user, "toukraine"
 set :group, "toukraine"
 set :use_sudo, false
 
+set :sidekiq_role, :sidekiq
+
 set :scm, :git
 set :repository,  "git@github.com:sxua/#{application}.git"
 set :ssh_options, { forward_agent: true }
@@ -22,7 +25,7 @@ set :deploy_via, :remote_cache
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :default_environment, { 'PATH' => "/opt/rbenv/shims:/opt/rbenv/bin:$PATH" }
 
-server "beta.toukraine.org", :app, :web, :db, primary: true
+server "toukraine.org", :app, :web, :db, :sidekiq, primary: true
 
 after 'deploy:update_code', 'deploy:migrate'
 
