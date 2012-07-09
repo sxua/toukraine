@@ -10,10 +10,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     if @order.save
-      render :success, layout: false
+      render :success, layout: false, status: :ok
       OrderMailer.order_info(@order).deliver
     else
-      render :new, layout: false
+      render :new, layout: false, status: :unprocessable_entity
     end
   end
 

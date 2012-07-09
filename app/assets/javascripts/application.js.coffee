@@ -128,9 +128,10 @@ $ ->
 
 
   $('#new_order')
-    .live('ajax:success', (e, html)->
-      setOrderForm(html)
+    .live('ajax:complete', (e, xhr)->
+      setOrderForm(xhr.responseText)
       stopSpinner()
+      $('#order_form .modal-footer').hide() if xhr.status == 200
     ).live('ajax:beforeSend', ()->
       startSpinner()
     )
