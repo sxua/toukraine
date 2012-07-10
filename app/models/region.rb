@@ -22,4 +22,14 @@ class Region < ActiveRecord::Base
   def hotels
     Hotel.where("city_id IN(?)", self.city_ids).includes(:city)
   end
+
+  def tours
+    Tour.where("city_id IN(?)", self.city_ids).includes(:city)
+  end
+
+  def self.with_tours
+    city_ids = Tour.select('DISTINCT(city_id)').map(&:city_id)
+    region_ids = City.find(city_ids).map(&:region_id)
+    self.root.for_locale(I18n.locale).where('id IN(?)', region_ids)
+  end
 end

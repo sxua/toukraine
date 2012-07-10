@@ -1,14 +1,12 @@
+<% no = false %>
 <%= render partial: 'orders/modal' %>
-<% if 1 != 1 && Region.root.any? %>
+<% if Region.with_tours.any? %>
   <% box title: I18n.t('aside.root_regions') do %>
     <ul>
-      <% Region.root.each do |region| %>
-        <li><%= link_to region.title, url_for(region) %></li>
+      <% Region.with_tours.each do |region| %>
+      <li><%= link_to region.title, tours_region_path(id: region.try(:slug)) %></li>
       <% end %>
     </ul>
-    <div class="hr">
-      <%= link_to I18n.t('aside.all_regions'), regions_path, class: 'more' %>
-    </div>
   <% end %>
 <% end %>
 <% if Promotion.any? %>

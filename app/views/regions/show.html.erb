@@ -1,0 +1,22 @@
+<% box title: @region.title do %>
+  <ul id="tours">
+    <li class="sortings">
+      <%= sortings_for(:regions, :show, :title, :city, :price) %>
+    </li>
+    <% @tours.each do |tour| %>
+      <li class="<%= cycle('odd', 'even') %>">
+        <div class="title">
+          <%= link_to tour.title, tour_path(id: tour.try(:slug), tour_type_id: tour.tour_type.try(:slug)) %>
+        </div>
+        <div class="city">
+          <%= tour.city.try(:title) %>
+        </div>
+        <div class="price">
+          <%= I18n.t('list.price', price: price_with_currency(tour.price, tour.currency)).html_safe if tour.price %>
+        </div>
+        <div class="clear"></div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @tours %>
+<% end %>
