@@ -5,7 +5,7 @@ class News < ActiveRecord::Base
   include Extensions::Translate
   belongs_to :created_by
   belongs_to :published_by
-  attr_accessible :body_ru, :body_en, :is_published, :published_at, :title_ru, :title_en
+  attr_accessible :body_ru, :body_ua, :body_en, :is_published, :published_at, :title_ru, :title_ua, :title_en
   
   translates :body, :title
   
@@ -18,8 +18,10 @@ class News < ActiveRecord::Base
     where "is_published = 'true'"
     set_property delta: true
     indexes :body_ru
+    indexes :body_ua
     indexes :body_en
     indexes :title_ru
+    indexes :title_ua
     indexes :title_en
   end
   

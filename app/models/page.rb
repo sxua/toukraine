@@ -3,7 +3,7 @@ require 'babosa'
 class Page < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :body_ru, :body_en, :created_by_id, :is_published, :published_at, :published_by_id, :title_ru, :title_en, :slug, :visible_ru, :visible_en, :category, :weight
+  attr_accessible :body_ru, :body_ua, :body_en, :created_by_id, :is_published, :published_at, :published_by_id, :title_ru, :title_ua, :title_en, :slug, :visible_ru, :visible_ua, :visible_en, :category, :weight
 
   friendly_id :title_ru, use: :slugged
 
@@ -16,13 +16,15 @@ class Page < ActiveRecord::Base
     where "is_published = 'true'"
     set_property delta: true
     indexes :title_ru
+    indexes :title_ua
     indexes :title_en
     indexes :body_ru
+    indexes :body_ua
     indexes :body_en
   end
 
   scope :published, lambda {
-    visible = I18n.locale =~ /\A(en|ru)\Z/ ? "visible_#{I18n.locale}" : "visible_#{I18n.default_locale}"
+    visible = I18n.locale =~ /\A(en|ru|ua)\Z/ ? "visible_#{I18n.locale}" : "visible_#{I18n.default_locale}"
     where("is_published = ? AND #{visible} = ?", true, true)
   }
   scope :for, lambda { |*categories| find_all_by_category(categories, order: 'weight DESC') }

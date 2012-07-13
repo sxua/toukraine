@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704120631) do
+ActiveRecord::Schema.define(:version => 20120713185343) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.string  "slug"
     t.integer "region_id"
     t.boolean "delta",     :default => true, :null => false
+    t.string  "title_ua"
   end
 
   add_index "cities", ["slug"], :name => "index_cities_on_slug", :unique => true
@@ -100,6 +101,11 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.integer  "price"
     t.integer  "currency"
     t.integer  "stars"
+    t.string   "title_ua"
+    t.text     "description_ua"
+    t.string   "address_ua"
+    t.text     "prices_ua"
+    t.text     "short_description_ua"
   end
 
   add_index "hotels", ["city_id"], :name => "index_hotels_on_city_id"
@@ -120,6 +126,8 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.boolean  "delta",           :default => true, :null => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
+    t.string   "title_ua"
+    t.text     "body_ua"
   end
 
   add_index "news", ["created_by_id"], :name => "index_news_on_created_by_id"
@@ -167,6 +175,9 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.boolean  "visible_ru",      :default => false,   :null => false
     t.boolean  "visible_en",      :default => false,   :null => false
     t.integer  "weight",          :default => 10,      :null => false
+    t.string   "title_ua"
+    t.text     "body_ua"
+    t.boolean  "visible_ua"
   end
 
   add_index "pages", ["created_by_id"], :name => "index_pages_on_created_by_id"
@@ -182,6 +193,7 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.boolean  "is_primary"
+    t.string   "title_ua"
   end
 
   add_index "photos", ["relative_id"], :name => "index_photos_on_relative_id"
@@ -198,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.string   "url_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title_ua"
+    t.string   "caption_ua"
   end
 
   add_index "promotions", ["hotel_id"], :name => "index_promotions_on_hotel_id"
@@ -213,6 +227,7 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "menu"
+    t.string   "title_ua"
   end
 
   add_index "regions", ["parent_id"], :name => "index_regions_on_parent_id"
@@ -228,6 +243,8 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.boolean  "delta"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "title_ua"
+    t.text     "description_ua"
   end
 
   add_index "sights", ["city_id"], :name => "index_sights_on_city_id"
@@ -238,6 +255,7 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "slug"
+    t.string   "title_ua"
   end
 
   create_table "tours", :force => true do |t|
@@ -260,6 +278,11 @@ ActiveRecord::Schema.define(:version => 20120704120631) do
     t.text     "prices_en"
     t.string   "subtitle_ru"
     t.string   "subtitle_en"
+    t.string   "title_ua"
+    t.text     "description_ua"
+    t.boolean  "visible_ua"
+    t.text     "prices_ua"
+    t.string   "subtitle_ua"
   end
 
   add_index "tours", ["city_id"], :name => "index_tours_on_city_id"

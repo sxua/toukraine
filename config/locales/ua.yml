@@ -1,0 +1,53 @@
+ua:
+  menu:
+    ukraine: Україна
+    tours: Тури
+    hotels: Готелі
+    services: Послуги
+    sights: "Пам’ятки"
+  footer:
+    ukraine: Україна
+    hotels: Готелі
+    tours: Тури
+    services: Послуги
+    social_networks: Ми в соціальних мережах
+  aside:
+    news_and_promotions: Новини
+    root_regions: Тури по регіонах
+    all_news: Усі новини
+    all_regions: Усі регіони
+  header:
+    tour_type: "%{type} тури"
+    phone: Телефонуйте зараз
+  list:
+    price: "<span>від</span> %{price}"
+    currencies:
+      uah: грн
+      usd: $
+      eur: €
+  tabs:
+    overview: Огляд
+    photos: "Фото (%{count})"
+    description: Опис
+    location: Розміщення
+    prices: Ціни
+    contacts: Контактна інформація
+  sortings:
+    title: Назва
+    city: Місто
+    price: Ціна
+  order:
+    link: Замовити тур чи готель
+    form_name: Форма замовлення
+    hotel: Готель
+    tour: Тур
+    city: Місто
+    name: ПІБ
+    email: Електронна пошта
+    phone: Телефон
+    come_in_date: Дата прибуття
+    come_out_date: Дата виїзду
+    people_amount: Кількість людей
+    description: Додаткова інформація
+    submit: Надіслати
+    success: Дякуємо! Ваше замовлення надіслане і буде розглянуте у найближчий час.

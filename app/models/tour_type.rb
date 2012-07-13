@@ -3,7 +3,7 @@ require 'babosa'
 class TourType < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :title_en, :title_ru, :slug
+  attr_accessible :title_en, :title_ua, :title_ru, :slug
   has_many :tours
   translates :title
 

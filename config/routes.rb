@@ -4,7 +4,7 @@ Toukraine::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  scope "(:locale)", locale: /en|ru/ do
+  scope "(:locale)", locale: /en|ru|ua/ do
     root to: 'home#index'
     match '/regions/:id/hotels(/sort/:column::dir)(/page/:page)', to: 'regions#hotels', as: :hotels_region
     match '/regions/:id(/sort/:column::dir)(/page/:page)', to: 'regions#show', as: :tours_region

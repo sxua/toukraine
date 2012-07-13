@@ -4,7 +4,7 @@ class Region < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
   acts_as_nested_set
-  attr_accessible :title_ru, :title_en, :parent_id, :slug, :menu
+  attr_accessible :title_ru, :title_ua, :title_en, :parent_id, :slug, :menu
   has_many :cities
 
   translates :title

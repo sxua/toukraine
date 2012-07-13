@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-LOCALES = { ru: 'Русский', en: 'English' }
+LOCALES = { ru: 'Русский', ua: 'Українська', en: 'English' }
 CURRENCIES = { usd: 1, uah: 2, eur: 3 }
 
 ActiveAdmin.setup do |config|
