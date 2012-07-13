@@ -6,7 +6,7 @@ module Extensions
     end
 
     def fetch_cities
-      self.select('DISTINCT(city_id)').where('city_id IS NOT NULL').includes(:city).map(&:city).sort_by(&:title_ru)
+      self.select('DISTINCT(city_id)').where('city_id IS NOT NULL').includes(:city).map(&:city).sort_by(&:"title_#{I18n.locale}")
     end
   end
 end

@@ -1,71 +1,15 @@
 en:
-  topbar:
-    about_company: About company
-    about_country: About country
-    history: History
-    culture: Culture
-    traditions: Traditions
-    for_agencies: For agencies
-    for_clients: For clients
-    agreement: Agreement
-    catalog: Catalog
-    discount: Discount
-    qa: "Questions & Answers"
-    contacts: Contacts
-    map: Map
   menu:
     ukraine: Ukraine
     tours: Tours
     hotels: Hotels
     services: Services
     sights: Top sights
-    ukraine_menu:
-      about_country: About country
-      history: History
-      culture: Culture
-      traditions: Traditions
-      cuisine: Cuisine
-      places: Places
-    tours_menu:
-      medical_tours: Medical tours
-      excursion_tours: Excursion tours
-      child_tours: Child tours
-      winter_tours: Winter tours
-      sea_tours: Sea tours
-      extreme_tours: Extreme tours
-      search: Search
-    services_menu:
-      airline_tickets: Airline tickets
-      transfer: Transfer
-      excursions: Excursions
-      conferences: Conferences
-      insurance: Insurance
-      international_passport: International passport
-  modal:
-    contacts: Contacts
-    map: Map
-    about_company: About company
-  contacts:
-    phones: Phones
-    tourism: Tourism
-    airline_tickets: Airline tickets
-    mobile: Mobile
-    email: Email
-    address: Address
-    office_address: "Vozdvyzhens'ka str., 40, office 1, Kyiv, 04071"
   footer:
     ukraine: Ukraine
-    cuisine: Cuisine
     hotels: Hotels
     tours: Tours
     services: Services
-    airline_tickets: Airline tickets
-    transfer: Transfer
-    excursions: Excursions
-    conferences: Conferences
-    insurance: Insurance
-    international_passport: International passport
-    social_networks: Social networks
   aside:
     news_and_promotions: News
     root_regions: Tours by regions
@@ -73,7 +17,7 @@ en:
     all_regions: All regions
   header:
     tour_type: "%{type} tours"
-    phone: Phone
+    phone: Call us now
   list:
     price: "<span>from</span> %{price}"
     currencies:

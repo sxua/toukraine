@@ -1,70 +1,15 @@
 ru:
-  topbar:
-    about_company: О компании
-    about_country: О стране
-    history: История
-    culture: Культура
-    traditions: Традиции
-    for_agencies: Агентствам
-    for_clients: Клиентам
-    agreement: Соглашение
-    catalog: Каталог
-    discount: Скидки
-    qa: Вопросы и ответы
-    contacts: Контактная информация
-    map: Карта проезда
   menu:
     ukraine: Украина
     tours: Туры
     hotels: Отели
     services: Услуги
     sights: Достопримечательности
-    ukraine_menu:
-      about_country: О стране
-      history: История
-      culture: Культура
-      traditions: Традиции
-      cuisine: Кухня
-      places: Места
-    tours_menu:
-      medical_tours: Лечебные туры
-      excursion_tours: Экскурсионные туры
-      child_tours: Детские туры
-      winter_tours: Зимние туры
-      sea_tours: Морские туры
-      extreme_tours: Экстримальные туры
-      search: Поиск
-    services_menu:
-      airline_tickets: Авиабилеты
-      transfer: Трансфер
-      excursions: Экскурсии
-      conferences: Конференции
-      insurance: Страхование
-      international_passport: Загранпаспорт
-  modal:
-    contacts: Контактная информация
-    map: Карта проезда
-    about_company: About company
-  contacts:
-    phones: Телефоны
-    tourism: Туризм
-    airline_tickets: Авиабилеты
-    mobile: Мобильный
-    email: Электронная почта
-    address: Адрес
-    office_address: "04071, Украина, Киев, ул. Воздвиженская, 40, офис 1"
   footer:
     ukraine: Украина
-    cuisine: Кухня
     hotels: Отели
     tours: Туры
     services: Услуги
-    airline_tickets: Авиабилеты
-    transfer: Трансфер
-    excursions: Экскурсии
-    conferences: Конференции
-    insurance: Страхование
-    international_passport: Загранпаспорт
     social_networks: Мы в социальных сетях
   aside:
     news_and_promotions: Новости
@@ -73,7 +18,7 @@ ru:
     all_regions: Все регионы
   header:
     tour_type: "%{type} туры"
-    phone: Горящий телефон
+    phone: Звоните сейчас
   list:
     price: "<span>от</span> %{price}"
     currencies:
