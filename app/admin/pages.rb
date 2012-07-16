@@ -6,7 +6,7 @@ ActiveAdmin.register Page do
     column :category
     column :weight
     column 'Visible' do |page|
-      lang_images(page, :visible, %w(ru en))
+      lang_images(page, :visible, %w(ru ua en))
     end
     column 'Published at', :published_at
     column 'Created at', :created_at

@@ -7,7 +7,7 @@ ActiveAdmin.register Tour do
       price_with_currency(tour.price, tour.currency)
     end
     column 'Visible' do |tour|
-      lang_images(tour, :visible, %w(ru en))
+      lang_images(tour, :visible, %w(ru ua en))
     end
     default_actions
   end

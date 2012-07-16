@@ -17,6 +17,17 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
+  def change_locale_path locale
+    return_path = if params[:controller] && params[:action]
+      url_for params.merge({ locale: locale, only_path: true })
+    else
+      "/"
+    end
+    switch_locale_path(locale: locale, return_path: return_path)
+  end
+
+  helper_method :change_locale_path
+
   def not_found
     render file: "#{Rails.root}/public/404.html", status: 404, layout: false
   end
