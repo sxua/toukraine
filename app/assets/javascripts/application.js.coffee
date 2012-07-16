@@ -107,7 +107,8 @@ $ ->
   $('#order_form').on 'show', ->
     $('.fotorama').hide()
     $('#placeholder, #order_form .modal-footer').show()
-    get "/#{locale}/orders/new", (html)-> setOrderForm(html)
+    url = if ($(this).data('type') && $(this).data('id')) then "/#{locale}/orders/new?type=#{$(this).data('type')}&id=#{$(this).data('id')}" else "/#{locale}/orders/new"
+    get url, (html)-> setOrderForm(html)
 
   $('#order_form').on 'hide', ->
     $('.fotorama').show()
@@ -125,7 +126,6 @@ $ ->
   $('#order_submit').on 'click', (e)->
     e.preventDefault()
     $('#new_order').submit()
-
 
   $('#new_order')
     .live('ajax:complete', (e, xhr)->

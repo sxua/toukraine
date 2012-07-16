@@ -19,16 +19,17 @@ class Region < ActiveRecord::Base
     input.to_s.to_slug.normalize(transliterations: :russian).to_s
   end
 
-  def hotels
+  def nested_city_ids
     region_ids = self.self_and_descendants.map(&:id)
-    city_ids = City.where('region_id IN(?)', region_ids).map(&:id)
-    Hotel.where('city_id IN(?)', city_ids).includes(:city)
+    City.where('region_id IN(?)', region_ids).map(&:id)
+  end
+
+  def hotels
+    Hotel.where('city_id IN(?)', self.nested_city_ids).includes(:city)
   end
 
   def tours
-    region_ids = self.self_and_descendants.map(&:id)
-    city_ids = City.where('region_id IN(?)', region_ids).map(&:id)
-    Tour.where('city_id IN(?)', city_ids).includes(:city)
+    Tour.where('city_id IN(?)', self.nested_city_ids).includes(:city)
   end
 
   def self.with_tours

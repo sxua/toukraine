@@ -1,4 +1,8 @@
 <% box id: 'order_box' do %>
   <%= link_to I18n.t('order.link'), '#order_form', class: 'btn btn-success', data: { toggle: 'modal' } %>
 <% end %>
-<% modal(title: I18n.t('order.form_name'), id: 'order_form', footer: ->{ button_tag I18n.t('order.submit'), class: 'btn btn-primary', id: :order_submit }) {} %>
+<% data = nil %>
+<% if params[:controller].in?(%w(hotels tours)) %>
+  <% data = { 'type' => params[:controller].to_s.singularize, 'id' => params[:id] } %>
+<% end %>
+<% modal(title: I18n.t('order.form_name'), id: 'order_form', data: data, footer: ->{ button_tag I18n.t('order.submit'), class: 'btn btn-primary', id: :order_submit }) {} %>
