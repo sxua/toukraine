@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713185343) do
+ActiveRecord::Schema.define(:version => 20120716125931) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -224,10 +224,11 @@ ActiveRecord::Schema.define(:version => 20120713185343) do
     t.integer  "lft"
     t.integer  "rgt"
     t.string   "slug"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "menu"
     t.string   "title_ua"
+    t.boolean  "shown_aside"
   end
 
   add_index "regions", ["parent_id"], :name => "index_regions_on_parent_id"

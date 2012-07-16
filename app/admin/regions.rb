@@ -6,6 +6,7 @@ ActiveAdmin.register Region do
     column :root do |region|
       region.parent_id.nil?
     end
+    column :shown_aside
     column :menu
     column :created_at
     column :updated_at

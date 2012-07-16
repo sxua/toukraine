@@ -16,9 +16,10 @@
     </div>
   </div>
   <%= f.inputs "Settings" do %>
-    <%= f.input :parent %>
+    <%= f.input :parent, collection: options_for_select(nested_set_options(Region) { |i| "#{'-' * i.level} #{i.title}"}) %>
     <%= f.input :slug %>
     <%= f.input :menu %>
+    <%= f.input :shown_aside %>
   <% end %>
   <%= f.actions %>
 <% end %>
