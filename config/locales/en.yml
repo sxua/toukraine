@@ -5,6 +5,8 @@ en:
     hotels: Hotels
     services: Services
     sights: Top sights
+  topbar:
+    for_agencies: For agencies
   footer:
     ukraine: Ukraine
     hotels: Hotels

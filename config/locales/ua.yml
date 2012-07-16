@@ -5,6 +5,8 @@ ua:
     hotels: Готелі
     services: Послуги
     sights: "Пам’ятки"
+  topbar:
+    for_agencies: Агентствам
   footer:
     ukraine: Україна
     hotels: Готелі
