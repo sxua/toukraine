@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
       id = Object.const_get(params[:type].classify).find_by_slug(params[:id]).id
       order = { relative_type: params[:type].classify, relative_id: id }
     else
-      order = { relative_type: 'Hotels' }
+      order = { relative_type: 'Hotel' }
     end
     @order = Order.new(order)
     render :new, layout: false
