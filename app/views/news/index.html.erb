@@ -1,0 +1,13 @@
+<% box title: I18n.t('news') do %>
+  <ul id="news">
+    <% @news.each do |news| %>
+      <li class="<%= cycle('odd', 'even') %>">
+        <div class="title">
+          <%= link_to news.title, news_path(id: news.try(:slug)) %>
+        </div>
+        <div class="clear"></div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @news %>
+<% end %>

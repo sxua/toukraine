@@ -3,7 +3,9 @@ require 'babosa'
 class Page < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :body_ru, :body_ua, :body_en, :created_by_id, :is_published, :published_at, :published_by_id, :title_ru, :title_ua, :title_en, :slug, :visible_ru, :visible_ua, :visible_en, :category, :weight
+  belongs_to :created_by, class_name: 'AdminUser'
+  belongs_to :published_by, class_name: 'AdminUser'
+  attr_accessible :created_by_id, :is_published, :published_at, :published_by_id, :slug, :category, :weight
 
   friendly_id :title_ru, use: :slugged
 
@@ -35,7 +37,7 @@ class Page < ActiveRecord::Base
 
   def set_creator(creator)
     self.update_attributes(created_by_id: creator.id)
-    set_publisher if self.is_published?
+    self.set_publisher(creator) if self.is_published?
   end
 
   def set_publisher(publisher)

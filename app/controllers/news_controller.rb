@@ -1,4 +1,8 @@
 class NewsController < ApplicationController
+  def index
+    @news = News.published.page(params[:page])
+  end
+
   def show
     @news = News.find(params[:id])
     @title = @news.title
