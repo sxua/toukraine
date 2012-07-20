@@ -26,7 +26,7 @@ class News < ActiveRecord::Base
 
   def set_creator(creator)
     self.update_attributes(created_by_id: creator.id)
-    self.set_published(creator) if self.is_published?
+    self.set_publisher(creator) if self.is_published?
   end
 
   def set_publisher(publisher)
