@@ -3,7 +3,7 @@ require 'babosa'
 class City < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :title_ru, :title_ua, :title_en, :region_id, :slug
+  attr_accessible :region_id, :slug
   translates :title
   has_many :hotels
   belongs_to :region

@@ -5,7 +5,7 @@ class Hotel < ActiveRecord::Base
   extend Extensions::Fetch
   include Extensions::Translate
   set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(srid: 4326))
-  attr_accessible :title_ru, :title_ua, :title_en, :description_ru, :description_ua, :description_en, :address_ru, :address_ua, :address_en, :city_id, :slug, :prices_ru, :prices_ua, :prices_en, :geom, :short_description_ru, :short_description_ua, :short_description_en, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars
+  attr_accessible :city_id, :slug, :geom, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars
   belongs_to :city
   has_many :tours
   has_one :primary_photo, as: :relative, dependent: :destroy, class_name: 'Photo', conditions: { is_primary: true }

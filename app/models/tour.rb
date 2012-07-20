@@ -4,7 +4,7 @@ class Tour < ActiveRecord::Base
   extend FriendlyId
   extend Extensions::Fetch
   include Extensions::Translate
-  attr_accessible :title_ru, :title_ua, :title_en, :description_ru, :description_ua, :description_en, :price, :currency, :tour_type_id, :city_id, :slug, :visible_ru, :visible_ua, :visible_en, :prices_ru, :prices_ua, :prices_en, :subtitle_ru, :subtitle_ua, :subtitle_en, :photos_attributes, :primary_photo_attributes
+  attr_accessible :price, :currency, :tour_type_id, :city_id, :slug, :photos_attributes, :primary_photo_attributes
   translates :title, :description, :subtitle, :prices
   belongs_to :tour_type
   belongs_to :city

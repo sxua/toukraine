@@ -1,6 +1,6 @@
 class Promotion < ActiveRecord::Base
   include Extensions::Translate
-  attr_accessible :caption_ru, :caption_ua, :caption_en, :image, :title_ru, :title_ua, :title_en, :url, :tour_id, :hotel_id, :url_type
+  attr_accessible :image, :url, :tour_id, :hotel_id, :url_type
 
   belongs_to :tour
   belongs_to :hotel

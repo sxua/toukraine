@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   include Extensions::Translate
   belongs_to :relative, polymorphic: true
-  attr_accessible :image, :relative_type, :title_ru, :title_ua, :title_en, :image_cache
+  attr_accessible :image, :relative_type, :image_cache
 
   mount_uploader :image, PhotoUploader
 
