@@ -154,7 +154,7 @@ module ApplicationHelper
   end
 
   def meta_description_tag
-    content = if @object && @object.meta.description.present?
+    content = if @object && @object.meta.try(:description).present?
       @object.meta.description
     else
       if @description
@@ -167,7 +167,7 @@ module ApplicationHelper
   end
   
   def meta_keywords_tag
-    if @object && @object.meta.keywords.present?
+    if @object && @object.meta.try(:keywords).present?
       meta_tag(:keywords, @object.meta.keywords).html_safe
     end
   end
