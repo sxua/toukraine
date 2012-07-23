@@ -8,4 +8,5 @@ class Promotion < ActiveRecord::Base
   mount_uploader :image, PhotoUploader
   translates :caption, :title
   scope :random, lambda { |limit| order('random()').limit(limit) }
+  scope :for_locale, lambda { |locale| where("title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
 end

@@ -4,7 +4,7 @@ class Tour < ActiveRecord::Base
   extend FriendlyId
   extend Extensions::Fetch
   include Extensions::Translate
-  attr_accessible :price, :currency, :tour_type_id, :city_id, :slug, :photos_attributes, :primary_photo_attributes
+  attr_accessible :price, :currency, :tour_type_id, :city_id, :slug, :photos_attributes, :primary_photo_attributes, :meta_attributes
   translates :title, :description, :subtitle, :prices
   belongs_to :tour_type
   belongs_to :city
@@ -12,6 +12,8 @@ class Tour < ActiveRecord::Base
   accepts_nested_attributes_for :primary_photo, allow_destroy: true
   has_many :photos, as: :relative, dependent: :destroy, conditions: { is_primary: false }
   accepts_nested_attributes_for :photos, allow_destroy: true, reject_if: proc { |p| not p[:image] && p[:image_cache].blank? }
+  has_one :meta, as: :relative, dependent: :destroy
+  accepts_nested_attributes_for :meta, allow_destroy: true
 
   friendly_id :title_ru, use: :slugged
 

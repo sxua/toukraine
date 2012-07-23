@@ -22,11 +22,13 @@ ActiveAdmin.register Sight do
     def new
       @sight = Sight.new
       @sight.build_photo
+      @sight.build_meta
     end
 
     def edit
       @sight = Sight.find(params[:id])
       @sight.build_photo unless @sight.photo.present?
+      @sight.build_meta unless @sight.meta
     end
   end
 end

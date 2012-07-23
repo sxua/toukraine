@@ -5,13 +5,15 @@ class Hotel < ActiveRecord::Base
   extend Extensions::Fetch
   include Extensions::Translate
   set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(srid: 4326))
-  attr_accessible :city_id, :slug, :geom, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars
+  attr_accessible :city_id, :slug, :geom, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars, :meta_attributes
   belongs_to :city
   has_many :tours
   has_one :primary_photo, as: :relative, dependent: :destroy, class_name: 'Photo', conditions: { is_primary: true }
   accepts_nested_attributes_for :primary_photo, allow_destroy: true, reject_if: proc { |p| not p[:image] }
   has_many :photos, as: :relative, dependent: :destroy, conditions: { is_primary: false }
   accepts_nested_attributes_for :photos, allow_destroy: true, reject_if: proc { |p| not p[:image] && p[:image_cache].blank? }
+  has_one :meta, as: :relative, dependent: :destroy
+  accepts_nested_attributes_for :meta, allow_destroy: true
 
   friendly_id :title_ru, use: :slugged
 
@@ -21,6 +23,7 @@ class Hotel < ActiveRecord::Base
 
   scope :random, lambda { |limit| order('random()').limit(limit) }
   scope :top, lambda { |limit| order(:created_at).limit(limit) }
+  scope :for_locale, lambda { |locale| where("title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
 
   define_index do
     set_property delta: true

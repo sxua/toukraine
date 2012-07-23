@@ -18,11 +18,13 @@ ActiveAdmin.register Tour do
     def new
       @tour = Tour.new
       @tour.build_primary_photo
+      @tour.build_meta
     end
 
     def edit
       @tour = Tour.find(params[:id])
       @tour.build_primary_photo unless @tour.primary_photo.present?
+      @tour.build_meta unless @tour.meta
     end
 
     def create
@@ -31,10 +33,11 @@ ActiveAdmin.register Tour do
       respond_to do |format|
         format.html do
           if @tour.save
-            render 'show'
+            render :show
           else
             @tour.build_primary_photo unless @tour.primary_photo
-            render 'new'
+            @tour.build_meta unless @tour.meta
+            render :new
           end
         end
       end

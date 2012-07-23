@@ -4,8 +4,10 @@ class Region < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
   acts_as_nested_set
-  attr_accessible :parent_id, :slug, :menu, :shown_aside
+  attr_accessible :parent_id, :slug, :menu, :shown_aside, :meta_attributes
   has_many :cities
+  has_one :meta, as: :relative, dependent: :destroy
+  accepts_nested_attributes_for :meta, allow_destroy: true
 
   translates :title
 
@@ -25,15 +27,15 @@ class Region < ActiveRecord::Base
   end
 
   def hotels
-    Hotel.where('city_id IN(?)', self.nested_city_ids).includes(:city)
+    Hotel.for_locale(I18n.locale).where('city_id IN(?)', self.nested_city_ids).includes(:city)
   end
 
   def tours
-    Tour.where('city_id IN(?)', self.nested_city_ids).includes(:city)
+    Tour.for_locale(I18n.locale).where('city_id IN(?)', self.nested_city_ids).includes(:city)
   end
 
   def self.with_tours
-    city_ids = Tour.select('DISTINCT(city_id)').map(&:city_id)
+    city_ids = Tour.select('DISTINCT(city_id)').for_locale(I18n.locale).map(&:city_id)
     region_ids = City.find(city_ids).map(&:region_id)
     self.shown_aside.for_locale(I18n.locale).where('id IN(?)', region_ids)
   end

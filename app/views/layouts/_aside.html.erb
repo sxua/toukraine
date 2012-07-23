@@ -3,20 +3,21 @@
   <% box title: I18n.t('aside.root_regions') do %>
     <ul>
       <% Region.with_tours.each do |region| %>
-      <li><%= link_to region.title, tours_region_path(id: region.try(:slug)) %></li>
+        <li><%= link_to region.title, tours_region_path(id: region.try(:slug)) %></li>
       <% end %>
     </ul>
   <% end %>
 <% end %>
-<% if Promotion.any? %>
+<% if Stuff.shit.any? %>
   <% box title: I18n.t('aside.news_and_promotions') do %>
     <ul>
-      <% Promotion.random(5).each do |promotion| %>
-      <li><%= link_to promotion.title, slide_url_for(promotion) %></li>
+      <% Stuff.shit.each do |stuff| %>
+        <% url = stuff.is_a?(News) ? url_for(stuff) : slide_url_for(stuff) %>
+        <li><%= link_to stuff.title, url %></li>
       <% end %>
     </ul>
-    <div class="hr">
-      <%= link_to I18n.t('aside.all_news'), news_index_path, class: 'more' %>
-    </div>
   <% end %>
+  <div class="hr">
+    <%= link_to I18n.t('aside.all_news'), news_index_path, class: 'more' %>
+  </div>
 <% end %>

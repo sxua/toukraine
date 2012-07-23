@@ -20,12 +20,39 @@ ActiveAdmin.register Page do
   filter :category, as: :check_boxes, collection: proc { Page.categories }
 
   form partial: 'form'
-  
+
   before_create do |page|
     page.set_creator current_admin_user
   end
-  
+
   before_save do |page|
     page.set_publisher current_admin_user
+  end
+
+  controller do
+    def new
+      @page = Page.new
+      @page.build_meta
+    end
+
+    def edit
+      @page = Page.find(params[:id])
+      @page.build_meta unless @page.meta
+    end
+
+    def create
+      @page = Page.new(params[:page])
+
+      respond_to do |format|
+        format.html do
+          if @page.save
+            render :show
+          else
+            @page.build_meta unless @page.meta
+            render :new
+          end
+        end
+      end
+    end
   end
 end

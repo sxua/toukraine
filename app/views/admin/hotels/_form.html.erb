@@ -15,6 +15,10 @@
             <%= f.input :"description_#{code}", label: 'Description', input_html: { class: 'ckeditor' } %>
             <%= f.input :"prices_#{code}", label: 'Prices', input_html: { class: 'ckeditor' } %>
             <%= f.input :"address_#{code}", label: 'Address' %>
+            <%= f.simple_fields_for :meta do |m| %>
+              <%= m.input :"keywords_#{code}", label: 'META Keywords' %>
+              <%= m.input :"description_#{code}", label: 'META Description' %>
+            <% end %>
           <% end %>
         </div>
       <% end %>

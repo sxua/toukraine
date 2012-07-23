@@ -15,11 +15,13 @@ ActiveAdmin.register Hotel do
     def new
       @hotel = Hotel.new
       @hotel.build_primary_photo
+      @hotel.build_meta
     end
 
     def edit
       @hotel = Hotel.find(params[:id])
       @hotel.build_primary_photo unless @hotel.primary_photo.present?
+      @hotel.build_meta unless @hotel.meta
     end
 
     def create
@@ -28,10 +30,11 @@ ActiveAdmin.register Hotel do
       respond_to do |format|
         format.html do
           if @hotel.save
-            render 'show'
+            render :show
           else
             @hotel.build_primary_photo unless @hotel.primary_photo
-            render 'new'
+            @hotel.build_meta unless @hotel.meta
+            render :new
           end
         end
       end

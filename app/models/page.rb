@@ -5,7 +5,10 @@ class Page < ActiveRecord::Base
   include Extensions::Translate
   belongs_to :created_by, class_name: 'AdminUser'
   belongs_to :published_by, class_name: 'AdminUser'
-  attr_accessible :created_by_id, :is_published, :published_at, :published_by_id, :slug, :category, :weight
+  has_one :meta, as: :relative, dependent: :destroy
+  accepts_nested_attributes_for :meta, allow_destroy: true
+
+  attr_accessible :created_by_id, :is_published, :published_at, :published_by_id, :slug, :category, :weight, :meta_attributes
 
   friendly_id :title_ru, use: :slugged
 

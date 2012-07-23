@@ -154,7 +154,25 @@ module ApplicationHelper
   end
 
   def meta_description_tag
-    content = (defined? @description) ? @description : Option.get('meta_description')
-    tag(:meta, name: 'description', content: truncate(content, length: 155, separator: ' ')).html_safe
+    content = if @object && @object.meta.description.present?
+      @object.meta.description
+    else
+      if @description
+        @description
+      else
+        Option.get('meta_description')
+      end
+    end
+    meta_tag(:description, content).html_safe
+  end
+  
+  def meta_keywords_tag
+    if @object && @object.meta.keywords.present?
+      meta_tag(:keywords, @object.meta.keywords).html_safe
+    end
+  end
+
+  def meta_tag(name, content)
+    tag(:meta, { name: name, content: truncate(strip_tags(content), length: 255, separator: ' ') })
   end
 end

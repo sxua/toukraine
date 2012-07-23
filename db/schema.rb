@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716125931) do
+ActiveRecord::Schema.define(:version => 20120723202614) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -112,6 +112,21 @@ ActiveRecord::Schema.define(:version => 20120716125931) do
   add_index "hotels", ["data"], :name => "hotels_gist_data"
   add_index "hotels", ["latlon"], :name => "index_hotels_on_latlon", :spatial => true
   add_index "hotels", ["slug"], :name => "index_hotels_on_slug", :unique => true
+
+  create_table "meta", :force => true do |t|
+    t.integer  "relative_id"
+    t.string   "relative_type"
+    t.string   "keywords_ru"
+    t.string   "description_ru"
+    t.string   "keywords_ua"
+    t.string   "description_ua"
+    t.string   "keywords_en"
+    t.string   "description_en"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "meta", ["relative_id"], :name => "index_meta_on_relative_id"
 
   create_table "news", :force => true do |t|
     t.string   "title_ru"
