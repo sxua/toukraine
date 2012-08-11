@@ -23,7 +23,7 @@ class Hotel < ActiveRecord::Base
 
   scope :random, lambda { |limit| order('random()').limit(limit) }
   scope :top, lambda { |limit| order(:created_at).limit(limit) }
-  scope :for_locale, lambda { |locale| where("title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
+  scope :for_locale, lambda { |locale| where("hotels.title_#{locale} IS NOT NULL AND hotels.title_#{locale} != ''") }
 
   define_index do
     set_property delta: true

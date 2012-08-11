@@ -14,7 +14,7 @@ class Region < ActiveRecord::Base
   friendly_id :title_ru, use: :slugged
 
   scope :for_menu, lambda { |limit| where(menu: true).limit(limit) }
-  scope :for_locale, lambda { |locale| where("title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
+  scope :for_locale, lambda { |locale| where("regions.title_#{locale} IS NOT NULL AND regions.title_#{locale} != ''") }
   scope :shown_aside, where(shown_aside: true)
 
   def normalize_friendly_id(input)

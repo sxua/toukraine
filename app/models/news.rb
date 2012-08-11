@@ -15,7 +15,7 @@ class News < ActiveRecord::Base
   friendly_id :title_ru, use: :slugged
   
   scope :published, where(is_published: true)
-  scope :for_locale, lambda { |locale| where("title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
+  scope :for_locale, lambda { |locale| where("news.title_#{locale} IS NOT NULL AND news.title_#{locale} != ''") }
 
   define_index do
     where "is_published = 'true'"

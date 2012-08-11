@@ -21,7 +21,7 @@ class Tour < ActiveRecord::Base
   validates_uniqueness_of :slug
   validates_associated :primary_photo
 
-  scope :for_locale, lambda { |locale| where("visible_#{locale} = true AND title_#{locale} IS NOT NULL AND title_#{locale} != ''") }
+  scope :for_locale, lambda { |locale| where("tours.visible_#{locale} = true AND tours.title_#{locale} IS NOT NULL AND tours.title_#{locale} != ''") }
 
   define_index do
     set_property delta: true
