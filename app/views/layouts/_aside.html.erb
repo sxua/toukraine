@@ -8,10 +8,10 @@
     </ul>
   <% end %>
 <% end %>
-<% if Stuff.shit.any? %>
+<% if Stuff.articles.any? %>
   <% box title: I18n.t('aside.news_and_promotions') do %>
     <ul>
-      <% Stuff.shit.each do |stuff| %>
+      <% Stuff.articles.each do |stuff| %>
         <% url = stuff.is_a?(News) ? url_for(stuff) : slide_url_for(stuff) %>
         <li><%= link_to stuff.title, url %></li>
       <% end %>
