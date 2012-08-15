@@ -28,6 +28,8 @@ set :default_environment, { 'PATH' => "/opt/rbenv/shims:/opt/rbenv/bin:$PATH" }
 server "toukraine.org", :app, :web, :db, :sidekiq, primary: true
 
 after 'deploy:update_code', 'deploy:migrate'
+before 'deploy', 'unicorn:stop'
+after 'deploy:restart', 'unicorn:start'
 
 def remote_file_exists?(full_path)
   'true' == capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
