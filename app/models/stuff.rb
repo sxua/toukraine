@@ -1,5 +1,5 @@
 class Stuff < ActiveRecord::Base
-  def self.articles(limit)
+  def self.articles(limit=-1)
     stuff = []
     stuff += News.for_locale(I18n.locale).limit(5)
     stuff += Promotion.for_locale(I18n.locale)
