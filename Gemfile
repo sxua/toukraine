@@ -26,8 +26,6 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'unicorn', '~> 4.1'
-gem 'capistrano'
-gem 'capistrano-ext'
 
 gem 'activeadmin'
 gem 'formtastic', '~> 2.1.1'
@@ -45,4 +43,7 @@ group :development do
   gem 'thin'
   gem 'puma'
   gem 'debugger'
+  gem 'capistrano'
+  gem 'capistrano_colors'
+  gem 'capistrano-ext'
 end
