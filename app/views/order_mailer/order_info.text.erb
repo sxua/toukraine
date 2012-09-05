@@ -1,5 +1,6 @@
-Город: <%= @order.relative.city.try(:title_ru) %>
-<%= @type[:"#{@order.relative_type.downcase}"].mb_chars.capitalize %>: <%= @order.relative.title_ru %> (<%= url_for(@order.relative) %>)
+<% I18n.locale = :ru %>
+Город: <%= @order.relative.city.try(:title) %>
+<%= @type[:"#{@order.relative_type.downcase}"].mb_chars.capitalize %>: <%= @order.relative.title %> (<%= url_for(@order.relative) %>)
 ФИО: <%= @order.name %>
 Электронная почта: <%= @order.email %>
 Телефон: <%= @order.phone %>
