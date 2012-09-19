@@ -1,4 +1,7 @@
 ActiveAdmin.register City do
+  
+  menu :parent => "Geography"
+  
   index do
     column :id
     column 'Title', :title_ru

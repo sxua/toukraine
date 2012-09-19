@@ -1,4 +1,7 @@
 ActiveAdmin.register Background do
+  
+  menu :parent => "Site options"
+  
   index do
     column :id
     column :image do |bg|

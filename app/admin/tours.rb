@@ -1,4 +1,7 @@
 ActiveAdmin.register Tour do
+  
+  menu :parent => "Tours"
+  
   index do
     column :id
     column 'Title', :title_ru

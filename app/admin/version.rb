@@ -1,6 +1,9 @@
 # encoding: utf-8
 
-ActiveAdmin.register Version do
+ActiveAdmin.register Version, :as => "Latest changes" do
+  
+  menu :parent => "Users"
+    
   index do
     column "Тип объекта" do |v| v.item_type.underscore.humanize end
       
