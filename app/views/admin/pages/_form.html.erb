@@ -12,7 +12,7 @@
             <%= f.input :"title_#{code}" %>
             <%= f.input :"body_#{code}", input_html: { class: 'ckeditor' } %>
             <%= f.input :"visible_#{code}" %>
-            <%= f.simple_fields_for :meta do |m| %>
+            <%= f.simple_fields_for :meta_tag do |m| %>
               <%= m.input :"keywords_#{code}", label: 'META Keywords' %>
               <%= m.input :"description_#{code}", label: 'META Description' %>
             <% end %>

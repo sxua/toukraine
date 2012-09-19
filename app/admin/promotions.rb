@@ -5,6 +5,7 @@ ActiveAdmin.register Promotion do
     column :image do |promotion|
       image_tag promotion.image.url(:thumb)
     end
+    column :is_published
     column :created_at
     column :updated_at
     default_actions

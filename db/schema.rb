@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723202614) do
+ActiveRecord::Schema.define(:version => 20120919133727) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(:version => 20120723202614) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "backgrounds", :force => true do |t|
+    t.string   "image"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "cities", :force => true do |t|
     t.string  "title_ru"
@@ -159,16 +166,16 @@ ActiveRecord::Schema.define(:version => 20120723202614) do
 
   create_table "orders", :force => true do |t|
     t.string   "name"
-    t.string   "email"
     t.string   "phone"
-    t.datetime "come_in_date"
-    t.datetime "come_out_date"
-    t.integer  "people_amount"
-    t.text     "description"
+    t.string   "email"
     t.integer  "relative_id"
     t.string   "relative_type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.datetime "come_in_date"
+    t.datetime "come_out_date"
+    t.text     "description"
+    t.integer  "people_amount"
   end
 
   add_index "orders", ["relative_id"], :name => "index_orders_on_relative_id"
@@ -223,10 +230,11 @@ ActiveRecord::Schema.define(:version => 20120723202614) do
     t.integer  "tour_id"
     t.integer  "hotel_id"
     t.string   "url_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "title_ua"
     t.string   "caption_ua"
+    t.boolean  "is_published"
   end
 
   add_index "promotions", ["hotel_id"], :name => "index_promotions_on_hotel_id"
@@ -304,5 +312,16 @@ ActiveRecord::Schema.define(:version => 20120723202614) do
   add_index "tours", ["city_id"], :name => "index_tours_on_city_id"
   add_index "tours", ["data"], :name => "tours_gist_data"
   add_index "tours", ["slug"], :name => "index_tours_on_slug", :unique => true
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end

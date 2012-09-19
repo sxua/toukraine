@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @promotions = Promotion.random(5).all
+    @promotions = Promotion.published.for_locale(I18n.locale).all
   end
 end

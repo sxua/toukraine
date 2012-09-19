@@ -1,13 +1,32 @@
+# == Schema Information
+#
+# Table name: regions
+#
+#  id          :integer          not null, primary key
+#  title_ru    :string(255)
+#  title_en    :string(255)
+#  parent_id   :integer
+#  lft         :integer
+#  rgt         :integer
+#  slug        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  menu        :boolean
+#  title_ua    :string(255)
+#  shown_aside :boolean
+#
+
 require 'babosa'
 
 class Region < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
+  has_paper_trail
   acts_as_nested_set
   attr_accessible :parent_id, :slug, :menu, :shown_aside, :meta_attributes
   has_many :cities
-  has_one :meta, as: :relative, dependent: :destroy
-  accepts_nested_attributes_for :meta, allow_destroy: true
+  has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
+  accepts_nested_attributes_for :meta_tag, allow_destroy: true
 
   translates :title
 

@@ -34,6 +34,7 @@ en:
     location: Location
     prices: Prices
     contacts: Contacts
+    order: Order
   sortings:
     title: Title
     city: City
@@ -50,7 +51,7 @@ en:
     come_in_date: Arrival date
     come_out_date: Departure date
     people_amount: People amount
-    description: Additional information
+    description: "Additional information (room type, number of children)"
     submit: Submit
     success: Thank you! Your order has been submited successfully. Our manager will contact you soon.
   news: News

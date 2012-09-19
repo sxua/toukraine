@@ -12,6 +12,7 @@ gem 'seed-fu'
 gem 'friendly_id', '~> 4.0.1'
 gem 'babosa'
 gem 'google-analytics-rails'
+gem 'paper_trail'
 
 gem 'kaminari'
 gem 'simple_form'
@@ -30,6 +31,7 @@ gem 'unicorn', '~> 4.1'
 gem 'activeadmin'
 gem 'formtastic', '~> 2.1.1'
 gem 'therubyracer'
+gem 'annotate'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

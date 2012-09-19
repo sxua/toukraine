@@ -22,6 +22,7 @@
     <%= f.input :url, wrapper_html: { style: "#{'display:none;' unless @promotion.url_type == 'plain' || @promotion.url_type.nil? }" } %>
     <%= f.input :tour, wrapper_html: { style: "#{'display:none;' unless @promotion.url_type == 'tour' }" } %>
     <%= f.input :hotel, wrapper_html: { style: "#{'display:none;' unless @promotion.url_type == 'hotel' }" } %>
+    <%= f.input :is_published %>
   <% end %>
   <%= f.actions %>
 <% end %>

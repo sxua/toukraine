@@ -1,12 +1,34 @@
+# == Schema Information
+#
+# Table name: news
+#
+#  id              :integer          not null, primary key
+#  title_ru        :string(255)
+#  title_en        :string(255)
+#  body_ru         :text
+#  body_en         :text
+#  slug            :string(255)
+#  created_by_id   :integer
+#  published_by_id :integer
+#  published_at    :datetime
+#  is_published    :boolean
+#  delta           :boolean          default(TRUE), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  title_ua        :string(255)
+#  body_ua         :text
+#
+
 require 'babosa'
 
 class News < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
+  has_paper_trail
   belongs_to :created_by, class_name: 'AdminUser'
   belongs_to :published_by, class_name: 'AdminUser'
-  has_one :meta, as: :relative, dependent: :destroy
-  accepts_nested_attributes_for :meta, allow_destroy: true
+  has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
+  accepts_nested_attributes_for :meta_tag, allow_destroy: true
 
   attr_accessible :is_published, :published_at, :published_by_id, :created_by_id, :slug, :meta_attributes
 

@@ -1,6 +1,9 @@
 <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBp9Po862jjrqJI3bqghEmeiCoRVH0gulY&sensor=false&language=#{I18n.locale}" if @hotel.geom %>
 <div class="row" id="hotel">
   <div class="span9">
+    
+    <%= render "/layouts/social_buttons" %>
+    
     <% box do %>
       <h3>
         <%= @hotel.title %><% if @hotel.city %><span>, <%= @hotel.city.title %><%= " #{@hotel.stars}*" if @hotel.stars %></span><% end %>
@@ -17,6 +20,7 @@
         <% if @hotel.prices.present? %>
           <li><%= link_to I18n.t('tabs.prices'), '#prices', 'data-toggle' => 'tab' %></li>
         <% end %>
+          <li><%= link_to I18n.t('tabs.order'), '#order_form', 'data-toggle' => 'modal' %></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane" id="overview">

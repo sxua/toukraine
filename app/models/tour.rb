@@ -1,9 +1,41 @@
+# == Schema Information
+#
+# Table name: tours
+#
+#  id             :integer          not null, primary key
+#  title_ru       :string(255)
+#  title_en       :string(255)
+#  description_ru :text
+#  description_en :text
+#  slug           :string(255)
+#  delta          :boolean          default(TRUE), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  data           :hstore
+#  city_id        :integer
+#  price          :integer
+#  currency       :integer
+#  tour_type_id   :integer
+#  visible_ru     :boolean
+#  visible_en     :boolean
+#  prices_ru      :text
+#  prices_en      :text
+#  subtitle_ru    :string(255)
+#  subtitle_en    :string(255)
+#  title_ua       :string(255)
+#  description_ua :text
+#  visible_ua     :boolean
+#  prices_ua      :text
+#  subtitle_ua    :string(255)
+#
+
 require 'babosa'
 
 class Tour < ActiveRecord::Base
   extend FriendlyId
   extend Extensions::Fetch
   include Extensions::Translate
+  has_paper_trail
   attr_accessible :price, :currency, :tour_type_id, :city_id, :slug, :photos_attributes, :primary_photo_attributes, :meta_attributes
   translates :title, :description, :subtitle, :prices, :visible
   belongs_to :tour_type
@@ -12,8 +44,8 @@ class Tour < ActiveRecord::Base
   accepts_nested_attributes_for :primary_photo, allow_destroy: true
   has_many :photos, as: :relative, dependent: :destroy, conditions: { is_primary: false }
   accepts_nested_attributes_for :photos, allow_destroy: true, reject_if: proc { |p| not p[:image] && p[:image_cache].blank? }
-  has_one :meta, as: :relative, dependent: :destroy
-  accepts_nested_attributes_for :meta, allow_destroy: true
+  has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
+  accepts_nested_attributes_for :meta_tag, allow_destroy: true
 
   friendly_id :title_ru, use: :slugged
 

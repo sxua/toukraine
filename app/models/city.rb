@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: cities
+#
+#  id        :integer          not null, primary key
+#  title_ru  :string(255)
+#  title_en  :string(255)
+#  slug      :string(255)
+#  region_id :integer
+#  delta     :boolean          default(TRUE), not null
+#  title_ua  :string(255)
+#
+
 require 'babosa'
 
 class City < ActiveRecord::Base

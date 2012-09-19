@@ -1,5 +1,7 @@
 <div class="row" id="tour">
   <div class="span9">
+    <%= render "/layouts/social_buttons" %>
+    
     <% box title: @tour.title do %>
       <ul class="nav nav-tabs">
         <li><%= link_to I18n.t('tabs.overview'), '#overview', 'data-toggle' => 'tab' %></li>
@@ -9,6 +11,7 @@
         <% if @tour.prices.present? %>
           <li><%= link_to I18n.t('tabs.prices'), '#prices', 'data-toggle' => 'tab' %></li>
         <% end %>
+          <li><%= link_to I18n.t('tabs.order'), '#order_form', 'data-toggle' => 'modal' %></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane" id="overview">

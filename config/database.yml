@@ -3,6 +3,7 @@ development:
   encoding: unicode
   database: toukraine_development
   template: template_toukraine
+  host: localhost
   pool: 5
   username: postgres
   script_dir: /usr/local/share/postgis

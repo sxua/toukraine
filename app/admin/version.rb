@@ -1,0 +1,25 @@
+# encoding: utf-8
+
+ActiveAdmin.register Version do
+  index do
+    column "Тип объекта" do |v| v.item_type.underscore.humanize end
+      
+    column "Объект"  do |v| 
+      link_to v.item.id, self.send("admin_#{v.item_type.underscore}_path", v.item)
+    end
+    
+    column :event
+    
+    column "Кто менял" do |v| 
+      user = AdminUser.find_by_id(v.whodunnit)
+      if user
+        link_to user.email, admin_admin_user_path(user)
+      end
+    end
+    
+    column "Когда" do |v| v.created_at.to_s :long end
+    default_actions
+  end
+
+  filter :item_type
+end

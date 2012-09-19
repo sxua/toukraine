@@ -15,7 +15,7 @@
           <% Page.published.for(:modals).each do |page| %>
             <li><%= link_to page.title, "##{page.slug}", 'data-toggle' => 'modal', class: 'internal' %></li>
           <% end %>
-          <% %w(ru en).each do |locale| %>
+          <% %w(ua ru en).each do |locale| %>
             <li class="locale"><%= link_to_if request.get?, image_tag("flags/#{locale}.png"), change_locale_path(locale) %></li>
           <% end %>
         </ul>
