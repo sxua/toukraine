@@ -25,12 +25,12 @@ ActiveAdmin.register News do
   controller do
     def new
       @news = News.new
-      @news.build_meta
+      @news.build_meta_tag
     end
 
     def edit
       @news = News.find(params[:id])
-      @news.build_meta unless @news.meta
+      @news.build_meta_tag unless @news.meta_tag
     end
 
     def create
@@ -41,7 +41,7 @@ ActiveAdmin.register News do
           if @news.save
             render :show
           else
-            @news.build_meta unless @news.meta
+            @news.build_meta_tag unless @news.meta_tag
             render :new
           end
         end

@@ -15,13 +15,13 @@ ActiveAdmin.register Hotel do
     def new
       @hotel = Hotel.new
       @hotel.build_primary_photo
-      @hotel.build_meta
+      @hotel.build_meta_tag
     end
 
     def edit
       @hotel = Hotel.find(params[:id])
       @hotel.build_primary_photo unless @hotel.primary_photo.present?
-      @hotel.build_meta unless @hotel.meta
+      @hotel.build_meta unless @hotel.meta_tag
     end
 
     def create
@@ -33,7 +33,7 @@ ActiveAdmin.register Hotel do
             render :show
           else
             @hotel.build_primary_photo unless @hotel.primary_photo
-            @hotel.build_meta unless @hotel.meta
+            @hotel.build_meta_tag unless @hotel.meta_tag
             render :new
           end
         end

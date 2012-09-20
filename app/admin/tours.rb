@@ -21,13 +21,13 @@ ActiveAdmin.register Tour do
     def new
       @tour = Tour.new
       @tour.build_primary_photo
-      @tour.build_meta
+      @tour.build_meta_tag
     end
 
     def edit
       @tour = Tour.find(params[:id])
       @tour.build_primary_photo unless @tour.primary_photo.present?
-      @tour.build_meta unless @tour.meta
+      @tour.build_meta_tag unless @tour.meta_tag
     end
 
     def create
@@ -39,7 +39,7 @@ ActiveAdmin.register Tour do
             render :show
           else
             @tour.build_primary_photo unless @tour.primary_photo
-            @tour.build_meta unless @tour.meta
+            @tour.build_meta_tag unless @tour.meta_tag
             render :new
           end
         end

@@ -32,12 +32,12 @@ ActiveAdmin.register Page do
   controller do
     def new
       @page = Page.new
-      @page.build_meta
+      @page.build_meta_tag
     end
 
     def edit
       @page = Page.find(params[:id])
-      @page.build_meta unless @page.meta
+      @page.build_meta_tag unless @page.meta_tag
     end
 
     def create
@@ -48,7 +48,7 @@ ActiveAdmin.register Page do
           if @page.save
             render :show
           else
-            @page.build_meta unless @page.meta
+            @page.build_meta_tag unless @page.meta_tag
             render :new
           end
         end

@@ -25,12 +25,12 @@ ActiveAdmin.register Region do
   controller do
     def new
       @region = Region.new
-      @region.build_meta
+      @region.build_meta_tag
     end
 
     def edit
       @region = Region.find(params[:id])
-      @region.build_meta unless @region.meta
+      @region.build_meta_tag unless @region.meta_tag
     end
 
     def create
@@ -41,7 +41,7 @@ ActiveAdmin.register Region do
           if @region.save
             render :show
           else
-            @region.build_meta unless @region.meta
+            @region.build_meta_tag unless @region.meta_tag
             render :new
           end
         end
