@@ -3,6 +3,6 @@ class Background < ActiveRecord::Base
   
   mount_uploader :image, PhotoUploader
   
-  scope :random, order('random()').first
+  scope :random, order('random()')
   
 end
