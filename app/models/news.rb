@@ -30,9 +30,9 @@ class News < ActiveRecord::Base
   has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
   accepts_nested_attributes_for :meta_tag, allow_destroy: true
 
-  attr_accessible :is_published, :published_at, :published_by_id, :created_by_id, :slug, :meta_attributes
+  attr_accessible :is_published, :published_at, :published_by_id, :created_by_id, :slug, :meta_tag_attributes
 
-  translates :body, :title
+  translates :body, :title, :preview
 
   friendly_id :title_ru, use: :slugged
   

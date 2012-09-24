@@ -36,7 +36,7 @@ class Tour < ActiveRecord::Base
   extend Extensions::Fetch
   include Extensions::Translate
   has_paper_trail
-  attr_accessible :price, :currency, :tour_type_id, :city_id, :slug, :photos_attributes, :primary_photo_attributes, :meta_attributes
+  attr_accessible :price, :currency, :tour_type_id, :city_id, :slug, :photos_attributes, :primary_photo_attributes, :meta_tag_attributes
   translates :title, :description, :subtitle, :prices, :visible
   belongs_to :tour_type
   belongs_to :city

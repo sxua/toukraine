@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919133727) do
+ActiveRecord::Schema.define(:version => 20120924120248) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -150,6 +150,9 @@ ActiveRecord::Schema.define(:version => 20120919133727) do
     t.datetime "updated_at",                        :null => false
     t.string   "title_ua"
     t.text     "body_ua"
+    t.text     "preview_ru"
+    t.text     "preview_ua"
+    t.text     "preview_en"
   end
 
   add_index "news", ["created_by_id"], :name => "index_news_on_created_by_id"

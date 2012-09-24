@@ -4,8 +4,14 @@
   <ul id="news">
     <% @news.each do |news| %>
       <li class="<%= cycle('odd', 'even') %>">
+        <div class="date">
+          <%= news.created_at.strftime "%d.%m.%Y" %>&nbsp;&nbsp;|&nbsp;&nbsp;
+        </div>
         <div class="title">
           <%= link_to news.title, news_path(id: news.try(:slug)) %>
+        </div>
+        <div class="preview">
+          <%=strip_tags news.preview %>
         </div>
         <div class="clear"></div>
       </li>

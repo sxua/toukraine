@@ -23,7 +23,7 @@ class Region < ActiveRecord::Base
   include Extensions::Translate
   has_paper_trail
   acts_as_nested_set
-  attr_accessible :parent_id, :slug, :menu, :shown_aside, :meta_attributes
+  attr_accessible :parent_id, :slug, :menu, :shown_aside, :meta_tag_attributes
   has_many :cities
   has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
   accepts_nested_attributes_for :meta_tag, allow_destroy: true

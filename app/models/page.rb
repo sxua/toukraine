@@ -35,7 +35,7 @@ class Page < ActiveRecord::Base
   has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
   accepts_nested_attributes_for :meta_tag, allow_destroy: true
 
-  attr_accessible :created_by_id, :is_published, :published_at, :published_by_id, :slug, :category, :weight, :meta_attributes
+  attr_accessible :created_by_id, :is_published, :published_at, :published_by_id, :slug, :category, :weight, :meta_tag_attributes
 
   friendly_id :title_ru, use: :slugged
 

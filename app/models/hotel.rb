@@ -38,7 +38,7 @@ class Hotel < ActiveRecord::Base
   include Extensions::Translate
   has_paper_trail
   set_rgeo_factory_for_column(:latlon, RGeo::Geographic.spherical_factory(srid: 4326))
-  attr_accessible :city_id, :slug, :geom, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars, :meta_attributes
+  attr_accessible :city_id, :slug, :geom, :photos_attributes, :price, :currency, :primary_photo_attributes, :stars, :meta_tag_attributes
   belongs_to :city
   has_many :tours
   has_one :primary_photo, as: :relative, dependent: :destroy, class_name: 'Photo', conditions: { is_primary: true }

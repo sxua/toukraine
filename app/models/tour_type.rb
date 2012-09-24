@@ -16,7 +16,7 @@ require 'babosa'
 class TourType < ActiveRecord::Base
   extend FriendlyId
   include Extensions::Translate
-  attr_accessible :slug, :meta_attributes
+  attr_accessible :slug, :meta_tag_attributes
   has_many :tours
   has_one :meta_tag, as: :relative, dependent: :destroy, class_name: "Meta"
   accepts_nested_attributes_for :meta_tag, allow_destroy: true

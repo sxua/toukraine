@@ -8,7 +8,11 @@ ActiveAdmin.register Version, :as => "Latest changes" do
     column "Тип объекта" do |v| v.item_type.underscore.humanize end
       
     column "Объект"  do |v| 
-      link_to v.item.id, self.send("admin_#{v.item_type.underscore}_path", v.item)
+      if %w{page photo promotion background tour tour_type admin_user city region sight}.include? v.item_type.underscore
+        link_to v.item.id, self.send("admin_#{v.item_type.underscore}_path", v.item)
+      else
+        " - "
+      end
     end
     
     column :event
