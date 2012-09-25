@@ -10,10 +10,10 @@
 <% end %>
 <% if Stuff.articles.any? %>
   <% box title: I18n.t('aside.news_and_promotions') do %>
-    <ul>
-      <% Stuff.articles(10).each do |stuff| %>
+    <ul id="aside_news">
+      <% Stuff.articles(5).each do |stuff| %>
         <% url = stuff.is_a?(News) ? url_for(stuff) : slide_url_for(stuff) %>
-        <li><%= link_to stuff.title, url %></li>
+        <li> <span style="color:#9f9f9f"><%= stuff.created_at.strftime("%d.%m.%Y") %> | </span> <%= link_to stuff.title, url %></li>
       <% end %>
     </ul>
     <div class="hr">
