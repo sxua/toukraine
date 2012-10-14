@@ -16,21 +16,21 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :full do
-    process resize_to_fill: [1000, 600]
+    process resize_to_fit: [1000, 600]
     process convert: 'jpg'
   end
   
-  version :preview, from_version: :full do
-    process resize_to_fill: [770, 350]
+  version :preview do
+    process resize_to_fit: [770, 350]
     process convert: 'jpg'
   end
 
-  version :tile, from_version: :preview do
+  version :tile do
     process resize_to_fill: [240, 166]
     process convert: 'jpg'
   end
 
-  version :thumb, from_version: :preview do
+  version :thumb do
     process resize_to_fill: [140, 64]
     process convert: 'jpg'
   end
